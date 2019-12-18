@@ -12,11 +12,9 @@ compileSdkVersion 29
 buildToolsVersion "29.0.1"
 minSdkVersion 21
 
-# Helper Admob Sample Link
-https://github.com/amirisback/admob-helper-implementation
-
-# Helper MVVM Sample Link
-https://github.com/amirisback/android-architecture-by-amirisback
+# Helper Sample Link
+- Admob Sample https://github.com/amirisback/admob-helper-implementation
+- MVVM Sample https://github.com/amirisback/android-architecture-by-amirisback
 
 # How To Use This Project
 - Just Clone on Your Android Studio
