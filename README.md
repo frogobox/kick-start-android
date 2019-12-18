@@ -5,12 +5,12 @@ Template Code Monetize FrogoBox For Kick Start Project Template
 # About This Project
 Template Reuse Code For Monetizing Apps
 
-# Android Library Version
-ext.kotlin_version = '1.3.61'
-classpath 'com.android.tools.build:gradle:3.5.3'
-compileSdkVersion 29
-buildToolsVersion "29.0.1"
-minSdkVersion 21
+# Android Library Version (build.gradle)
+- ext.kotlin_version = '1.3.61'
+- classpath 'com.android.tools.build:gradle:3.5.3'
+- compileSdkVersion 29
+- buildToolsVersion "29.0.1"
+- minSdkVersion 21
 
 # Helper Sample Link
 - Admob Sample https://github.com/amirisback/admob-helper-implementation
