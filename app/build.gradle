@@ -1,0 +1,197 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    // Declaration app name
+    def nameApp = "Kick Start"
+
+    // Declaration apk / aab name
+    def nameAPK = "kick-start"
+
+    // Declaration Room DB Name
+    def nameDB = '"kick_start.db"'
+
+    def versionPropsFile = file('version.properties')
+    Properties versionProps = new Properties()
+
+    if (versionPropsFile.canRead()) {
+        versionProps.load(new FileInputStream(versionPropsFile))
+    } else {
+        versionProps['VERSION_CODE'] = '0'
+    }
+
+    def code = versionProps['VERSION_CODE'].toInteger()
+
+    versionProps['VERSION_CODE'] = code.toString()
+    versionProps.store(versionPropsFile.newWriter(), null)
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    compileSdkVersion 29
+    buildToolsVersion "29.0.1"
+
+    defaultConfig {
+        applicationId "com.frogobox.kickstart"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "DATABASE_NAME", nameDB)
+
+        // Declaration apps name debug mode
+        def debugAttribute = " Development"
+        def nameAppDebug = nameApp + debugAttribute
+
+        // Declaration admob id for debug
+        def debugAdmobPublisherId = "ca-app-pub-3940256099942544~3347511713"
+        def debugAdmobBanner = "ca-app-pub-3940256099942544/6300978111"
+        def debugAdmobInterstitial = "ca-app-pub-3940256099942544/1033173712"
+        def debugAdmobInterstitialVideo = "ca-app-pub-3940256099942544/8691691433"
+        def debugAdmobRewardedVideo = "ca-app-pub-3940256099942544/5224354917"
+        def debugAdmobNativeAdvanced = "ca-app-pub-3940256099942544/2247696110"
+        def debugAdmobNativeAdvancedVideo = "ca-app-pub-3940256099942544/1044960115"
+
+        // Naming APK // AAB
+        setProperty("archivesBaseName", nameAPK + versionName + "#" + code + "-"
+                + new Date().format('ddMMyy'))
+
+        resConfigs "en", "id"
+        vectorDrawables.useSupportLibrary = true
+
+        // Inject app name for debug
+        resValue "string", "app_name", nameAppDebug
+
+        // Inject admob id for debug
+        resValue "string", "admob_publisher_id", debugAdmobPublisherId
+        resValue "string", "admob_banner", debugAdmobBanner
+        resValue "string", "admob_interstitial", debugAdmobInterstitial
+        resValue "string", "admob_interstitial_video", debugAdmobInterstitialVideo
+        resValue "string", "admob_rewarded_video", debugAdmobRewardedVideo
+        resValue "string", "admob_native_advanced", debugAdmobNativeAdvanced
+        resValue "string", "admob_native_advanced_video", debugAdmobNativeAdvancedVideo
+
+    }
+
+    signingConfigs {
+        release {
+            // You need to specify either an absolute path or include the
+            // keystore file in the same directory as the build.gradle file.
+            // [PROJECT FOLDER NAME/app/[COPY YOUT KEY STORE] .jks in here
+            storeFile file("frogoboxdev.jks")
+            storePassword "cronoclez"
+            keyAlias "frogobox"
+            keyPassword "xeonranger"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // Generated Signed APK / AAB
+            signingConfig signingConfigs.release
+
+            // Declaration admob id for release
+            def releaseAdmobPublisherId = "ca-app-pub-3940256099942544~3347511713"
+            def releaseAdmobBanner = "ca-app-pub-3940256099942544/6300978111"
+            def releaseAdmobInterstitial = "ca-app-pub-3940256099942544/1033173712"
+            def releaseAdmobInterstitialVideo = "ca-app-pub-3940256099942544/8691691433"
+            def releaseAdmobRewardedVideo = "ca-app-pub-3940256099942544/5224354917"
+            def releaseAdmobNativeAdvanced = "ca-app-pub-3940256099942544/2247696110"
+            def releaseAdmobNativeAdvancedVideo = "ca-app-pub-3940256099942544/1044960115"
+
+            // Inject app name for release
+            resValue "string", "app_name", nameApp
+
+            // Inject admob id for release
+            resValue "string", "admob_publisher_id", releaseAdmobPublisherId
+            resValue "string", "admob_banner", releaseAdmobBanner
+            resValue "string", "admob_interstitial", releaseAdmobInterstitial
+            resValue "string", "admob_interstitial_video", releaseAdmobInterstitialVideo
+            resValue "string", "admob_rewarded_video", releaseAdmobRewardedVideo
+            resValue "string", "admob_native_advanced", releaseAdmobNativeAdvanced
+            resValue "string", "admob_native_advanced_video", releaseAdmobNativeAdvancedVideo
+
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
+
+    // lib google ads
+    implementation 'com.google.android.gms:play-services-ads:18.3.0'
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    implementation "com.squareup.okhttp3:okhttp:3.14.1"
+    implementation "com.squareup.okhttp3:logging-interceptor:3.14.1"
+    implementation "com.squareup.picasso:picasso:2.71828"
+    implementation "com.squareup.retrofit2:retrofit:2.6.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava:2.3.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.6.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.5.0"
+    implementation "com.squareup.retrofit2:converter-scalars:2.3.0"
+
+    implementation "com.readystatesoftware.chuck:library:1.1.0"
+
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
+
+    api "com.google.dagger:dagger:2.24"
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.24'
+    implementation "com.facebook.stetho:stetho:1.5.1"
+
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+
+    // Room components
+    implementation "androidx.room:room-runtime:2.2.2"
+    implementation "androidx.room:room-ktx:2.2.2"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-rc03"
+    // ViewModel Kotlin support
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc03"
+    //noinspection LifecycleAnnotationProcessorWithJava8
+    kapt "androidx.lifecycle:lifecycle-compiler:2.2.0-rc03"
+
+    // Play Console API 3
+//    implementation 'com.google.apis:google-api-services-androidpublisher:v3-rev20191113-1.30.3'
+
+    kapt "androidx.room:room-compiler:2.2.2"
+    implementation "androidx.room:room-ktx:2.2.2"
+    implementation "androidx.room:room-rxjava2:2.2.2"
+    implementation "androidx.room:room-guava:2.2.2"
+    testImplementation "androidx.room:room-testing:2.2.2"
+
+    // Coroutines
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation "androidx.preference:preference-ktx:1.1.0"
+    androidTestImplementation "androidx.room:room-testing:2.2.2"
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+}
