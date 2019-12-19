@@ -25,6 +25,6 @@
     <item
         android:width="@dimen/dimen_splash_screen"
         android:height="@dimen/dimen_splash_screen"
-        android:drawable="@drawable/ic_icon_splash"
+        android:drawable="@drawable/ic_frogobox"
         android:gravity="center" />
 </layer-list>
