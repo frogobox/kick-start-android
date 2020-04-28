@@ -5,11 +5,18 @@ apply plugin: 'kotlin-kapt'
 
 android {
 
+    def versionMajor = 1
+    def versionMinor = 0
+    def versionPatch = 0
+
+    def projectVersionCode = (versionMajor*100) + (versionMinor*10) + (versionPatch*1)
+    def projectVersionName = "$versionMajor.$versionMinor.$versionPatch"
+
     // Declaration app name
     def nameApp = "Kick Start"
 
     // Declaration apk / aab name
-    def nameAPK = "kick-start"
+    def nameAPK = nameApp.toLowerCase().replace(" ", "-")
 
     // Declaration Room DB Name
     def nameDB = '"kick_start.db"'
@@ -34,14 +41,14 @@ android {
     }
 
     compileSdkVersion 29
-    buildToolsVersion "29.0.1"
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.frogobox.kickstart"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0.0"
+        versionCode projectVersionCode
+        versionName projectVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "DATABASE_NAME", nameDB)
