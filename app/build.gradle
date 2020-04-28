@@ -158,6 +158,9 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.26'
     implementation "com.facebook.stetho:stetho:1.5.1"
 
+    // library frogo-recycler-view
+    implementation 'com.github.amirisback:frogo-recycler-view:2.2.2'
+
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'

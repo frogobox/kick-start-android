@@ -3,7 +3,7 @@ package com.frogobox.kickstart.source.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.frogobox.kickstart.model.Favorite
+import com.frogobox.kickstart.mvvm.model.Favorite
 import com.frogobox.kickstart.util.helper.ConstHelper.RoomDatabase.TABLE_NAME_FAVORITE
 import io.reactivex.Single
 

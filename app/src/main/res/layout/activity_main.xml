@@ -3,8 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.MainActivity">
+    tools:context=".mvvm.ui.activity.MainActivity">
 
-    <include layout="@layout/ads_phone_tab_special_smart_banner" />
+    <com.frogobox.recycler.FrogoRecyclerView
+        android:id="@+id/rv_news"
+        android:paddingTop="@dimen/frogo_rv_dimen_16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        tools:listitem="@layout/list_news_article_vertical" />
+
+    <ProgressBar
+        android:id="@+id/progress_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
 </RelativeLayout>

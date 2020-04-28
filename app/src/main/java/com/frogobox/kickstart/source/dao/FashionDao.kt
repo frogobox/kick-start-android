@@ -3,7 +3,7 @@ package com.frogobox.kickstart.source.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.frogobox.kickstart.model.Fashion
+import com.frogobox.kickstart.mvvm.model.Fashion
 import com.frogobox.kickstart.util.helper.ConstHelper.RoomDatabase.TABLE_NAME_DATA
 import io.reactivex.Single
 /**

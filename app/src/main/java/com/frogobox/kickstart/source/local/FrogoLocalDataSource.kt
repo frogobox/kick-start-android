@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.annotation.VisibleForTesting
 import com.frogobox.kickstart.base.view.BaseCallback
-import com.frogobox.kickstart.model.ArticleResponse
-import com.frogobox.kickstart.model.Fashion
-import com.frogobox.kickstart.model.Favorite
-import com.frogobox.kickstart.model.SourceResponse
+import com.frogobox.kickstart.mvvm.model.ArticleResponse
+import com.frogobox.kickstart.mvvm.model.Fashion
+import com.frogobox.kickstart.mvvm.model.Favorite
+import com.frogobox.kickstart.mvvm.model.SourceResponse
 import com.frogobox.kickstart.source.FrogoDataSource
 import com.frogobox.kickstart.source.dao.FashionDao
 import com.frogobox.kickstart.source.dao.FavoriteDao

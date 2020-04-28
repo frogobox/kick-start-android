@@ -1,10 +1,10 @@
 package com.frogobox.kickstart.source.remote
 
 import android.content.Context
-import com.frogobox.kickstart.model.ArticleResponse
-import com.frogobox.kickstart.model.Fashion
-import com.frogobox.kickstart.model.Favorite
-import com.frogobox.kickstart.model.SourceResponse
+import com.frogobox.kickstart.mvvm.model.ArticleResponse
+import com.frogobox.kickstart.mvvm.model.Fashion
+import com.frogobox.kickstart.mvvm.model.Favorite
+import com.frogobox.kickstart.mvvm.model.SourceResponse
 import com.frogobox.kickstart.source.FrogoDataSource
 import com.frogobox.kickstart.source.remote.network.FrogoApiCallback
 import com.frogobox.kickstart.source.remote.network.FrogoApiService

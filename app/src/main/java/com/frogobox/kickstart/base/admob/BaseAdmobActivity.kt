@@ -30,7 +30,7 @@ import com.google.android.gms.ads.reward.RewardedVideoAd
  *
  */
 
-open class BaseAdmobActivity : BaseActivity() {
+open class BaseAdmobActivity : AppCompatActivity() {
 
     protected lateinit var mActivity: AppCompatActivity
     lateinit var mInterstitialAd: InterstitialAd

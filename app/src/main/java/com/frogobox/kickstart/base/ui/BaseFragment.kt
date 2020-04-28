@@ -28,11 +28,11 @@ import com.frogobox.kickstart.util.helper.AdmobHelper.Interstitial.showInterstit
  */
 open class BaseFragment : Fragment() {
 
-    lateinit var mBaseActivity: BaseAdmobActivity
+    lateinit var mBaseActivity: BaseActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBaseActivity = (activity as BaseAdmobActivity)
+        mBaseActivity = (activity as BaseActivity)
     }
 
     protected fun setupChildFragment(frameId: Int, fragment: Fragment) {
@@ -61,7 +61,7 @@ open class BaseFragment : Fragment() {
     }
 
     protected fun checkArgument(argsKey: String): Boolean {
-        return arguments!!.containsKey(argsKey)
+        return requireArguments().containsKey(argsKey)
     }
 
     protected fun setupEventEmptyView(view: View, isEmpty: Boolean) {

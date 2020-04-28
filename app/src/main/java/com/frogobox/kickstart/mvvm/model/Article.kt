@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.model
+package com.frogobox.kickstart.mvvm.model
 
 import com.google.gson.annotations.SerializedName
 

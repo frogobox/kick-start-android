@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.frogobox.kickstart.mvvm.viewmodel.MainViewModel
 import com.frogobox.kickstart.source.FrogoDataRepository
 
 /**
@@ -33,8 +34,8 @@ class ViewModelFactory private constructor(
         with(modelClass) {
             when {
 
-//                isAssignableFrom(CategoryScriptViewModel::class.java) ->
-//                    CategoryScriptViewModel(mApplication, frogoDataRepository)
+                isAssignableFrom(MainViewModel::class.java) ->
+                    MainViewModel(mApplication, frogoDataRepository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

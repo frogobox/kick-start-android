@@ -11,8 +11,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.frogobox.kickstart.R
+import com.frogobox.kickstart.base.admob.BaseAdmobActivity
 import com.frogobox.kickstart.base.util.BaseHelper
+import com.frogobox.kickstart.util.ViewModelFactory
 
 /**
  * Created by Faisal Amir
@@ -31,7 +35,7 @@ import com.frogobox.kickstart.base.util.BaseHelper
  * com.frogobox.basemusicplayer.base
  *
  */
-open class BaseActivity : AppCompatActivity() {
+open class BaseActivity : BaseAdmobActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -127,6 +131,9 @@ open class BaseActivity : AppCompatActivity() {
             view.visibility = View.GONE
         }
     }
+
+    fun <T : ViewModel> obtainViewModel(viewModelClass: Class<T>) =
+        ViewModelProvider(this, ViewModelFactory.getInstance(application)).get(viewModelClass)
 
 
 }

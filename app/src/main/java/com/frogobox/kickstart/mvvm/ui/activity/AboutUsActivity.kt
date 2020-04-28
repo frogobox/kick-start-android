@@ -1,10 +1,10 @@
-package com.frogobox.kickstart.ui.activity
+package com.frogobox.kickstart.mvvm.ui.activity
 
 import android.os.Bundle
 import com.frogobox.kickstart.R
-import com.frogobox.kickstart.base.admob.BaseAdmobActivity
+import com.frogobox.kickstart.base.ui.BaseActivity
 
-class AboutUsActivity : BaseAdmobActivity() {
+class AboutUsActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
