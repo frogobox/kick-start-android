@@ -39,7 +39,7 @@ object Injection {
 
         val appExecutors = AppExecutors()
 
-        return FrogoDataRepository.getInstance(FrogoRemoteDataSource(context),
+        return FrogoDataRepository.getInstance(FrogoRemoteDataSource,
             FrogoLocalDataSource.getInstance(
                 appExecutors,
                 PreferenceManager.getDefaultSharedPreferences(context),

@@ -8,7 +8,7 @@ import com.frogobox.kickstart.util.SingleLiveEvent
  * Created by Faisal Amir
  * FrogoBox Inc License
  * =========================================
- * PregnantFashsion
+ * Kick-Start-Template
  * Copyright (C) 18/08/2019.
  * All rights reserved
  * -----------------------------------------

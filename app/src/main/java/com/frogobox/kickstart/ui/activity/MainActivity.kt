@@ -11,7 +11,7 @@ class MainActivity : BaseAdmobActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setupShowAdsBanner(ads_phone_tab_special_smart_banner)
+
 
     }
 

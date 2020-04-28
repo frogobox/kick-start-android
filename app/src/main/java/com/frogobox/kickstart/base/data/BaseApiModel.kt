@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * Created by Faisal Amir
  * FrogoBox Inc License
  * =========================================
- * PregnantFashsion
+ * Kick-Start-Template
  * Copyright (C) 21/08/2019.
  * All rights reserved
  * -----------------------------------------

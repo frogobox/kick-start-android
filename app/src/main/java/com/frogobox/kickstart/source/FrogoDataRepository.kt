@@ -1,8 +1,11 @@
 package com.frogobox.kickstart.source
 
 
+import android.content.Context
+import com.frogobox.kickstart.model.ArticleResponse
 import com.frogobox.kickstart.model.Fashion
 import com.frogobox.kickstart.model.Favorite
+import com.frogobox.kickstart.model.SourceResponse
 import com.frogobox.kickstart.source.local.FrogoLocalDataSource
 import com.frogobox.kickstart.source.remote.FrogoRemoteDataSource
 
@@ -23,20 +26,89 @@ import com.frogobox.kickstart.source.remote.FrogoRemoteDataSource
  * com.frogobox.basemusicplayer.source
  *
  */
-open class FrogoDataRepository(private val remoteDataSource: FrogoRemoteDataSource,
-                               private val localDataSource: FrogoLocalDataSource) : FrogoDataSource {
+open class FrogoDataRepository(
+    private val remoteDataSource: FrogoRemoteDataSource,
+    private val localDataSource: FrogoLocalDataSource
+) : FrogoDataSource {
+    override fun usingChuckInterceptor(context: Context) {
+        remoteDataSource.usingChuckInterceptor(context)
+    }
+
+    override fun getTopHeadline(
+        apiKey: String,
+        q: String?,
+        sources: String?,
+        category: String?,
+        country: String?,
+        pageSize: Int?,
+        page: Int?,
+        callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
+    ) {
+        remoteDataSource.getTopHeadline(
+            apiKey,
+            q,
+            sources,
+            category,
+            country,
+            pageSize,
+            page,
+            callback
+        )
+    }
+
+    override fun getEverythings(
+        apiKey: String,
+        q: String?,
+        from: String?,
+        to: String?,
+        qInTitle: String?,
+        sources: String?,
+        domains: String?,
+        excludeDomains: String?,
+        language: String?,
+        sortBy: String?,
+        pageSize: Int?,
+        page: Int?,
+        callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
+    ) {
+        remoteDataSource.getEverythings(
+            apiKey,
+            q,
+            from,
+            to,
+            qInTitle,
+            sources,
+            domains,
+            excludeDomains,
+            language,
+            sortBy,
+            pageSize,
+            page,
+            callback
+        )
+    }
+
+    override fun getSources(
+        apiKey: String,
+        language: String,
+        country: String,
+        category: String,
+        callback: FrogoDataSource.GetRemoteCallback<SourceResponse>
+    ) {
+        remoteDataSource.getSources(apiKey, language, country, category, callback)
+    }
 
 
     override fun saveRoomFavorite(data: Favorite): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return localDataSource.saveRoomFavorite(data)
     }
 
     override fun getRoomData(callback: FrogoDataSource.GetRoomDataCallBack<List<Fashion>>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        localDataSource.getRoomData(callback)
     }
 
     override fun getRoomFavorite(callback: FrogoDataSource.GetRoomDataCallBack<List<Favorite>>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        localDataSource.getRoomFavorite(callback)
     }
 
     override fun updateRoomFavorite(
@@ -45,22 +117,22 @@ open class FrogoDataRepository(private val remoteDataSource: FrogoRemoteDataSour
         description: String,
         dateTime: String
     ): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return localDataSource.updateRoomFavorite(tableId, title, description, dateTime)
     }
 
     override fun searchRoomFavorite(
         scriptId: String,
         callback: FrogoDataSource.GetRoomDataCallBack<List<Favorite>>
     ) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        localDataSource.searchRoomFavorite(scriptId, callback)
     }
 
     override fun deleteRoomFavorite(tableId: Int): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return localDataSource.deleteRoomFavorite(tableId)
     }
 
     override fun nukeRoomFavorite(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return localDataSource.nukeRoomFavorite()
     }
 
     companion object {
@@ -75,7 +147,10 @@ open class FrogoDataRepository(private val remoteDataSource: FrogoRemoteDataSour
          * @return the [FrogoRepository] instance
          */
         @JvmStatic
-        fun getInstance(FrogoRemoteDataSource: FrogoRemoteDataSource, gitsLocalDataSource: FrogoLocalDataSource) =
+        fun getInstance(
+            FrogoRemoteDataSource: FrogoRemoteDataSource,
+            gitsLocalDataSource: FrogoLocalDataSource
+        ) =
             INSTANCE ?: synchronized(FrogoDataRepository::class.java) {
                 INSTANCE ?: FrogoDataRepository(FrogoRemoteDataSource, gitsLocalDataSource)
                     .also { INSTANCE = it }

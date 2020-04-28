@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
  * Created by Faisal Amir
  * FrogoBox Inc License
  * =========================================
- * PregnantFashsion
+ * Kick-Start-Template
  * Copyright (C) 10/09/2019.
  * All rights reserved
  * -----------------------------------------

@@ -1,13 +1,16 @@
 package com.frogobox.kickstart.source.local
 
+import android.content.Context
 import android.content.SharedPreferences
 import androidx.annotation.VisibleForTesting
 import com.frogobox.kickstart.base.view.BaseCallback
-import com.frogobox.kickstart.model.Favorite
+import com.frogobox.kickstart.model.ArticleResponse
 import com.frogobox.kickstart.model.Fashion
+import com.frogobox.kickstart.model.Favorite
+import com.frogobox.kickstart.model.SourceResponse
 import com.frogobox.kickstart.source.FrogoDataSource
-import com.frogobox.kickstart.source.dao.FavoriteDao
 import com.frogobox.kickstart.source.dao.FashionDao
+import com.frogobox.kickstart.source.dao.FavoriteDao
 import com.frogobox.kickstart.util.AppExecutors
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -37,16 +40,61 @@ class FrogoLocalDataSource private constructor(
     private val fashionDao: FashionDao,
     private val favoriteDao: FavoriteDao
 ) : FrogoDataSource {
+    override fun usingChuckInterceptor(context: Context) {
+        
+    }
+
+    override fun getTopHeadline(
+        apiKey: String,
+        q: String?,
+        sources: String?,
+        category: String?,
+        country: String?,
+        pageSize: Int?,
+        page: Int?,
+        callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
+    ) {
+        
+    }
+
+    override fun getEverythings(
+        apiKey: String,
+        q: String?,
+        from: String?,
+        to: String?,
+        qInTitle: String?,
+        sources: String?,
+        domains: String?,
+        excludeDomains: String?,
+        language: String?,
+        sortBy: String?,
+        pageSize: Int?,
+        page: Int?,
+        callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
+    ) {
+        
+    }
+
+    override fun getSources(
+        apiKey: String,
+        language: String,
+        country: String,
+        category: String,
+        callback: FrogoDataSource.GetRemoteCallback<SourceResponse>
+    ) {
+        
+    }
+
     override fun saveRoomFavorite(data: Favorite): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return true
     }
 
     override fun getRoomData(callback: FrogoDataSource.GetRoomDataCallBack<List<Fashion>>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun getRoomFavorite(callback: FrogoDataSource.GetRoomDataCallBack<List<Favorite>>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun updateRoomFavorite(
@@ -55,7 +103,7 @@ class FrogoLocalDataSource private constructor(
         description: String,
         dateTime: String
     ): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return true
     }
 
     override fun searchRoomFavorite(
@@ -93,11 +141,11 @@ class FrogoLocalDataSource private constructor(
     }
 
     override fun deleteRoomFavorite(tableId: Int): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return true
     }
 
     override fun nukeRoomFavorite(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return true
     }
 
 

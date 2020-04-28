@@ -1,11 +1,13 @@
-package com.frogobox.kickstart.source.remote.network
+package com.frogobox.kickstart.model
+
+import com.google.gson.annotations.SerializedName
 
 /**
  * Created by Faisal Amir
  * FrogoBox Inc License
  * =========================================
- * PublicSpeakingBooster
- * Copyright (C) 16/08/2019.
+ * NewsApi
+ * Copyright (C) 15/03/2020.
  * All rights reserved
  * -----------------------------------------
  * Name     : Muhammad Faisal Amir
@@ -14,7 +16,15 @@ package com.frogobox.kickstart.source.remote.network
  * LinkedIn : linkedin.com/in/faisalamircs
  * -----------------------------------------
  * FrogoBox Software Industries
- * com.frogobox.publicspeakingbooster.source.remote.network
+ * com.frogobox.frogonewsapi.data.response
  *
  */
-object ApiService {}
+data class SourceResponse(
+
+    @SerializedName("status")
+    var status: String? = null,
+
+    @SerializedName("sources")
+    var sources: List<Source>? = null
+
+)

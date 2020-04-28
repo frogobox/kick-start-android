@@ -4,7 +4,7 @@ package com.frogobox.kickstart.base.view
  * Created by Faisal Amir
  * FrogoBox Inc License
  * =========================================
- * PregnantFashsion
+ * Kick-Start-Template
  * Copyright (C) 02/09/2019.
  * All rights reserved
  * -----------------------------------------

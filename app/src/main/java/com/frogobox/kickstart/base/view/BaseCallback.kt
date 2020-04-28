@@ -12,7 +12,7 @@ import java.net.UnknownHostException
  * Created by Faisal Amir
  * FrogoBox Inc License
  * =========================================
- * PregnantFashsion
+ * Kick-Start-Template
  * Copyright (C) 29/08/2019.
  * All rights reserved
  * -----------------------------------------
