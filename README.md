@@ -19,6 +19,7 @@ Template Reuse Code For Monetizing Apps
 - Admob Sample https://github.com/amirisback/admob-helper-implementation
 - MVVM Sample https://github.com/amirisback/android-architecture-by-amirisback
 - frogo-recycler-view https://github.com/amirisback/frogo-recycler-view
+- Awesome API Implemented https://github.com/amirisback/awesome-frogo-consumable-apps
 
 # How To Use This Project
 - Just Clone on Your Android Studio
