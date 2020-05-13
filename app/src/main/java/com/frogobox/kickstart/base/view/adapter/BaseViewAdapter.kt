@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.base.view
+package com.frogobox.kickstart.base.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
  * Created by Faisal Amir
  * FrogoBox Inc License
  * =========================================
- * Kick-Start-Template
+ * SpeechBooster
  * Copyright (C) 10/09/2019.
  * All rights reserved
  * -----------------------------------------
@@ -19,9 +19,10 @@ import androidx.recyclerview.widget.RecyclerView
  * LinkedIn : linkedin.com/in/faisalamircs
  * -----------------------------------------
  * FrogoBox Software Industries
- * com.frogobox.basemusicplayer.base
+ * com.frogobox.speechbooster.base
  *
  */
+
 abstract class BaseViewAdapter<T> : RecyclerView.Adapter<BaseViewHolder<T>>() {
 
     private lateinit var mViewListener: BaseViewListener<T>
@@ -48,5 +49,6 @@ abstract class BaseViewAdapter<T> : RecyclerView.Adapter<BaseViewHolder<T>>() {
     override fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) {
         holder.bindItem(mRecyclerViewDataList[position], mViewListener)
     }
+
 
 }

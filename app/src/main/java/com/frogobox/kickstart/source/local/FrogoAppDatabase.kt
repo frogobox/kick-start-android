@@ -9,8 +9,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.frogobox.kickstart.BuildConfig
 import com.frogobox.kickstart.mvvm.model.Fashion
 import com.frogobox.kickstart.mvvm.model.Favorite
-import com.frogobox.kickstart.source.dao.FashionDao
-import com.frogobox.kickstart.source.dao.FavoriteDao
+import com.frogobox.kickstart.source.local.dao.FashionDao
+import com.frogobox.kickstart.source.local.dao.FavoriteDao
 import com.frogobox.kickstart.util.helper.ConstHelper.RoomDatabase.DATABASE_NAME
 
 /**

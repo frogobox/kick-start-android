@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.base.adapter
+package com.frogobox.kickstart.base.view.adapter
 
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +30,7 @@ open class BaseViewHolder<T>(view: View) : RecyclerView.ViewHolder(view) {
         initComponent(data)
     }
 
-    fun bindItemAdd(data: T) {
+    fun bindItemAds(data: T) {
         val adView = data as AdView
         val adCardView = itemView as ViewGroup
 

@@ -3,14 +3,14 @@ package com.frogobox.kickstart.source.local
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.annotation.VisibleForTesting
-import com.frogobox.kickstart.base.view.BaseCallback
+import com.frogobox.kickstart.base.util.BaseCallback
 import com.frogobox.kickstart.mvvm.model.ArticleResponse
 import com.frogobox.kickstart.mvvm.model.Fashion
 import com.frogobox.kickstart.mvvm.model.Favorite
 import com.frogobox.kickstart.mvvm.model.SourceResponse
 import com.frogobox.kickstart.source.FrogoDataSource
-import com.frogobox.kickstart.source.dao.FashionDao
-import com.frogobox.kickstart.source.dao.FavoriteDao
+import com.frogobox.kickstart.source.local.dao.FashionDao
+import com.frogobox.kickstart.source.local.dao.FavoriteDao
 import com.frogobox.kickstart.util.AppExecutors
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

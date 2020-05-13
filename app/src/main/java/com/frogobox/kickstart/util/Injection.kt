@@ -3,8 +3,8 @@ package com.frogobox.kickstart.util
 import android.content.Context
 import androidx.preference.PreferenceManager
 import com.frogobox.kickstart.source.FrogoDataRepository
-import com.frogobox.kickstart.source.dao.FavoriteDao
-import com.frogobox.kickstart.source.dao.FashionDao
+import com.frogobox.kickstart.source.local.dao.FavoriteDao
+import com.frogobox.kickstart.source.local.dao.FashionDao
 import com.frogobox.kickstart.source.local.FrogoAppDatabase
 import com.frogobox.kickstart.source.local.FrogoLocalDataSource
 import com.frogobox.kickstart.source.remote.FrogoRemoteDataSource

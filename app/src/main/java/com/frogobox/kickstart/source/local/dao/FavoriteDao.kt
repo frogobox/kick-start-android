@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.source.dao
+package com.frogobox.kickstart.source.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

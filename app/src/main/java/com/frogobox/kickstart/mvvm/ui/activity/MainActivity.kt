@@ -5,10 +5,10 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.frogobox.kickstart.R
-import com.frogobox.kickstart.base.ui.BaseActivity
+import com.frogobox.kickstart.base.view.ui.BaseActivity
 import com.frogobox.kickstart.mvvm.model.Article
 import com.frogobox.kickstart.mvvm.viewmodel.MainViewModel
-import com.frogobox.recycler.boilerplate.adapter.callback.FrogoAdapterCallback
+import com.frogobox.recycler.boilerplate.viewrclass.FrogoViewAdapterCallback
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_news_article_vertical.view.*
 
@@ -24,7 +24,7 @@ class MainActivity : BaseActivity() {
 
     }
 
-    fun obtainMainViewModel(): MainViewModel = obtainViewModel(MainViewModel::class.java)
+    private fun obtainMainViewModel(): MainViewModel = obtainViewModel(MainViewModel::class.java)
 
     private fun setupViewModel() {
         mViewModel = obtainMainViewModel().apply {
@@ -44,7 +44,7 @@ class MainActivity : BaseActivity() {
 
     private fun setupRvNews(data: List<Article>) {
 
-        val newsAdapter = object : FrogoAdapterCallback<Article> {
+        val newsAdapter = object : FrogoViewAdapterCallback<Article> {
             override fun onItemClicked(data: Article) {
                 data.title?.let { showToast(it) }
             }
@@ -67,8 +67,7 @@ class MainActivity : BaseActivity() {
             .addEmptyView(null)
             .addCallback(newsAdapter)
             .createLayoutLinearVertical(false)
-            .createAdapter()
-            .build(rv_news)
+            .build()
     }
 
 }

@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.base.view
+package com.frogobox.kickstart.base.util
 
 import com.frogobox.kickstart.base.data.BaseApiModel
 import com.google.gson.Gson

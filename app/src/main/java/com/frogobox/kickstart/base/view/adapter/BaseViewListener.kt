@@ -1,11 +1,11 @@
-package com.frogobox.kickstart.base.data
+package com.frogobox.kickstart.base.view.adapter
 
 /**
  * Created by Faisal Amir
  * FrogoBox Inc License
  * =========================================
- * Kick-Start-Template
- * Copyright (C) 14/09/2019.
+ * SpeechBooster
+ * Copyright (C) 18/08/2019.
  * All rights reserved
  * -----------------------------------------
  * Name     : Muhammad Faisal Amir
@@ -14,7 +14,10 @@ package com.frogobox.kickstart.base.data
  * LinkedIn : linkedin.com/in/faisalamircs
  * -----------------------------------------
  * FrogoBox Software Industries
- * com.frogobox.basemusicplayer.base
+ * com.frogobox.speechbooster.base
  *
  */
-abstract class BaseRemoteDataSource
+interface BaseViewListener<T> {
+    fun onItemClicked(data: T)
+    fun onItemLongClicked(data: T)
+}

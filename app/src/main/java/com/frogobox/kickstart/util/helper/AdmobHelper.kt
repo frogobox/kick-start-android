@@ -7,6 +7,7 @@ import com.google.android.gms.ads.*
 import com.google.android.gms.ads.reward.RewardedVideoAd
 import com.google.android.gms.ads.reward.RewardedVideoAdListener
 
+
 /**
  * Created by Faisal Amir
  * FrogoBox Inc License
@@ -24,12 +25,16 @@ import com.google.android.gms.ads.reward.RewardedVideoAdListener
  * com.frogobox.basemusicplayer
  *
  */
-class AdmobHelper {
+object AdmobHelper {
+
+    const val TAG = "Admob Helper"
 
     object Publisher {
 
         fun setupPublisher(context: Context) {
-            MobileAds.initialize(context, context.getString(R.string.admob_publisher_id))
+            MobileAds.initialize(context) {
+                Log.d(TAG, "Mobile ads has been initialize")
+            }
         }
 
     }
@@ -45,11 +50,11 @@ class AdmobHelper {
                 }
 
                 override fun onAdLoaded() {
-                    Log.d("Interstitial Load State", "loaded");
+                    Log.d(TAG, "Interstitial Load State is loaded");
                 }
 
                 override fun onAdFailedToLoad(i: Int) {
-                    Log.w("Interstitial Load State", "onAdFailedToLoad:" + i)
+                    Log.w(TAG, "Interstitial Load State is onAdFailedToLoad:" + i)
                 }
             }
         }
@@ -58,7 +63,7 @@ class AdmobHelper {
             if (mInterstitialAd.isLoaded) {
                 mInterstitialAd.show()
             } else {
-                Log.d("Interstitial Ads State", "The interstitial wasn't loaded yet.")
+                Log.d(TAG, "The interstitial wasn't loaded yet.")
             }
         }
 
@@ -77,7 +82,7 @@ class AdmobHelper {
             }
         }
 
-        fun showBanner(mAdView: AdView){
+        fun showBanner(mAdView: AdView) {
             mAdView.loadAd(AdRequest.Builder().build())
         }
 

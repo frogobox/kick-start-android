@@ -1,13 +1,12 @@
-package com.frogobox.kickstart.base.ui
+package com.frogobox.kickstart.base.view.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.frogobox.kickstart.base.admob.BaseAdmobActivity
 import com.frogobox.kickstart.base.util.BaseHelper
-import com.frogobox.kickstart.util.helper.AdmobHelper.Interstitial.showInterstitial
+import com.google.android.gms.ads.AdView
 
 /**
  * Created by Faisal Amir
@@ -26,7 +25,8 @@ import com.frogobox.kickstart.util.helper.AdmobHelper.Interstitial.showInterstit
  * com.frogobox.basemusicplayer.activity
  *
  */
-open class BaseFragment : Fragment() {
+open class BaseFragment : Fragment(),
+    BaseFragmentView {
 
     lateinit var mBaseActivity: BaseActivity
 
@@ -35,18 +35,46 @@ open class BaseFragment : Fragment() {
         mBaseActivity = (activity as BaseActivity)
     }
 
-    protected fun setupChildFragment(frameId: Int, fragment: Fragment) {
+    override fun setupShowAdsInterstitial() {
+        mBaseActivity.setupShowAdsInterstitial()
+    }
+
+    override fun setupShowAdsBanner(mAdView: AdView) {
+        mBaseActivity.setupShowAdsBanner(mAdView)
+    }
+
+    override fun setupChildFragment(frameId: Int, fragment: Fragment) {
         childFragmentManager.beginTransaction().apply {
             replace(frameId, fragment)
             commit()
         }
     }
 
-    protected fun setupShowAdsInterstitial() {
-        showInterstitial(mBaseActivity.mInterstitialAd)
+    override fun checkArgument(argsKey: String): Boolean {
+        return requireArguments().containsKey(argsKey)
     }
 
-    fun <Model> baseNewInstance(argsKey: String, data: Model) {
+    override fun setupEventEmptyView(view: View, isEmpty: Boolean) {
+        if (isEmpty) {
+            view.visibility = View.VISIBLE
+        } else {
+            view.visibility = View.GONE
+        }
+    }
+
+    override fun setupEventProgressView(view: View, progress: Boolean) {
+        if (progress) {
+            view.visibility = View.VISIBLE
+        } else {
+            view.visibility = View.GONE
+        }
+    }
+
+    override fun showToast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun <Model> baseNewInstance(argsKey: String, data: Model) {
         val argsData = BaseHelper().baseToJson(data)
         val bundleArgs = Bundle().apply {
             putString(argsKey, argsData)
@@ -58,30 +86,6 @@ open class BaseFragment : Fragment() {
         val argsData = this.arguments?.getString(argsKey)
         val instaceData = BaseHelper().baseFromJson<Model>(argsData)
         return instaceData
-    }
-
-    protected fun checkArgument(argsKey: String): Boolean {
-        return requireArguments().containsKey(argsKey)
-    }
-
-    protected fun setupEventEmptyView(view: View, isEmpty: Boolean) {
-        if (isEmpty) {
-            view.visibility = View.VISIBLE
-        } else {
-            view.visibility = View.GONE
-        }
-    }
-
-    protected fun setupEventProgressView(view: View, progress: Boolean) {
-        if (progress) {
-            view.visibility = View.VISIBLE
-        } else {
-            view.visibility = View.GONE
-        }
-    }
-
-    protected fun showToast(message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
     protected inline fun <reified ClassActivity> baseStartActivity() {

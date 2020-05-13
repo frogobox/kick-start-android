@@ -2,7 +2,7 @@ package com.frogobox.kickstart.mvvm.ui.activity
 
 import android.os.Bundle
 import com.frogobox.kickstart.R
-import com.frogobox.kickstart.base.ui.BaseActivity
+import com.frogobox.kickstart.base.view.ui.BaseActivity
 
 class AboutUsActivity : BaseActivity() {
 

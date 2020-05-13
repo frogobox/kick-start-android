@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.frogobox.kickstart.R
-import com.frogobox.kickstart.base.ui.BaseFragment
+import com.frogobox.kickstart.base.view.ui.BaseFragment
 import io.reactivex.Observer
 
 class MainFragment : BaseFragment() {

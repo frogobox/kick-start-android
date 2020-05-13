@@ -21,7 +21,7 @@ import com.frogobox.kickstart.BuildConfig
  * com.frogobox.publicspeakingbooster.helper
  *
  */
-class ConstHelper {
+object ConstHelper {
 
     object ApiUrl {
         const val NEWS_BASE_URL = "http://newsapi.org/"

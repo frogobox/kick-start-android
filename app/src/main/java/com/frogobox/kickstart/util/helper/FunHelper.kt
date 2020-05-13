@@ -32,7 +32,7 @@ import com.frogobox.kickstart.util.helper.ConstHelper.Pref.PREF_NAME
  * com.frogobox.publicspeakingbooster.helper
  *
  */
-class FunHelper{
+object FunHelper{
 
     object ConverterJson : BaseHelper() {
 
