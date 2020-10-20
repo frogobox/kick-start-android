@@ -22,11 +22,11 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <stroke
-        android:width="2dp"
-        android:color="@color/colorPrimary" />
+        android:width="@dimen/frogo_rv_dimen_2dp"
+        android:color="?attr/colorPrimary" />
     <corners
         android:radius="@dimen/dimen_medium_8dp"/>
 
-    <solid android:color="@color/colorPrimary"/>
+    <solid android:color="?attr/colorPrimary"/>
 
 </shape>

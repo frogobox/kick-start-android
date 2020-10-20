@@ -23,7 +23,7 @@
     android:layout_marginStart="@dimen/frogo_rv_dimen_16dp"
     android:layout_marginEnd="@dimen/frogo_rv_dimen_16dp"
     android:layout_marginBottom="@dimen/frogo_rv_dimen_8dp"
-    android:background="@drawable/frogo_rv_bg_card_16dp"
+    android:background="@drawable/background_card"
     android:elevation="@dimen/frogo_rv_dimen_2dp"
     android:orientation="vertical"
     android:padding="@dimen/frogo_rv_dimen_16dp">
@@ -31,33 +31,35 @@
     <ImageView
         android:id="@+id/iv_url"
         android:layout_width="match_parent"
-        android:scaleType="centerCrop"
         android:layout_height="@dimen/frogo_rv_dimen_128dp"
-        android:layout_marginBottom="@dimen/frogo_rv_dimen_8dp" />
+        android:layout_marginBottom="@dimen/frogo_rv_dimen_8dp"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/frogo_rv_is_empty_data"
-        android:textSize="16sp"
         android:maxLines="1"
-        android:textStyle="bold"
-        android:textColor="@color/frogoRvColorBlack" />
+        android:text="@string/frogo_rv_is_empty_data"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_published"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="1"
         android:layout_marginBottom="@dimen/frogo_rv_dimen_8dp"
-        android:text="@string/frogo_rv_is_empty_data" />
+        android:maxLines="1"
+        android:text="@string/frogo_rv_is_empty_data"
+        android:textColor="?attr/colorTextSubTitle" />
 
     <TextView
         android:id="@+id/tv_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="3"
-        android:text="@string/frogo_rv_is_empty_data" />
+        android:text="@string/frogo_rv_is_empty_data"
+        android:textColor="?attr/colorTextDescription" />
 
 </LinearLayout>
