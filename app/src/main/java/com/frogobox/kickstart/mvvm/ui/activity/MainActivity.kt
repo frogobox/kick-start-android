@@ -29,6 +29,8 @@ class MainActivity : BaseActivity() {
     private fun setupViewModel() {
         mViewModel = obtainMainViewModel().apply {
 
+            usingChuck()
+
             topHeadlineLive.observe(this@MainActivity, Observer {
                 it.articles?.let { it1 -> setupRvNews(it1) }
             })

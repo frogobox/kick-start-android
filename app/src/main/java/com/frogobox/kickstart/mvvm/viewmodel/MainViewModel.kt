@@ -28,6 +28,10 @@ class MainViewModel(private val context: Application, private val repository: Fr
 
     var topHeadlineLive = SingleLiveEvent<ArticleResponse>()
 
+    fun usingChuck() {
+        repository.usingChuckInterceptor(context)
+    }
+
     fun getTopHeadline() {
         repository.getTopHeadline(
             ConstHelper.ApiUrl.NEWS_API_KEY,
