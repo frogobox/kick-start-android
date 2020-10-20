@@ -6,14 +6,16 @@ Template Code Monetize FrogoBox For Kick Start Project Template
 Template Reuse Code For Monetizing Apps
 
 # Screenshoot Apps 
-<span align="center"><img width="200px" height="360px" src="docs/image/ss_main.png"></span>
+<span align="center"><img width="200px" height="360px" src="docs/image/ss_light.png"></span>
+<span align="center"><img width="200px" height="360px" src="docs/image/ss_dark.png"></span>
 
 # Android Library Version (build.gradle)
-- ext.kotlin_version = '1.3.72'
-- classpath 'com.android.tools.build:gradle:3.6.3'
-- compileSdkVersion 29
-- buildToolsVersion "29.0.1"
+- ext.kotlin_version = '1.4.10'
+- classpath 'com.android.tools.build:gradle:4.1.0'
+- compileSdkVersion 30
+- buildToolsVersion "30.0.2"
 - minSdkVersion 21
+- targetSdkVersion 30
 
 # Helper Sample Link
 - Admob Sample https://github.com/amirisback/admob-helper-implementation
