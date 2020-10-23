@@ -33,6 +33,4 @@ interface BaseActivityView {
 
     fun <Model> baseFragmentNewInstance(fragment: BaseFragment, argumentKey: String, extraDataResult: Model)
 
-    fun <VM : ViewModel> obtainViewModel(viewModelClass: Class<VM>) : VM
-
 }

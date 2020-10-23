@@ -32,7 +32,7 @@ interface FrogoDataSource : BaseDataSource {
     fun usingChuckInterceptor(context: Context)
 
     // Get Top Headline
-    fun getTopHeadline(
+    suspend fun getTopHeadline(
         apiKey: String,
         q: String?,
         sources: String?,
@@ -44,7 +44,7 @@ interface FrogoDataSource : BaseDataSource {
     )
 
     // Get Everythings
-    fun getEverythings(
+    suspend fun getEverythings(
         apiKey: String,
         q: String?,
         from: String?,
@@ -61,7 +61,7 @@ interface FrogoDataSource : BaseDataSource {
     )
 
     // Get Sources
-    fun getSources(
+    suspend fun getSources(
         apiKey: String,
         language: String,
         country: String,

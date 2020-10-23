@@ -2,7 +2,6 @@ package com.frogobox.kickstart.source.local
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.annotation.VisibleForTesting
 import com.frogobox.kickstart.base.util.BaseCallback
 import com.frogobox.kickstart.mvvm.model.ArticleResponse
 import com.frogobox.kickstart.mvvm.model.Fashion
@@ -34,17 +33,17 @@ import io.reactivex.schedulers.Schedulers
  * com.frogobox.publicspeakingbooster.source.local
  *
  */
-class FrogoLocalDataSource private constructor(
+class FrogoLocalDataSource(
     private val appExecutors: AppExecutors,
     private val sharedPreferences: SharedPreferences,
     private val fashionDao: FashionDao,
     private val favoriteDao: FavoriteDao
 ) : FrogoDataSource {
+
     override fun usingChuckInterceptor(context: Context) {
-        
     }
 
-    override fun getTopHeadline(
+    override suspend fun getTopHeadline(
         apiKey: String,
         q: String?,
         sources: String?,
@@ -54,10 +53,10 @@ class FrogoLocalDataSource private constructor(
         page: Int?,
         callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
     ) {
-        
+
     }
 
-    override fun getEverythings(
+    override suspend fun getEverythings(
         apiKey: String,
         q: String?,
         from: String?,
@@ -72,17 +71,17 @@ class FrogoLocalDataSource private constructor(
         page: Int?,
         callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
     ) {
-        
+
     }
 
-    override fun getSources(
+    override suspend fun getSources(
         apiKey: String,
         language: String,
         country: String,
         category: String,
         callback: FrogoDataSource.GetRemoteCallback<SourceResponse>
     ) {
-        
+
     }
 
     override fun saveRoomFavorite(data: Favorite): Boolean {
@@ -118,7 +117,7 @@ class FrogoLocalDataSource private constructor(
                     override fun onCallbackSucces(data: List<Favorite>) {
                         callback.onShowProgressDialog()
                         callback.onSuccess(data)
-                        if (data.size == 0) {
+                        if (data.isEmpty()) {
                             callback.onEmpty()
                         }
                         callback.onHideProgressDialog()
@@ -148,55 +147,13 @@ class FrogoLocalDataSource private constructor(
         return true
     }
 
-
     private
     var compositeDisposable: CompositeDisposable? = null
 
     fun addSubscribe(disposable: Disposable) {
         if (compositeDisposable == null) {
             compositeDisposable = CompositeDisposable()
-
             compositeDisposable?.add(disposable)
-        }
-    }
-
-    /**
-     * Clear all subscribers active in app
-     */
-    private fun clearSubscribe() {
-        if (compositeDisposable != null) {
-            compositeDisposable?.clear()
-        }
-    }
-
-    companion object {
-
-        private var INSTANCE: FrogoLocalDataSource? = null
-
-        @JvmStatic
-        fun getInstance(
-            appExecutors: AppExecutors,
-            sharedPreferences: SharedPreferences,
-            fashionDao: FashionDao,
-            favoriteDao: FavoriteDao
-
-        ): FrogoLocalDataSource {
-            if (INSTANCE == null) {
-                synchronized(FrogoLocalDataSource::javaClass) {
-                    INSTANCE = FrogoLocalDataSource(
-                        appExecutors,
-                        sharedPreferences,
-                        fashionDao,
-                        favoriteDao
-                    )
-                }
-            }
-            return INSTANCE!!
-        }
-
-        @VisibleForTesting
-        fun clearInstance() {
-            INSTANCE = null
         }
     }
 

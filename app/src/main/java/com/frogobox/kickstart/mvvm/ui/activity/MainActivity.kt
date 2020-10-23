@@ -2,7 +2,6 @@ package com.frogobox.kickstart.mvvm.ui.activity
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.frogobox.kickstart.R
 import com.frogobox.kickstart.base.view.ui.BaseActivity
@@ -11,37 +10,33 @@ import com.frogobox.kickstart.mvvm.viewmodel.MainViewModel
 import com.frogobox.recycler.boilerplate.viewrclass.FrogoViewAdapterCallback
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_news_article_vertical.view.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity() {
 
-    private lateinit var mViewModel: MainViewModel
+    private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         setupViewModel()
-
     }
 
-    private fun obtainMainViewModel(): MainViewModel = obtainViewModel(MainViewModel::class.java)
-
     private fun setupViewModel() {
-        mViewModel = obtainMainViewModel().apply {
+        mainViewModel.apply {
 
             usingChuck()
-
-            topHeadlineLive.observe(this@MainActivity, Observer {
+            getTopHeadline()
+            topHeadlineLive.observe(this@MainActivity, {
                 it.articles?.let { it1 -> setupRvNews(it1) }
             })
 
-            eventShowProgress.observe(this@MainActivity, Observer {
+            eventShowProgress.observe(this@MainActivity, {
                 setupEventProgressView(progress_view, it)
             })
 
         }
 
-        mViewModel.getTopHeadline()
     }
 
     private fun setupRvNews(data: List<Article>) {

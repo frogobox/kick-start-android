@@ -6,13 +6,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.frogobox.kickstart.base.admob.AdmobActivity
 import com.frogobox.kickstart.base.util.BaseHelper
-import com.frogobox.kickstart.util.ViewModelFactory
 
 /**
  * Created by Faisal Amir
@@ -95,13 +93,6 @@ open class BaseActivity : AdmobActivity(),
         extraDataResult: Model
     ) {
         fragment.baseNewInstance(argumentKey, extraDataResult)
-    }
-
-    override fun <VM : ViewModel> obtainViewModel(viewModelClass: Class<VM>): VM {
-        return ViewModelProvider(
-            this,
-            ViewModelFactory.getInstance(application)
-        ).get(viewModelClass)
     }
 
     protected inline fun <reified ClassActivity> baseStartActivity() {

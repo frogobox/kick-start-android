@@ -34,7 +34,7 @@ open class FrogoDataRepository(
         remoteDataSource.usingChuckInterceptor(context)
     }
 
-    override fun getTopHeadline(
+    override suspend fun getTopHeadline(
         apiKey: String,
         q: String?,
         sources: String?,
@@ -56,7 +56,7 @@ open class FrogoDataRepository(
         )
     }
 
-    override fun getEverythings(
+    override suspend fun getEverythings(
         apiKey: String,
         q: String?,
         from: String?,
@@ -88,7 +88,7 @@ open class FrogoDataRepository(
         )
     }
 
-    override fun getSources(
+    override suspend fun getSources(
         apiKey: String,
         language: String,
         country: String,
@@ -133,37 +133,6 @@ open class FrogoDataRepository(
 
     override fun nukeRoomFavorite(): Boolean {
         return localDataSource.nukeRoomFavorite()
-    }
-
-    companion object {
-
-        private var INSTANCE: FrogoDataRepository? = null
-
-        /**
-         * Returns the single instance of this class, creating it if necessary.
-
-         * @param FrogoRemoteDataSource backend data source
-         * *
-         * @return the [FrogoRepository] instance
-         */
-        @JvmStatic
-        fun getInstance(
-            FrogoRemoteDataSource: FrogoRemoteDataSource,
-            gitsLocalDataSource: FrogoLocalDataSource
-        ) =
-            INSTANCE ?: synchronized(FrogoDataRepository::class.java) {
-                INSTANCE ?: FrogoDataRepository(FrogoRemoteDataSource, gitsLocalDataSource)
-                    .also { INSTANCE = it }
-            }
-
-        /**
-         * Used to force [getInstance] to create a new instance
-         * next time it's called.
-         */
-        @JvmStatic
-        fun destroyInstance() {
-            INSTANCE = null
-        }
     }
 
 }

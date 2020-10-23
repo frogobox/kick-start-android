@@ -1,12 +1,14 @@
 package com.frogobox.kickstart.mvvm.viewmodel
 
 import android.app.Application
+import androidx.lifecycle.viewModelScope
 import com.frogobox.kickstart.base.util.BaseViewModel
 import com.frogobox.kickstart.mvvm.model.ArticleResponse
 import com.frogobox.kickstart.source.FrogoDataRepository
 import com.frogobox.kickstart.source.FrogoDataSource
 import com.frogobox.kickstart.util.SingleLiveEvent
 import com.frogobox.kickstart.util.helper.ConstHelper
+import kotlinx.coroutines.launch
 
 /*
  * Created by Faisal Amir
@@ -33,42 +35,37 @@ class MainViewModel(private val context: Application, private val repository: Fr
     }
 
     fun getTopHeadline() {
-        repository.getTopHeadline(
-            ConstHelper.ApiUrl.NEWS_API_KEY,
-            null,
-            null,
-            null,
-            ConstHelper.NewsConstant.COUNTRY_ID,
-            null,
-            null,
-            object : FrogoDataSource.GetRemoteCallback<ArticleResponse> {
-                override fun onShowProgressDialog() {
-                    eventShowProgress.postValue(true)
-                }
+        viewModelScope.launch {
+            repository.getTopHeadline(
+                ConstHelper.ApiUrl.NEWS_API_KEY,
+                null,
+                null,
+                null,
+                ConstHelper.NewsConstant.COUNTRY_ID,
+                null,
+                null,
+                object : FrogoDataSource.GetRemoteCallback<ArticleResponse> {
+                    override fun onShowProgressDialog() {
+                        eventShowProgress.postValue(true)
+                    }
 
-                override fun onHideProgressDialog() {
-                    eventShowProgress.postValue(false)
-                }
+                    override fun onHideProgressDialog() {
+                        eventShowProgress.postValue(false)
+                    }
 
-                override fun onSuccess(data: ArticleResponse) {
-                    topHeadlineLive.postValue(data)
-                }
+                    override fun onSuccess(data: ArticleResponse) {
+                        topHeadlineLive.postValue(data)
+                    }
 
-                override fun onEmpty() {
-                    
-                }
+                    override fun onEmpty() {
 
-                override fun onFinish() {
-                    
-                }
+                    }
 
-                override fun onFailed(statusCode: Int, errorMessage: String?) {
-                    
-                }
-            }
-        )
+                    override fun onFailed(statusCode: Int, errorMessage: String?) {
 
+                    }
+                }
+            )
+        }
     }
-
-
 }
