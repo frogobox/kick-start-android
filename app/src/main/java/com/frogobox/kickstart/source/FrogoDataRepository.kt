@@ -2,10 +2,9 @@ package com.frogobox.kickstart.source
 
 
 import android.content.Context
-import com.frogobox.kickstart.mvvm.model.ArticleResponse
-import com.frogobox.kickstart.mvvm.model.Fashion
-import com.frogobox.kickstart.mvvm.model.Favorite
-import com.frogobox.kickstart.mvvm.model.SourceResponse
+import com.frogobox.kickstart.source.model.ArticleResponse
+import com.frogobox.kickstart.source.model.Favorite
+import com.frogobox.kickstart.source.model.SourceResponse
 import com.frogobox.kickstart.source.local.FrogoLocalDataSource
 import com.frogobox.kickstart.source.remote.FrogoRemoteDataSource
 
@@ -98,13 +97,8 @@ open class FrogoDataRepository(
         remoteDataSource.getSources(apiKey, language, country, category, callback)
     }
 
-
     override fun saveRoomFavorite(data: Favorite): Boolean {
         return localDataSource.saveRoomFavorite(data)
-    }
-
-    override fun getRoomData(callback: FrogoDataSource.GetRoomDataCallBack<List<Fashion>>) {
-        localDataSource.getRoomData(callback)
     }
 
     override fun getRoomFavorite(callback: FrogoDataSource.GetRoomDataCallBack<List<Favorite>>) {
@@ -120,12 +114,6 @@ open class FrogoDataRepository(
         return localDataSource.updateRoomFavorite(tableId, title, description, dateTime)
     }
 
-    override fun searchRoomFavorite(
-        scriptId: String,
-        callback: FrogoDataSource.GetRoomDataCallBack<List<Favorite>>
-    ) {
-        localDataSource.searchRoomFavorite(scriptId, callback)
-    }
 
     override fun deleteRoomFavorite(tableId: Int): Boolean {
         return localDataSource.deleteRoomFavorite(tableId)

@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.mvvm.ui.fragment
+package com.frogobox.kickstart.mvvm.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,6 @@ import android.view.ViewGroup
 
 import com.frogobox.kickstart.R
 import com.frogobox.kickstart.base.view.ui.BaseFragment
-import io.reactivex.Observer
 
 class MainFragment : BaseFragment() {
 

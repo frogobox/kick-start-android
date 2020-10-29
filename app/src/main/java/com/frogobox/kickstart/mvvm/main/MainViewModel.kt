@@ -1,9 +1,9 @@
-package com.frogobox.kickstart.mvvm.viewmodel
+package com.frogobox.kickstart.mvvm.main
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
 import com.frogobox.kickstart.base.util.BaseViewModel
-import com.frogobox.kickstart.mvvm.model.ArticleResponse
+import com.frogobox.kickstart.source.model.ArticleResponse
 import com.frogobox.kickstart.source.FrogoDataRepository
 import com.frogobox.kickstart.source.FrogoDataSource
 import com.frogobox.kickstart.util.SingleLiveEvent

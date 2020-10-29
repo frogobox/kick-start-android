@@ -1,6 +1,6 @@
 package com.frogobox.kickstart.di
 
-import com.frogobox.kickstart.mvvm.viewmodel.MainViewModel
+import com.frogobox.kickstart.mvvm.main.MainViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

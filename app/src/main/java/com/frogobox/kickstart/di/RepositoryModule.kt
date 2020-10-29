@@ -1,12 +1,9 @@
 package com.frogobox.kickstart.di
 
-import android.content.Context
 import androidx.preference.PreferenceManager
 import com.frogobox.kickstart.source.FrogoDataRepository
 import com.frogobox.kickstart.source.local.FrogoAppDatabase
 import com.frogobox.kickstart.source.local.FrogoLocalDataSource
-import com.frogobox.kickstart.source.local.dao.FashionDao
-import com.frogobox.kickstart.source.local.dao.FavoriteDao
 import com.frogobox.kickstart.source.remote.FrogoRemoteDataSource
 import com.frogobox.kickstart.util.AppExecutors
 import org.koin.android.ext.koin.androidContext
@@ -32,16 +29,13 @@ val repositoryModule = module {
     }
 
     single {
-        FrogoLocalDataSource(AppExecutors(), get(), get(), get())
+        FrogoLocalDataSource(AppExecutors(), get(), get())
     }
 
     single {
         PreferenceManager.getDefaultSharedPreferences(androidContext())
     }
 
-    single {
-        FrogoAppDatabase.getInstance(androidContext()).fashionDao()
-    }
 
     single {
         FrogoAppDatabase.getInstance(androidContext()).favoriteScriptDao()

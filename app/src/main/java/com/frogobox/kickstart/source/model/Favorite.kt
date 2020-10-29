@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.mvvm.model
+package com.frogobox.kickstart.source.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -28,9 +28,6 @@ data class Favorite(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "table_id")
     var table_id: Int = 0,
-
-    @ColumnInfo(name = "fashion_id")
-    var fashion_id: String? = "",
 
     @ColumnInfo(name = "type")
     var type: String? = "",

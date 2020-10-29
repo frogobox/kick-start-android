@@ -153,8 +153,7 @@ object ConstHelper {
     object RoomDatabase {
         val DATABASE_NAME = {BuildConfig.DATABASE_NAME}
         const val BASE_TABLE_NAME = "table"
-        const val TABLE_NAME_DATA = "fashion_$BASE_TABLE_NAME"
-        const val TABLE_NAME_FAVORITE = "favorite_$TABLE_NAME_DATA"
+        const val TABLE_NAME_FAVORITE = "favorite"
     }
 
     object TypeData {

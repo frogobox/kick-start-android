@@ -7,9 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.frogobox.kickstart.BuildConfig
-import com.frogobox.kickstart.mvvm.model.Fashion
-import com.frogobox.kickstart.mvvm.model.Favorite
-import com.frogobox.kickstart.source.local.dao.FashionDao
+import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.source.local.dao.FavoriteDao
 import com.frogobox.kickstart.util.helper.ConstHelper.RoomDatabase.DATABASE_NAME
 
@@ -32,7 +30,6 @@ import com.frogobox.kickstart.util.helper.ConstHelper.RoomDatabase.DATABASE_NAME
  */
 @Database(
     entities = [
-        (Fashion::class),
         (Favorite::class)
     ], version = 1
 )
@@ -40,7 +37,6 @@ import com.frogobox.kickstart.util.helper.ConstHelper.RoomDatabase.DATABASE_NAME
 
 abstract class FrogoAppDatabase : RoomDatabase() {
 
-    abstract fun fashionDao(): FashionDao
     abstract fun favoriteScriptDao(): FavoriteDao
 
     companion object {
@@ -67,7 +63,8 @@ abstract class FrogoAppDatabase : RoomDatabase() {
             } else {
                 Room.databaseBuilder(
                     context.applicationContext,
-                    FrogoAppDatabase::class.java, DATABASE_NAME.toString()
+                    FrogoAppDatabase::class.java,
+                    DATABASE_NAME.toString()
                 )
                     .addMigrations(MIGRATION_2_3)
                     .build()

@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.mvvm.ui.activity
+package com.frogobox.kickstart.mvvm.about
 
 import android.os.Bundle
 import com.frogobox.kickstart.R

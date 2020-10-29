@@ -3,7 +3,7 @@ package com.frogobox.kickstart.source.local.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.frogobox.kickstart.mvvm.model.Favorite
+import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.util.helper.ConstHelper.RoomDatabase.TABLE_NAME_FAVORITE
 import io.reactivex.Single
 
@@ -35,12 +35,6 @@ interface FavoriteDao {
 
     @Query("DELETE FROM $TABLE_NAME_FAVORITE WHERE table_id = :tableId")
     fun deleteDataFromTableId(tableId: Int)
-
-    @Query("DELETE FROM $TABLE_NAME_FAVORITE WHERE fashion_id = :scriptId")
-    fun deleteDataFromScriptId(scriptId: String)
-
-    @Query("SELECT * FROM $TABLE_NAME_FAVORITE WHERE fashion_id = :scriptId")
-    fun searchData(scriptId: String): Single<List<Favorite>>
 
     @Query("DELETE FROM $TABLE_NAME_FAVORITE")
     fun nukeData()

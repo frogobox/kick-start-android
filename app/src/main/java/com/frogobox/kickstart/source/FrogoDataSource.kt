@@ -2,10 +2,9 @@ package com.frogobox.kickstart.source
 
 import android.content.Context
 import com.frogobox.kickstart.base.data.BaseDataSource
-import com.frogobox.kickstart.mvvm.model.ArticleResponse
-import com.frogobox.kickstart.mvvm.model.Favorite
-import com.frogobox.kickstart.mvvm.model.Fashion
-import com.frogobox.kickstart.mvvm.model.SourceResponse
+import com.frogobox.kickstart.source.model.ArticleResponse
+import com.frogobox.kickstart.source.model.Favorite
+import com.frogobox.kickstart.source.model.SourceResponse
 
 /**
  * Created by Faisal Amir
@@ -74,14 +73,10 @@ interface FrogoDataSource : BaseDataSource {
     fun saveRoomFavorite(data: Favorite) : Boolean
 
     // Get
-    fun getRoomData(callback: GetRoomDataCallBack<List<Fashion>>)
     fun getRoomFavorite(callback: GetRoomDataCallBack<List<Favorite>>)
 
     // Update
     fun updateRoomFavorite(tableId: Int, title: String, description: String, dateTime: String) : Boolean
-
-    // Search
-    fun searchRoomFavorite(scriptId: String, callback: GetRoomDataCallBack<List<Favorite>>)
 
     // Delete
     fun deleteRoomFavorite(tableId: Int) : Boolean

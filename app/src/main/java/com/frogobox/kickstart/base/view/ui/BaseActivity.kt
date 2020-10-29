@@ -2,6 +2,7 @@ package com.frogobox.kickstart.base.view.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -113,6 +114,10 @@ open class BaseActivity : AdmobActivity(),
         val extraIntent = intent.getStringExtra(extraKey)
         val extraData = BaseHelper().baseFromJson<Model>(extraIntent)
         return extraData
+    }
+
+    protected fun baseLayoutInflater() : LayoutInflater {
+        return LayoutInflater.from(this)
     }
 
 }

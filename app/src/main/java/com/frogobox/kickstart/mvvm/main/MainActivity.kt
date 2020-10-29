@@ -1,24 +1,25 @@
-package com.frogobox.kickstart.mvvm.ui.activity
+package com.frogobox.kickstart.mvvm.main
 
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
 import com.frogobox.kickstart.R
 import com.frogobox.kickstart.base.view.ui.BaseActivity
-import com.frogobox.kickstart.mvvm.model.Article
-import com.frogobox.kickstart.mvvm.viewmodel.MainViewModel
+import com.frogobox.kickstart.databinding.ActivityMainBinding
+import com.frogobox.kickstart.source.model.Article
 import com.frogobox.recycler.boilerplate.viewrclass.FrogoViewAdapterCallback
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_news_article_vertical.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity() {
 
+    private lateinit var activityMainBinding: ActivityMainBinding
     private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        activityMainBinding = ActivityMainBinding.inflate(baseLayoutInflater())
+        setContentView(activityMainBinding.root)
         setupViewModel()
     }
 
@@ -32,7 +33,7 @@ class MainActivity : BaseActivity() {
             })
 
             eventShowProgress.observe(this@MainActivity, {
-                setupEventProgressView(progress_view, it)
+                setupEventProgressView(activityMainBinding.progressView, it)
             })
 
         }
@@ -58,7 +59,8 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        rv_news.injector<Article>()
+        activityMainBinding.rvNews
+            .injector<Article>()
             .addData(data)
             .addCustomView(R.layout.list_news_article_vertical)
             .addEmptyView(null)

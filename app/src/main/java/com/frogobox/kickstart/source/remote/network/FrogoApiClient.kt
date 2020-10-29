@@ -1,8 +1,8 @@
 package com.frogobox.kickstart.source.remote.network
 
 import android.content.Context
-import com.frogobox.kickstart.mvvm.model.ArticleResponse
-import com.frogobox.kickstart.mvvm.model.SourceResponse
+import com.frogobox.kickstart.source.model.ArticleResponse
+import com.frogobox.kickstart.source.model.SourceResponse
 import com.frogobox.kickstart.util.helper.ConstHelper
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.OkHttpClient

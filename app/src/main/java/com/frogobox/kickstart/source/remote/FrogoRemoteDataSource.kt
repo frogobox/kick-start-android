@@ -1,10 +1,9 @@
 package com.frogobox.kickstart.source.remote
 
 import android.content.Context
-import com.frogobox.kickstart.mvvm.model.ArticleResponse
-import com.frogobox.kickstart.mvvm.model.Fashion
-import com.frogobox.kickstart.mvvm.model.Favorite
-import com.frogobox.kickstart.mvvm.model.SourceResponse
+import com.frogobox.kickstart.source.model.ArticleResponse
+import com.frogobox.kickstart.source.model.Favorite
+import com.frogobox.kickstart.source.model.SourceResponse
 import com.frogobox.kickstart.source.FrogoDataSource
 import com.frogobox.kickstart.source.remote.network.FrogoApiClient
 import com.frogobox.kickstart.util.helper.FunHelper.Func.noAction
@@ -140,9 +139,6 @@ object FrogoRemoteDataSource : FrogoDataSource {
         return noAction()
     }
 
-    override fun getRoomData(callback: FrogoDataSource.GetRoomDataCallBack<List<Fashion>>) {
-        noAction()
-    }
 
     override fun getRoomFavorite(callback: FrogoDataSource.GetRoomDataCallBack<List<Favorite>>) {
         noAction()
@@ -155,13 +151,6 @@ object FrogoRemoteDataSource : FrogoDataSource {
         dateTime: String
     ): Boolean {
         return noAction()
-    }
-
-    override fun searchRoomFavorite(
-        scriptId: String,
-        callback: FrogoDataSource.GetRoomDataCallBack<List<Favorite>>
-    ) {
-        noAction()
     }
 
     override fun deleteRoomFavorite(tableId: Int): Boolean {

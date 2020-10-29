@@ -3,12 +3,10 @@ package com.frogobox.kickstart.source.local
 import android.content.Context
 import android.content.SharedPreferences
 import com.frogobox.kickstart.base.util.BaseCallback
-import com.frogobox.kickstart.mvvm.model.ArticleResponse
-import com.frogobox.kickstart.mvvm.model.Fashion
-import com.frogobox.kickstart.mvvm.model.Favorite
-import com.frogobox.kickstart.mvvm.model.SourceResponse
+import com.frogobox.kickstart.source.model.ArticleResponse
+import com.frogobox.kickstart.source.model.Favorite
+import com.frogobox.kickstart.source.model.SourceResponse
 import com.frogobox.kickstart.source.FrogoDataSource
-import com.frogobox.kickstart.source.local.dao.FashionDao
 import com.frogobox.kickstart.source.local.dao.FavoriteDao
 import com.frogobox.kickstart.util.AppExecutors
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -36,7 +34,6 @@ import io.reactivex.schedulers.Schedulers
 class FrogoLocalDataSource(
     private val appExecutors: AppExecutors,
     private val sharedPreferences: SharedPreferences,
-    private val fashionDao: FashionDao,
     private val favoriteDao: FavoriteDao
 ) : FrogoDataSource {
 
@@ -88,10 +85,6 @@ class FrogoLocalDataSource(
         return true
     }
 
-    override fun getRoomData(callback: FrogoDataSource.GetRoomDataCallBack<List<Fashion>>) {
-
-    }
-
     override fun getRoomFavorite(callback: FrogoDataSource.GetRoomDataCallBack<List<Favorite>>) {
 
     }
@@ -105,39 +98,6 @@ class FrogoLocalDataSource(
         return true
     }
 
-    override fun searchRoomFavorite(
-        scriptId: String,
-        callback: FrogoDataSource.GetRoomDataCallBack<List<Favorite>>
-    ) {
-        appExecutors.diskIO.execute {
-            favoriteDao.searchData(scriptId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : BaseCallback<List<Favorite>>() {
-                    override fun onCallbackSucces(data: List<Favorite>) {
-                        callback.onShowProgressDialog()
-                        callback.onSuccess(data)
-                        if (data.isEmpty()) {
-                            callback.onEmpty()
-                        }
-                        callback.onHideProgressDialog()
-
-                    }
-
-                    override fun onCallbackError(code: Int, errorMessage: String) {
-                        callback.onFailed(code, errorMessage)
-                    }
-
-                    override fun onAddSubscribe(disposable: Disposable) {
-                        addSubscribe(disposable = disposable)
-                    }
-
-                    override fun onCompleted() {
-                        callback.onHideProgressDialog()
-                    }
-                })
-        }
-    }
 
     override fun deleteRoomFavorite(tableId: Int): Boolean {
         return true
