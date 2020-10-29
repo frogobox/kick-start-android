@@ -1,9 +1,14 @@
-# Kick Start Project Template By Amirisback
-Template Code Monetize FrogoBox For Kick Start Project Template
-- v1.0.0 - Development
+![ScreenShoot Apps](docs/image/ss_banner.png?raw=true)
 
 # About This Project
 Template Reuse Code For Monetizing Apps
+Template Code Monetize FrogoBox For Android Kick Start Project
+
+# Version Release
+This Is Latest Release (Still Being Developed)
+
+    $version_release = 1.0.0
+
 
 # Screenshoot Apps
 Light Theme	|	Dark Theme	|
