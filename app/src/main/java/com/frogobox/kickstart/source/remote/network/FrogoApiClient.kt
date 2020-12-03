@@ -81,6 +81,7 @@ interface FrogoApiClient {
             this.context = context
         }
 
+
         val getApiClient: FrogoApiClient by lazy {
             val mLoggingInterceptor = HttpLoggingInterceptor()
             mLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -99,13 +100,11 @@ interface FrogoApiClient {
                     .build()
             }
 
-            val mRetrofit = Retrofit.Builder()
+            Retrofit.Builder()
                 .baseUrl(ConstHelper.ApiUrl.NEWS_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(mClient)
-                .build()
-
-            mRetrofit.create(FrogoApiClient::class.java)
+                .build().create(FrogoApiClient::class.java)
         }
     }
 
