@@ -1,6 +1,8 @@
 package com.frogobox.kickstart.source.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 /**
  * Created by Faisal Amir
@@ -19,6 +21,7 @@ import com.google.gson.annotations.SerializedName
  * com.frogobox.frogonewsapi.data.model
  *
  */
+@Parcelize
 data class Article(
 
     @SerializedName("source")
@@ -44,4 +47,4 @@ data class Article(
 
     @SerializedName("content")
     var content: String? = null
-)
+) : Parcelable

@@ -1,11 +1,13 @@
 package com.frogobox.kickstart.mvvm.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
 import com.frogobox.kickstart.R
 import com.frogobox.kickstart.base.view.ui.BaseActivity
 import com.frogobox.kickstart.databinding.ActivityMainBinding
+import com.frogobox.kickstart.mvvm.detail.DetailActivity
 import com.frogobox.kickstart.source.model.Article
 import com.frogobox.recycler.boilerplate.viewrclass.FrogoViewAdapterCallback
 import kotlinx.android.synthetic.main.list_news_article_vertical.view.*
@@ -44,7 +46,9 @@ class MainActivity : BaseActivity() {
 
         val newsAdapter = object : FrogoViewAdapterCallback<Article> {
             override fun onItemClicked(data: Article) {
-                data.title?.let { showToast(it) }
+                val intent = Intent(this@MainActivity, DetailActivity::class.java)
+                intent.putExtra("EXTRA_DATA_ARTICLE", data)
+                startActivity(intent)
             }
 
             override fun onItemLongClicked(data: Article) {
