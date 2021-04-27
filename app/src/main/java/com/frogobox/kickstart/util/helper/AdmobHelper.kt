@@ -2,10 +2,12 @@ package com.frogobox.kickstart.util.helper
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.frogobox.kickstart.R
 import com.google.android.gms.ads.*
-import com.google.android.gms.ads.reward.RewardedVideoAd
-import com.google.android.gms.ads.reward.RewardedVideoAdListener
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 
 /**
@@ -27,6 +29,8 @@ import com.google.android.gms.ads.reward.RewardedVideoAdListener
  */
 object AdmobHelper {
 
+    private var mInterstitialAd: InterstitialAd? = null
+
     const val TAG = "Admob Helper"
 
     object Publisher {
@@ -41,29 +45,56 @@ object AdmobHelper {
 
     object Interstitial {
 
-        fun setupInterstitial(context: Context, mInterstitialAd: InterstitialAd) {
-            mInterstitialAd.adUnitId = context.getString(R.string.admob_interstitial)
-            mInterstitialAd.loadAd(AdRequest.Builder().build())
-            mInterstitialAd.adListener = object : AdListener() {
-                override fun onAdClosed() {
-                    mInterstitialAd.loadAd(AdRequest.Builder().build())
-                }
+        fun setupInterstitial(context: Context) {
 
-                override fun onAdLoaded() {
-                    Log.d(TAG, "Interstitial Load State is loaded");
-                }
+            val adRequest = AdRequest.Builder().build()
 
-                override fun onAdFailedToLoad(i: Int) {
-                    Log.w(TAG, "Interstitial Load State is onAdFailedToLoad:" + i)
+            InterstitialAd.load(
+                context, context.getString(R.string.admob_interstitial), adRequest,
+                object : InterstitialAdLoadCallback() {
+                    override fun onAdFailedToLoad(adError: LoadAdError) {
+                        Log.d(TAG, adError?.message)
+                        mInterstitialAd = null
+                        val error = "domain: ${adError.domain}, code: ${adError.code}, " +
+                                "message: ${adError.message}"
+                        Log.d(TAG, "onAdFailedToLoad() with error $error")
+                    }
+
+                    override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                        Log.d(TAG, "Ad was loaded.")
+                        mInterstitialAd = interstitialAd
+                    }
                 }
-            }
+            )
+
         }
 
-        fun showInterstitial(mInterstitialAd: InterstitialAd) {
-            if (mInterstitialAd.isLoaded) {
-                mInterstitialAd.show()
+        fun showInterstitial(activity: AppCompatActivity) {
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+                    override fun onAdDismissedFullScreenContent() {
+                        Log.d(TAG, "Ad was dismissed.")
+                        // Don't forget to set the ad reference to null so you
+                        // don't show the ad a second time.
+                        mInterstitialAd = null
+                        setupInterstitial(activity)
+                    }
+
+                    override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+                        Log.d(TAG, "Ad failed to show.")
+                        // Don't forget to set the ad reference to null so you
+                        // don't show the ad a second time.
+                        mInterstitialAd = null
+                    }
+
+                    override fun onAdShowedFullScreenContent() {
+                        Log.d(TAG, "Ad showed fullscreen content.")
+                        // Called when ad is dismissed.
+                    }
+                }
+                mInterstitialAd?.show(activity)
             } else {
-                Log.d(TAG, "The interstitial wasn't loaded yet.")
+                Toast.makeText(activity, "Ad wasn't loaded.", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -74,10 +105,9 @@ object AdmobHelper {
         fun setupBanner(mAdView: AdView) {
             mAdView.adListener = object : AdListener() {
                 override fun onAdLoaded() {}
-                override fun onAdFailedToLoad(errorCode: Int) {}
+                override fun onAdFailedToLoad(p0: LoadAdError) {}
                 override fun onAdOpened() {}
                 override fun onAdClicked() {}
-                override fun onAdLeftApplication() {}
                 override fun onAdClosed() {}
             }
         }
@@ -88,26 +118,5 @@ object AdmobHelper {
 
     }
 
-    object Video {
-
-        fun setupVideo(
-            context: Context,
-            rewardedVideoAdListener: RewardedVideoAdListener,
-            mRewardedVideoAd: RewardedVideoAd
-        ) {
-            mRewardedVideoAd.rewardedVideoAdListener = rewardedVideoAdListener
-            mRewardedVideoAd.loadAd(
-                context.getString(R.string.admob_rewarded_video),
-                AdRequest.Builder().build()
-            )
-        }
-
-        fun showVideo(mRewardedVideoAd: RewardedVideoAd) {
-            if (mRewardedVideoAd.isLoaded) {
-                mRewardedVideoAd.show()
-            }
-        }
-
-    }
 
 }

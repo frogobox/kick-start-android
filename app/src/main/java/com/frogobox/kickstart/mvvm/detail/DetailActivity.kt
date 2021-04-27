@@ -10,7 +10,7 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        val extra : Article? = intent.extras?.getParcelable("EXTRA_DATA_ARTICLE")
+        val extra = intent.extras?.getString("EXTRA_DATA_ARTICLE")
 
 
     }

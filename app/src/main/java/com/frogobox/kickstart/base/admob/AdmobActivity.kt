@@ -2,15 +2,12 @@ package com.frogobox.kickstart.base.admob
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.frogobox.kickstart.base.admob.AdmobActivityView
 import com.frogobox.kickstart.util.helper.AdmobHelper.Banner.setupBanner
 import com.frogobox.kickstart.util.helper.AdmobHelper.Banner.showBanner
 import com.frogobox.kickstart.util.helper.AdmobHelper.Interstitial.setupInterstitial
 import com.frogobox.kickstart.util.helper.AdmobHelper.Interstitial.showInterstitial
 import com.frogobox.kickstart.util.helper.AdmobHelper.Publisher.setupPublisher
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.InterstitialAd
-import com.google.android.gms.ads.reward.RewardedVideoAd
 
 /**
  * Created by Faisal Amir
@@ -34,8 +31,7 @@ open class AdmobActivity : AppCompatActivity(),
     AdmobActivityView {
 
     private lateinit var mActivity: AppCompatActivity
-    lateinit var mInterstitialAd: InterstitialAd
-    private lateinit var mRewardedVideoAd: RewardedVideoAd
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,12 +46,11 @@ open class AdmobActivity : AppCompatActivity(),
     }
 
     private fun setupAdmobInterstitial() {
-        mInterstitialAd = InterstitialAd(this)
-        setupInterstitial(this, mInterstitialAd)
+        setupInterstitial(this)
     }
 
     override fun setupShowAdsInterstitial() {
-        showInterstitial(mInterstitialAd)
+        showInterstitial(this)
     }
 
     override fun setupShowAdsBanner(mAdView: AdView) {

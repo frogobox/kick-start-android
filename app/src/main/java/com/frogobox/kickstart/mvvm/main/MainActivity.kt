@@ -9,7 +9,8 @@ import com.frogobox.kickstart.base.view.ui.BaseActivity
 import com.frogobox.kickstart.databinding.ActivityMainBinding
 import com.frogobox.kickstart.mvvm.detail.DetailActivity
 import com.frogobox.kickstart.source.model.Article
-import com.frogobox.recycler.boilerplate.viewrclass.FrogoViewAdapterCallback
+import com.frogobox.recycler.core.IFrogoViewAdapter
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.list_news_article_vertical.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -44,10 +45,11 @@ class MainActivity : BaseActivity() {
 
     private fun setupRvNews(data: List<Article>) {
 
-        val newsAdapter = object : FrogoViewAdapterCallback<Article> {
+        val newsAdapter = object : IFrogoViewAdapter<Article> {
             override fun onItemClicked(data: Article) {
                 val intent = Intent(this@MainActivity, DetailActivity::class.java)
-                intent.putExtra("EXTRA_DATA_ARTICLE", data)
+                val extraData = Gson().toJson(data)
+                intent.putExtra("EXTRA_DATA_ARTICLE", extraData)
                 startActivity(intent)
             }
 
