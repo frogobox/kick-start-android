@@ -2,7 +2,6 @@ package com.frogobox.kickstart.util.helper
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.frogobox.kickstart.R
 import com.google.android.gms.ads.*
@@ -53,7 +52,7 @@ object AdmobHelper {
                 context, context.getString(R.string.admob_interstitial), adRequest,
                 object : InterstitialAdLoadCallback() {
                     override fun onAdFailedToLoad(adError: LoadAdError) {
-                        Log.d(TAG, adError?.message)
+                        Log.d(TAG, adError.message)
                         mInterstitialAd = null
                         val error = "domain: ${adError.domain}, code: ${adError.code}, " +
                                 "message: ${adError.message}"
@@ -93,9 +92,8 @@ object AdmobHelper {
                     }
                 }
                 mInterstitialAd?.show(activity)
-            } else {
-                Toast.makeText(activity, "Ad wasn't loaded.", Toast.LENGTH_SHORT).show()
             }
+
         }
 
     }
