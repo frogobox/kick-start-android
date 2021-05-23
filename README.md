@@ -1,21 +1,21 @@
 ![ScreenShoot Apps](docs/image/ss_banner.png?raw=true)
 
-# About This Project
+## About This Project
 Template Reuse Code For Monetizing Apps
 Template Code Monetize FrogoBox For Android Kick Start Project
 
-# Version Release
+## Version Release
 This Is Latest Release (Still Being Developed)
 
     $version_release = 1.0.0
 
 
-# Screenshoot Apps
+## Screenshoot Apps
 Light Theme	|	Dark Theme	|
 :----------:|:-------------:|
 <span align="center"><img width="200px" height="360px" src="docs/image/ss_light.png"></span> | <span align="center"><img width="200px" height="360px" src="docs/image/ss_dark.png"></span> |
 
-# Android Library Version (build.gradle)
+## Android Library Version (build.gradle)
 - ext.kotlin_version = '1.4.10'
 - classpath 'com.android.tools.build:gradle:4.1.0'
 - compileSdkVersion 30
@@ -66,7 +66,7 @@ Min API level is set to 21, so the presented approach is suitable for over 94% o
 - Only one thought is the creator of the project
 - Creator of this project indeed need your help
 
-# Colaborator
+## Colaborator
 Very open to anyone, I'll write your name under this, please contribute by sending an email to me
 
 - Mail To faisalamircs@gmail.com
@@ -80,6 +80,6 @@ Name Of Contribute
 
 Waiting for your contribute
 
-# Attention !!!
+## Attention !!!
 Please enjoy and don't forget fork and give a star
 - Don't Forget Follow My Github Account
