@@ -15,14 +15,6 @@ Light Theme	|	Dark Theme	|
 :----------:|:-------------:|
 <span align="center"><img width="200px" height="360px" src="docs/image/ss_light.png"></span> | <span align="center"><img width="200px" height="360px" src="docs/image/ss_dark.png"></span> |
 
-## Android Library Version (build.gradle)
-- ext.kotlin_version = '1.4.10'
-- classpath 'com.android.tools.build:gradle:4.1.0'
-- compileSdkVersion 30
-- buildToolsVersion "30.0.2"
-- minSdkVersion 21
-- targetSdkVersion 30
-
 ## Architecture
 -   Pattern  [Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)  (MVVM) facilitating a [separation](https://en.wikipedia.org/wiki/Separation_of_concerns) of development of the graphical user interface.
 -   [S.O.L.I.D](https://en.wikipedia.org/wiki/SOLID)  design principles intended to make software designs more understandable, flexible and maintainable.
