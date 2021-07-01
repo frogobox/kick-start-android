@@ -4,6 +4,15 @@
 Template Reuse Code For Monetizing Apps
 Template Code Monetize FrogoBox For Android Kick Start Project
 
+## Helper Sample Link
+- frogo-recycler-view [Click Here](https://github.com/amirisback/frogo-recycler-view)
+- frogo-admob [Click Here](https://github.com/amirisback/frogo-admob)
+- frogo-ui-kit [Click Here](https://github.com/amirisback/frogo-ui-kit)
+- frogo-log [Click Here](https://github.com/amirisback/frogo-log)
+- frogo-notification [Click Here](https://github.com/amirisback/frogo-notification)
+- MVVM [Click Here](https://github.com/amirisback/android-architecture-modularization)
+- Awesome API Implemented [Click Here](https://github.com/amirisback/awesome-frogo-consumable-apps)
+
 ## Version Release
 This Is Latest Release (Still Being Developed)
 
@@ -35,12 +44,6 @@ Min API level is set to 21, so the presented approach is suitable for over 94% o
 -   [Dagger2](https://dagger.dev/)  - dependency injector for replacement all Factory classes.
 -   [Retrofit](https://square.github.io/retrofit/)  - type-safe HTTP client.
 -   [Glide](https://github.com/bumptech/glide)  - image loading and caching library
-
-## Helper Sample Link
-- Admob Sample https://github.com/amirisback/admob-helper-implementation
-- MVVM Sample https://github.com/amirisback/android-architecture-by-amirisback
-- frogo-recycler-view https://github.com/amirisback/frogo-recycler-view
-- Awesome API Implemented https://github.com/amirisback/awesome-frogo-consumable-apps
 
 ## How To Use This Project
 - Just Clone on Your Android Studio
