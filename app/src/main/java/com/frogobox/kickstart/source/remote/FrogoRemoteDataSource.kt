@@ -6,7 +6,7 @@ import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.source.model.SourceResponse
 import com.frogobox.kickstart.source.FrogoDataSource
 import com.frogobox.kickstart.source.remote.network.FrogoApiClient
-import com.frogobox.kickstart.util.helper.FunHelper.Func.noAction
+import com.frogobox.kickstart.util.SingleFunc.Func.noAction
 
 /**
  * Created by Faisal Amir

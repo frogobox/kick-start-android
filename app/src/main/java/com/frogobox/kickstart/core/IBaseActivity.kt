@@ -1,8 +1,8 @@
-package com.frogobox.kickstart.base.view.ui
+package com.frogobox.kickstart.core
 
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.google.android.gms.ads.AdView
+import androidx.viewbinding.ViewBinding
 
 /*
  * Created by Faisal Amir on 13/05/2020
@@ -17,22 +17,20 @@ import com.google.android.gms.ads.AdView
  *
  */
 
-interface BaseFragmentView {
+interface IBaseActivity {
 
-    fun setupShowAdsInterstitial()
-
-    fun setupShowAdsBanner(mAdView: AdView)
+    fun setupDetailActivity(title: String)
 
     fun setupChildFragment(frameId: Int, fragment: Fragment)
 
-    fun checkArgument(argsKey: String): Boolean
+    fun showToast(message: String)
 
     fun setupEventEmptyView(view: View, isEmpty: Boolean)
 
     fun setupEventProgressView(view: View, progress: Boolean)
 
-    fun showToast(message: String)
+    fun checkExtra(extraKey: String): Boolean
 
-    fun <Model> baseNewInstance(argsKey: String, data: Model)
+    fun <VB: ViewBinding, Model> baseFragmentNewInstance(fragment: BaseFragment<VB>, argumentKey: String, extraDataResult: Model)
 
 }

@@ -3,26 +3,25 @@ package com.frogobox.kickstart.mvvm.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.frogobox.kickstart.R
-import com.frogobox.kickstart.base.view.ui.BaseActivity
+import com.frogobox.kickstart.core.BaseActivity
 import com.frogobox.kickstart.databinding.ActivityMainBinding
 import com.frogobox.kickstart.mvvm.detail.DetailActivity
 import com.frogobox.kickstart.source.model.Article
 import com.frogobox.recycler.core.IFrogoViewAdapter
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.list_news_article_vertical.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    private lateinit var activityMainBinding: ActivityMainBinding
     private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityMainBinding = ActivityMainBinding.inflate(baseLayoutInflater())
-        setContentView(activityMainBinding.root)
+        binding = ActivityMainBinding.inflate(baseLayoutInflater())
+        setContentView(binding.root)
         setupViewModel()
     }
 
@@ -36,7 +35,7 @@ class MainActivity : BaseActivity() {
             })
 
             eventShowProgress.observe(this@MainActivity, {
-                setupEventProgressView(activityMainBinding.progressView, it)
+                setupEventProgressView(binding.progressView, it)
             })
 
         }
@@ -58,14 +57,14 @@ class MainActivity : BaseActivity() {
             }
 
             override fun setupInitComponent(view: View, data: Article) {
-                view.tv_title.text = data.title
-                view.tv_description.text = data.publishedAt
-                view.tv_published.text = data.description
-                Glide.with(view.context).load(data.urlToImage).into(view.iv_url)
+                view.findViewById<TextView>(R.id.tv_title).text = data.title
+                view.findViewById<TextView>(R.id.tv_description).text = data.publishedAt
+                view.findViewById<TextView>(R.id.tv_published).text = data.description
+                Glide.with(view.context).load(data.urlToImage).into(view.findViewById(R.id.iv_url))
             }
         }
 
-        activityMainBinding.rvNews
+        binding.rvNews
             .injector<Article>()
             .addData(data)
             .addCustomView(R.layout.list_news_article_vertical)

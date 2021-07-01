@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.util.helper
+package com.frogobox.kickstart.util
 
 import android.Manifest
 import android.os.Environment
@@ -21,7 +21,21 @@ import com.frogobox.kickstart.BuildConfig
  * com.frogobox.publicspeakingbooster.helper
  *
  */
-object ConstHelper {
+object Constant {
+
+    const val OPTION_GET = "OPTION_GET"
+    const val OPTION_DELETE = "OPTION_DELETE"
+
+    const val DEFAULT_NULL = "null"
+    const val DEFAULT_ERROR_MESSAGE = "Failed"
+    const val FRAGMENT_DIALOG = "dialog"
+
+    const val SPLASH_INTERVAL = 1000
+
+    const val EXTENSION_CSV = ".csv"
+    const val BASE_PATH_RAW = "src/com/frogobox/raw"
+    const val PATH_DATA_CSV = "/influencers$EXTENSION_CSV"
+    const val PATH_RAW_CSV_DATA = BASE_PATH_RAW + PATH_DATA_CSV
 
     object ApiUrl {
         const val NEWS_BASE_URL = "http://newsapi.org/"
@@ -189,13 +203,11 @@ object ConstHelper {
         const val EXTRA_FAVORITE_SCRIPT = "$BASE_EXTRA.EXTRA_FAVORITE_SCRIPT"
         const val EXTRA_EXAMPLE_SCRIPT = "$BASE_EXTRA.EXTRA_EXAMPLE_SCRIPT"
         const val EXTRA_CATEGORY = "$BASE_EXTRA.EXTRA_CATEGORY"
-
     }
 
     object Value {
         const val VALUE_SENSOR_ORIENTATION_DEFAULT_DEGREES = 90
         const val VALUE_SENSOR_ORIENTATION_INVERSE_DEGREES = 270
-
     }
 
     object Tag {
@@ -221,24 +233,6 @@ object ConstHelper {
         val DIR_NAME = "${Environment.DIRECTORY_PICTURES}/$BASE_DIR_NAME"
 
         val VIDEO_FILE_NAME = "$BASE_FILE_NAME${System.currentTimeMillis()}${Ext.MP4}"
-
-    }
-
-    object Const {
-
-        const val OPTION_GET = "OPTION_GET"
-        const val OPTION_DELETE = "OPTION_DELETE"
-
-        const val DEFAULT_NULL = "null"
-        const val DEFAULT_ERROR_MESSAGE = "Failed"
-        const val FRAGMENT_DIALOG = "dialog"
-
-        const val SPLASH_INTERVAL = 1000
-
-        const val EXTENSION_CSV = ".csv"
-        const val BASE_PATH_RAW = "src/com/frogobox/raw"
-        const val PATH_DATA_CSV = "/influencers$EXTENSION_CSV"
-        const val PATH_RAW_CSV_DATA = BASE_PATH_RAW + PATH_DATA_CSV
 
     }
 

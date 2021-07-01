@@ -1,7 +1,7 @@
 package com.frogobox.kickstart.source
 
 import android.content.Context
-import com.frogobox.kickstart.base.data.BaseDataSource
+import com.frogobox.kickstart.core.BaseDataSource
 import com.frogobox.kickstart.source.model.ArticleResponse
 import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.source.model.SourceResponse

@@ -3,7 +3,7 @@ package com.frogobox.kickstart.source.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.frogobox.kickstart.util.helper.ConstHelper.RoomDatabase.TABLE_NAME_FAVORITE
+import com.frogobox.kickstart.util.Constant.RoomDatabase.TABLE_NAME_FAVORITE
 
 /**
  * Created by Faisal Amir

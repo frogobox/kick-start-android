@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.frogobox.kickstart.BuildConfig
 import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.source.local.dao.FavoriteDao
-import com.frogobox.kickstart.util.helper.ConstHelper.RoomDatabase.DATABASE_NAME
+import com.frogobox.kickstart.util.Constant.RoomDatabase.DATABASE_NAME
 
 /**
  * Created by Faisal Amir

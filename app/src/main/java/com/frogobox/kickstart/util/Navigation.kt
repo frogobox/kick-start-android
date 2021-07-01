@@ -6,13 +6,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.frogobox.kickstart.util.helper.ConstHelper.Extra.EXTRA_OPTION
-import com.frogobox.kickstart.util.helper.ConstHelper.TypeData.TYPE_BOOLEAN
-import com.frogobox.kickstart.util.helper.ConstHelper.TypeData.TYPE_FLOAT
-import com.frogobox.kickstart.util.helper.ConstHelper.TypeData.TYPE_INT
-import com.frogobox.kickstart.util.helper.ConstHelper.TypeData.TYPE_OBJECT
-import com.frogobox.kickstart.util.helper.ConstHelper.TypeData.TYPE_STRING
-import com.frogobox.kickstart.util.helper.FunHelper
+import com.frogobox.kickstart.util.Constant.Extra.EXTRA_OPTION
+import com.frogobox.kickstart.util.Constant.TypeData.TYPE_BOOLEAN
+import com.frogobox.kickstart.util.Constant.TypeData.TYPE_FLOAT
+import com.frogobox.kickstart.util.Constant.TypeData.TYPE_INT
+import com.frogobox.kickstart.util.Constant.TypeData.TYPE_OBJECT
+import com.frogobox.kickstart.util.Constant.TypeData.TYPE_STRING
 
 /**
  * Created by Faisal Amir
@@ -47,7 +46,7 @@ object Navigation {
             } else if (typeKey.equals(TYPE_FLOAT)) {
                 extraBundle.putFloat(extraKey, data as Float)
             } else if (typeKey.equals(TYPE_OBJECT)) {
-                val extraData = FunHelper.ConverterJson.toJson(data)
+                val extraData = SingleFunc.ConverterJson.toJson(data)
                 extraBundle.putString(extraKey, extraData)
             } else if (typeKey.equals(TYPE_BOOLEAN)) {
                 extraBundle.putBoolean(extraKey, data as Boolean)
@@ -68,7 +67,7 @@ object Navigation {
                 bundle = activity.intent.extras?.getFloat(extraKey)!!
             } else if (typeKey.equals(TYPE_OBJECT)) {
                 val extraBundle = activity.intent.extras?.getString(extraKey)
-                bundle = FunHelper.ConverterJson.fromJson<T>(extraBundle)!!
+                bundle = SingleFunc.ConverterJson.fromJson<T>(extraBundle)!!
             } else if (typeKey.equals(TYPE_BOOLEAN)) {
                 bundle = activity.intent.extras?.getBoolean(extraKey)!!
             }

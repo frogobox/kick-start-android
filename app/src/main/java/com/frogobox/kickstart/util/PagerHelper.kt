@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.util.helper
+package com.frogobox.kickstart.util
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
