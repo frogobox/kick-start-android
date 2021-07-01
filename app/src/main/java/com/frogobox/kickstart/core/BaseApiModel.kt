@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.base.data
+package com.frogobox.kickstart.core
 
 import com.google.gson.annotations.SerializedName
 

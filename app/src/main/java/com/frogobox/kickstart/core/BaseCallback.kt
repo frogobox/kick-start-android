@@ -1,6 +1,5 @@
-package com.frogobox.kickstart.base.util
+package com.frogobox.kickstart.core
 
-import com.frogobox.kickstart.base.data.BaseApiModel
 import com.google.gson.Gson
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable

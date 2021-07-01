@@ -1,11 +1,12 @@
-package com.frogobox.kickstart.base.view.ui
+package com.frogobox.kickstart.core
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.frogobox.kickstart.base.util.BaseHelper
+import androidx.viewbinding.ViewBinding
+import com.frogobox.kickstart.util.SingleFunc
 import com.google.android.gms.ads.AdView
 
 /**
@@ -25,14 +26,20 @@ import com.google.android.gms.ads.AdView
  * com.frogobox.basemusicplayer.activity
  *
  */
-open class BaseFragment : Fragment(),
-    BaseFragmentView {
+open class BaseFragment<T : ViewBinding> : Fragment(), IBaseFragment {
 
-    lateinit var mBaseActivity: BaseActivity
+    protected var binding : T? = null
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
+
+    lateinit var mBaseActivity: BaseActivity<*>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBaseActivity = (activity as BaseActivity)
+        mBaseActivity = (activity as BaseActivity<*>)
     }
 
     override fun setupShowAdsInterstitial() {
@@ -75,7 +82,7 @@ open class BaseFragment : Fragment(),
     }
 
     override fun <Model> baseNewInstance(argsKey: String, data: Model) {
-        val argsData = BaseHelper().baseToJson(data)
+        val argsData = SingleFunc.ConverterJson.toJson(data)
         val bundleArgs = Bundle().apply {
             putString(argsKey, argsData)
         }
@@ -84,8 +91,7 @@ open class BaseFragment : Fragment(),
 
     protected inline fun <reified Model> baseGetInstance(argsKey: String): Model {
         val argsData = this.arguments?.getString(argsKey)
-        val instaceData = BaseHelper().baseFromJson<Model>(argsData)
-        return instaceData
+        return SingleFunc.ConverterJson.fromJson(argsData)
     }
 
     protected inline fun <reified ClassActivity> baseStartActivity() {
@@ -97,7 +103,7 @@ open class BaseFragment : Fragment(),
         data: Model
     ) {
         val intent = Intent(context, ClassActivity::class.java)
-        val extraData = BaseHelper().baseToJson(data)
+        val extraData = SingleFunc.ConverterJson.toJson(data)
         intent.putExtra(extraKey, extraData)
         this.startActivity(intent)
     }

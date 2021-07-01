@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.base.util
+package com.frogobox.kickstart.core
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

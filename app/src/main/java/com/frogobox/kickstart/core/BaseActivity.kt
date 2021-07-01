@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.base.view.ui
+package com.frogobox.kickstart.core
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,10 +8,10 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.frogobox.kickstart.base.admob.AdmobActivity
-import com.frogobox.kickstart.base.util.BaseHelper
+import androidx.viewbinding.ViewBinding
+import com.frogobox.admob.core.admob.FrogoAdmobActivity
+import com.frogobox.kickstart.R
+import com.frogobox.kickstart.util.SingleFunc
 
 /**
  * Created by Faisal Amir
@@ -30,12 +30,22 @@ import com.frogobox.kickstart.base.util.BaseHelper
  * com.frogobox.basemusicplayer.base
  *
  */
-open class BaseActivity : AdmobActivity(),
-    BaseActivityView {
+open class BaseActivity<T: ViewBinding> : FrogoAdmobActivity(), IBaseActivity {
+
+    protected lateinit var binding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO)
+        setupAdmob()
+    }
+
+    private fun setupAdmob() {
+        setBasePublisherID(getString(R.string.admob_publisher_id))
+        setBaseBannerAdUnitID(getString(R.string.admob_banner))
+        setBaseInterstialAdUnitID(getString(R.string.admob_interstitial))
+        setBaseRewardedAdUnitID(getString(R.string.admob_rewarded))
+        setBaseRewardedInterstitialAdUnitID(getString(R.string.admob_rewarded_interstitial))
+        setBaseAdmob()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -88,8 +98,8 @@ open class BaseActivity : AdmobActivity(),
         return intent?.hasExtra(extraKey)!!
     }
 
-    override fun <Model> baseFragmentNewInstance(
-        fragment: BaseFragment,
+    override fun <VB: ViewBinding, Model> baseFragmentNewInstance(
+        fragment: BaseFragment<VB>,
         argumentKey: String,
         extraDataResult: Model
     ) {
@@ -105,18 +115,18 @@ open class BaseActivity : AdmobActivity(),
         data: Model
     ) {
         val intent = Intent(this, ClassActivity::class.java)
-        val extraData = BaseHelper().baseToJson(data)
+        val extraData = SingleFunc.ConverterJson.toJson(data)
         intent.putExtra(extraKey, extraData)
         this.startActivity(intent)
     }
 
     protected inline fun <reified Model> baseGetExtraData(extraKey: String): Model {
         val extraIntent = intent.getStringExtra(extraKey)
-        val extraData = BaseHelper().baseFromJson<Model>(extraIntent)
+        val extraData = SingleFunc.ConverterJson.fromJson<Model>(extraIntent)
         return extraData
     }
 
-    protected fun baseLayoutInflater() : LayoutInflater {
+    protected fun baseLayoutInflater(): LayoutInflater {
         return LayoutInflater.from(this)
     }
 
