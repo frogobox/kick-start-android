@@ -1,9 +1,9 @@
-package com.frogobox.kickstart.util.helper
+package com.frogobox.kickstart.util
 
 import android.os.Build
 import android.text.format.DateFormat
-import com.frogobox.kickstart.util.helper.ConstHelper.Date.HOUR_MILLIS
-import com.frogobox.kickstart.util.helper.ConstHelper.Date.MINUTE_MILLIS
+import com.frogobox.kickstart.util.Constant.Date.HOUR_MILLIS
+import com.frogobox.kickstart.util.Constant.Date.MINUTE_MILLIS
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,15 +26,15 @@ import java.util.concurrent.TimeUnit
  * com.frogobox.basemusicplayer.util.helper
  *
  */
-object DateHelper {
+object SingleDate {
 
     fun getTimeStamp(): String {
-        val simpleDateFormat = SimpleDateFormat(ConstHelper.Date.DATE_TIME_STANDARD, Locale.getDefault())
+        val simpleDateFormat = SimpleDateFormat(Constant.Date.DATE_TIME_STANDARD, Locale.getDefault())
         return simpleDateFormat.format(Date())
     }
 
     fun getTimeNow(): String {
-        val simpleDateFormat = SimpleDateFormat(ConstHelper.Date.TIME_GENERAL_HH_MM_SS, Locale.getDefault())
+        val simpleDateFormat = SimpleDateFormat(Constant.Date.TIME_GENERAL_HH_MM_SS, Locale.getDefault())
         return simpleDateFormat.format(Date())
     }
 
@@ -46,7 +46,7 @@ object DateHelper {
     fun dateTimeToTimeStamp(date: String?): Long {
         var timestamp: Long = 0
         val tz = TimeZone.getTimeZone("UTC")
-        val df = SimpleDateFormat(ConstHelper.Date.DATE_TIME_GLOBAL, Locale.getDefault())
+        val df = SimpleDateFormat(Constant.Date.DATE_TIME_GLOBAL, Locale.getDefault())
         df.timeZone = tz
 
         if (date != null) {
@@ -64,22 +64,22 @@ object DateHelper {
 
     fun getCurrentUTC(): String {
         val time = Calendar.getInstance().time
-        val outputFmt = SimpleDateFormat(ConstHelper.Date.TIME_GENERAL_HH_MM_SS)
+        val outputFmt = SimpleDateFormat(Constant.Date.TIME_GENERAL_HH_MM_SS)
         outputFmt.timeZone = TimeZone.getTimeZone("UTC")
         return outputFmt.format(time)
     }
 
     fun timetoHour(date: String?): String {
         val tz = TimeZone.getTimeZone("UTC")
-        val df = SimpleDateFormat(ConstHelper.Date.TIME_GENERAL_HH_MM_SS)
+        val df = SimpleDateFormat(Constant.Date.TIME_GENERAL_HH_MM_SS)
         df.timeZone = tz
 
-        return DateFormat.format(ConstHelper.Date.TIME_GENERAL_HH_MM_SS, df.parse(date)).toString()
+        return DateFormat.format(Constant.Date.TIME_GENERAL_HH_MM_SS, df.parse(date)).toString()
     }
 
     fun dateTimeTZtoHour(date: String?): String {
         val tz = TimeZone.getTimeZone("UTC")
-        val df = SimpleDateFormat(ConstHelper.Date.DATE_TIME_GLOBAL)
+        val df = SimpleDateFormat(Constant.Date.DATE_TIME_GLOBAL)
         df.timeZone = tz
 
         return DateFormat.format("hh:mm aa", df.parse(date)).toString()
@@ -87,7 +87,7 @@ object DateHelper {
 
     fun DateTimeMonth(date: String?): String {
         val tz = TimeZone.getTimeZone("UTC")
-        val df = SimpleDateFormat(ConstHelper.Date.DATE_TIME_STANDARD)
+        val df = SimpleDateFormat(Constant.Date.DATE_TIME_STANDARD)
         df.timeZone = tz
 
         return DateFormat.format("MMM yyyy", df.parse(date)).toString()
@@ -97,7 +97,7 @@ object DateHelper {
         return if (date != null) {
             try {
                 val tz = TimeZone.getTimeZone("UTC")
-                val df = SimpleDateFormat(ConstHelper.Date.DATE_TIME_STANDARD)
+                val df = SimpleDateFormat(Constant.Date.DATE_TIME_STANDARD)
                 df.timeZone = tz
 
                 DateFormat.format("MM/yyyy", df.parse(date)).toString()
@@ -113,7 +113,7 @@ object DateHelper {
         return if (date != null) {
             try {
                 val tz = TimeZone.getTimeZone("UTC")
-                val df = SimpleDateFormat(ConstHelper.Date.DATE_ENGLISH_YYYY_MM_DD)
+                val df = SimpleDateFormat(Constant.Date.DATE_ENGLISH_YYYY_MM_DD)
                 df.timeZone = tz
 
                 DateFormat.format("MM/yyyy", df.parse(date)).toString()
@@ -163,7 +163,7 @@ object DateHelper {
     }
 
     fun compareDate(newDate: String): String? {
-        val format = SimpleDateFormat(ConstHelper.Date.DATE_ENGLISH_YYYY_MM_DD)
+        val format = SimpleDateFormat(Constant.Date.DATE_ENGLISH_YYYY_MM_DD)
         val oldDate = Calendar.getInstance().time
         val now = format.format(oldDate)
         var info = 0L
@@ -181,7 +181,7 @@ object DateHelper {
     }
 
     fun messageDate(newDate: String): String? {
-        val format = SimpleDateFormat(ConstHelper.Date.DATE_ENGLISH_YYYY_MM_DD)
+        val format = SimpleDateFormat(Constant.Date.DATE_ENGLISH_YYYY_MM_DD)
         val oldDate = Calendar.getInstance().time
         val now = format.format(oldDate)
         var info = 0L
@@ -215,7 +215,7 @@ object DateHelper {
         return if (diff < 24 * HOUR_MILLIS) {
             "Today"
         } else {
-            DateFormat.format(ConstHelper.Date.DATE_DD_MM_YYYY_CLEAR, time).toString()
+            DateFormat.format(Constant.Date.DATE_DD_MM_YYYY_CLEAR, time).toString()
         }
     }
 
@@ -233,7 +233,7 @@ object DateHelper {
     }
 
     fun convertDateNewFormat(string: String?) : String {
-        val formatter = SimpleDateFormat(ConstHelper.Date.DATE_ENGLISH_YYYY_MM_DD)
+        val formatter = SimpleDateFormat(Constant.Date.DATE_ENGLISH_YYYY_MM_DD)
         val date = formatter.parse(string) as Date
         val newFormat = SimpleDateFormat("dd-MM-yy", Locale("EN"))
         val finalString = newFormat.format(date)
@@ -241,7 +241,7 @@ object DateHelper {
     }
 
     fun convertLongDateNewFormat(string: String?) : String {
-        val formatter = SimpleDateFormat(ConstHelper.Date.DATE_TIME_STANDARD)
+        val formatter = SimpleDateFormat(Constant.Date.DATE_TIME_STANDARD)
         val date = formatter.parse(string) as Date
         val newFormat = SimpleDateFormat("dd-MM-yy HH:mm:ss", Locale("EN"))
         val finalString = newFormat.format(date)
@@ -251,7 +251,7 @@ object DateHelper {
     fun revertFromLongDateNewFormat(string: String?) : String {
         val formatter = SimpleDateFormat("dd-MM-yy HH:mm:ss", Locale("EN"))
         val date = formatter.parse(string) as Date
-        val newFormat = SimpleDateFormat(ConstHelper.Date.DATE_TIME_STANDARD)
+        val newFormat = SimpleDateFormat(Constant.Date.DATE_TIME_STANDARD)
         val finalString = newFormat.format(date)
         return finalString
     }
@@ -272,7 +272,7 @@ object DateHelper {
     fun diffTime(timeStart: String, timeEnd: String): Long {
         var min: Long = 0
         val diff: Long
-        val format = SimpleDateFormat(ConstHelper.Date.TIME_GENERAL_HH_MM_SS)
+        val format = SimpleDateFormat(Constant.Date.TIME_GENERAL_HH_MM_SS)
 
         var d1: Date? = null
         var d2: Date? = null
