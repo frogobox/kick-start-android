@@ -1,7 +1,5 @@
 package com.frogobox.kickstart.source
 
-import android.content.Context
-import com.frogobox.kickstart.core.BaseDataSource
 import com.frogobox.kickstart.source.model.ArticleResponse
 import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.source.model.SourceResponse
@@ -23,12 +21,9 @@ import com.frogobox.kickstart.source.model.SourceResponse
  * com.frogobox.basemusicplayer.source
  *
  */
-interface FrogoDataSource : BaseDataSource {
+interface FrogoDataSource {
 
     // API Server ----------------------------------------------------------------------------------
-
-    // Switch For Using Chuck Interceptor
-    fun usingChuckInterceptor(context: Context)
 
     // Get Top Headline
     suspend fun getTopHeadline(
@@ -73,7 +68,7 @@ interface FrogoDataSource : BaseDataSource {
     fun saveRoomFavorite(data: Favorite) : Boolean
 
     // Get
-    fun getRoomFavorite(callback: GetRoomDataCallBack<List<Favorite>>)
+    fun getRoomFavorite(callback: GetLocalCallback<List<Favorite>>)
 
     // Update
     fun updateRoomFavorite(tableId: Int, title: String, description: String, dateTime: String) : Boolean
@@ -88,20 +83,20 @@ interface FrogoDataSource : BaseDataSource {
     // Interface Helper ---------------------------------------------------------------------------
 
     // Response Callback
-    interface GetRemoteCallback<T> : BaseDataSource.ResponseCallback<T>
+    interface GetRemoteCallback<T> : FrogoResponseCallback<T>
 
     // Save
-    interface SaveRoomDataCallBack<T>: BaseDataSource.ResponseCallback<T>
-    interface SavePrefCallBack<T>: BaseDataSource.ResponseCallback<T>
+    interface SaveRoomDataCallBack<T>: FrogoResponseCallback<T>
+    interface SavePrefCallBack<T>: FrogoResponseCallback<T>
 
     // Get
-    interface GetRoomDataCallBack<T> : BaseDataSource.ResponseCallback<T>
+    interface GetLocalCallback<T> : FrogoResponseCallback<T>
 
     // Update
-    interface UpdateRoomDataCallBack<T> : BaseDataSource.ResponseCallback<T>
+    interface UpdateRoomDataCallBack<T> : FrogoResponseCallback<T>
 
     // Delete
-    interface DeleteRoomDataCallBack<T> : BaseDataSource.ResponseCallback<T>
+    interface DeleteRoomDataCallBack<T> : FrogoResponseCallback<T>
     // ---------------------------------------------------------------------------------------------
 
 }

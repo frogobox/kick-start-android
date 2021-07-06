@@ -30,10 +30,6 @@ class MainViewModel(private val context: Application, private val repository: Fr
 
     var topHeadlineLive = SingleLiveEvent<ArticleResponse>()
 
-    fun usingChuck() {
-        repository.usingChuckInterceptor(context)
-    }
-
     fun getTopHeadline() {
         viewModelScope.launch {
             repository.getTopHeadline(
@@ -57,13 +53,14 @@ class MainViewModel(private val context: Application, private val repository: Fr
                         topHeadlineLive.postValue(data)
                     }
 
-                    override fun onEmpty() {
-
-                    }
-
                     override fun onFailed(statusCode: Int, errorMessage: String?) {
-
+                        eventFailed.postValue(errorMessage)
                     }
+
+                    override fun onEmptyData() {
+                        eventEmptyData.postValue(true)
+                    }
+
                 }
             )
         }

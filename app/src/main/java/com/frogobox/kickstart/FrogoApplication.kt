@@ -1,6 +1,7 @@
 package com.frogobox.kickstart
 
 import android.app.Application
+import android.content.Context
 import com.frogobox.kickstart.di.repositoryModule
 import com.frogobox.kickstart.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -23,12 +24,19 @@ import org.koin.core.logger.Level
 
 class FrogoApplication : Application() {
 
+    companion object {
+        lateinit var instance: FrogoApplication
+        fun getContext(): Context = instance.applicationContext
+    }
+
     override fun onCreate() {
         super.onCreate()
+        instance = this
         startKoin {
             androidContext(this@FrogoApplication)
             androidLogger(Level.NONE)
             modules(listOf(repositoryModule, viewModelModule))
         }
     }
+
 }

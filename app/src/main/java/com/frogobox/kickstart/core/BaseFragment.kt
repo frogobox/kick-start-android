@@ -2,12 +2,14 @@ package com.frogobox.kickstart.core
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.frogobox.kickstart.util.SingleFunc
 import com.google.android.gms.ads.AdView
+import com.google.gson.Gson
 
 /**
  * Created by Faisal Amir
@@ -26,9 +28,30 @@ import com.google.android.gms.ads.AdView
  * com.frogobox.basemusicplayer.activity
  *
  */
-open class BaseFragment<T : ViewBinding> : Fragment(), IBaseFragment {
+abstract class BaseFragment<VB : ViewBinding> : Fragment(), IBaseFragment {
 
-    protected var binding : T? = null
+    protected var binding : VB? = null
+
+    abstract fun setupViewBinding(inflater: LayoutInflater, container: ViewGroup): VB
+
+    abstract fun setupViewModel()
+
+    abstract fun setupUI()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = container?.let { setupViewBinding(inflater, it) }
+        setupViewModel()
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupUI()
+    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -82,7 +105,7 @@ open class BaseFragment<T : ViewBinding> : Fragment(), IBaseFragment {
     }
 
     override fun <Model> baseNewInstance(argsKey: String, data: Model) {
-        val argsData = SingleFunc.ConverterJson.toJson(data)
+        val argsData = Gson().toJson(data)
         val bundleArgs = Bundle().apply {
             putString(argsKey, argsData)
         }
@@ -91,7 +114,7 @@ open class BaseFragment<T : ViewBinding> : Fragment(), IBaseFragment {
 
     protected inline fun <reified Model> baseGetInstance(argsKey: String): Model {
         val argsData = this.arguments?.getString(argsKey)
-        return SingleFunc.ConverterJson.fromJson(argsData)
+        return Gson().fromJson(argsData, Model::class.java)
     }
 
     protected inline fun <reified ClassActivity> baseStartActivity() {
@@ -103,7 +126,7 @@ open class BaseFragment<T : ViewBinding> : Fragment(), IBaseFragment {
         data: Model
     ) {
         val intent = Intent(context, ClassActivity::class.java)
-        val extraData = SingleFunc.ConverterJson.toJson(data)
+        val extraData = Gson().toJson(data)
         intent.putExtra(extraKey, extraData)
         this.startActivity(intent)
     }

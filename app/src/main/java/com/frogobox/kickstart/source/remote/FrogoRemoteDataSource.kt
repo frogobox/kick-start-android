@@ -1,6 +1,5 @@
 package com.frogobox.kickstart.source.remote
 
-import android.content.Context
 import com.frogobox.kickstart.source.model.ArticleResponse
 import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.source.model.SourceResponse
@@ -27,12 +26,6 @@ import com.frogobox.kickstart.util.SingleFunc.Func.noAction
  */
 object FrogoRemoteDataSource : FrogoDataSource {
 
-    private val frogoApiClient = FrogoApiClient
-
-    override fun usingChuckInterceptor(context: Context) {
-        frogoApiClient.usingChuckInterceptor(context)
-    }
-
     override suspend fun getTopHeadline(
         apiKey: String,
         q: String?,
@@ -43,7 +36,7 @@ object FrogoRemoteDataSource : FrogoDataSource {
         page: Int?,
         callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
     ) {
-        val serviceApiClient = frogoApiClient.getApiClient.getTopHeadline(
+        val serviceApiClient = FrogoApiClient.create().getTopHeadline(
             apiKey,
             q,
             sources,
@@ -58,7 +51,7 @@ object FrogoRemoteDataSource : FrogoDataSource {
             if (serviceApiClient.body() != null) {
                 callback.onSuccess(serviceApiClient.body()!!)
             } else {
-                callback.onEmpty()
+                callback.onEmptyData()
             }
             callback.onHideProgressDialog()
         } else {
@@ -83,7 +76,7 @@ object FrogoRemoteDataSource : FrogoDataSource {
         page: Int?,
         callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
     ) {
-        val serviceApiClient = frogoApiClient.getApiClient.getEverythings(
+        val serviceApiClient = FrogoApiClient.create().getEverythings(
             apiKey,
             q,
             from,
@@ -102,7 +95,7 @@ object FrogoRemoteDataSource : FrogoDataSource {
             if (serviceApiClient.body() != null) {
                 callback.onSuccess(serviceApiClient.body()!!)
             } else {
-                callback.onEmpty()
+                callback.onEmptyData()
             }
             callback.onHideProgressDialog()
         } else {
@@ -119,13 +112,13 @@ object FrogoRemoteDataSource : FrogoDataSource {
         callback: FrogoDataSource.GetRemoteCallback<SourceResponse>
     ) {
         val serviceApiClient =
-            frogoApiClient.getApiClient.getSources(apiKey, language, country, category)
+            FrogoApiClient.create().getSources(apiKey, language, country, category)
         callback.onShowProgressDialog()
         if (serviceApiClient.isSuccessful) {
             if (serviceApiClient.body() != null) {
                 callback.onSuccess(serviceApiClient.body()!!)
             } else {
-                callback.onEmpty()
+                callback.onEmptyData()
             }
             callback.onHideProgressDialog()
         } else {
@@ -140,7 +133,7 @@ object FrogoRemoteDataSource : FrogoDataSource {
     }
 
 
-    override fun getRoomFavorite(callback: FrogoDataSource.GetRoomDataCallBack<List<Favorite>>) {
+    override fun getRoomFavorite(callback: FrogoDataSource.GetLocalCallback<List<Favorite>>) {
         noAction()
     }
 

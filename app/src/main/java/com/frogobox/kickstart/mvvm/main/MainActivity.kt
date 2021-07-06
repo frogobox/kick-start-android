@@ -18,18 +18,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private val mainViewModel: MainViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(baseLayoutInflater())
-        setContentView(binding.root)
-        setupViewModel()
+    override fun setupViewBinding(): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private fun setupViewModel() {
+    override fun setupViewModel() {
         mainViewModel.apply {
 
-            usingChuck()
             getTopHeadline()
+
             topHeadlineLive.observe(this@MainActivity, {
                 it.articles?.let { it1 -> setupRvNews(it1) }
             })
@@ -39,8 +36,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             })
 
         }
-
     }
+
+    override fun setupUI() {}
 
     private fun setupRvNews(data: List<Article>) {
 
@@ -73,5 +71,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             .createLayoutLinearVertical(false)
             .build()
     }
+
+
+
 
 }

@@ -10,7 +10,6 @@ import com.frogobox.kickstart.BuildConfig
 import com.frogobox.kickstart.R
 import com.frogobox.kickstart.util.Constant.Dir.DIR_NAME
 import com.frogobox.kickstart.util.Constant.Dir.VIDEO_FILE_NAME
-import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.util.*
@@ -34,18 +33,6 @@ import java.util.*
  *
  */
 object SingleFunc {
-
-    object ConverterJson {
-
-        fun <T> toJson(model: T): String? {
-            return Gson().toJson(model)
-        }
-
-        inline fun <reified T> fromJson(word: String?): T {
-            return Gson().fromJson<T>(word, T::class.java)
-        }
-
-    }
 
     object Func {
 

@@ -1,7 +1,6 @@
 package com.frogobox.kickstart.source
 
 
-import android.content.Context
 import com.frogobox.kickstart.source.model.ArticleResponse
 import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.source.model.SourceResponse
@@ -29,9 +28,6 @@ open class FrogoDataRepository(
     private val remoteDataSource: FrogoRemoteDataSource,
     private val localDataSource: FrogoLocalDataSource
 ) : FrogoDataSource {
-    override fun usingChuckInterceptor(context: Context) {
-        remoteDataSource.usingChuckInterceptor(context)
-    }
 
     override suspend fun getTopHeadline(
         apiKey: String,
@@ -101,7 +97,7 @@ open class FrogoDataRepository(
         return localDataSource.saveRoomFavorite(data)
     }
 
-    override fun getRoomFavorite(callback: FrogoDataSource.GetRoomDataCallBack<List<Favorite>>) {
+    override fun getRoomFavorite(callback: FrogoDataSource.GetLocalCallback<List<Favorite>>) {
         localDataSource.getRoomFavorite(callback)
     }
 
@@ -113,7 +109,6 @@ open class FrogoDataRepository(
     ): Boolean {
         return localDataSource.updateRoomFavorite(tableId, title, description, dateTime)
     }
-
 
     override fun deleteRoomFavorite(tableId: Int): Boolean {
         return localDataSource.deleteRoomFavorite(tableId)

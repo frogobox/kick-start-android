@@ -31,7 +31,7 @@ class PagerHelper(fragmentManager: FragmentManager): FragmentPagerAdapter(fragme
 
     override fun getCount(): Int = fragments.size
 
-    override fun getPageTitle(position: Int): CharSequence? = titles[position]
+    override fun getPageTitle(position: Int): CharSequence = titles[position]
 
     fun setupPagerFragment(fragment: Fragment, title: String) {
         fragments.add(fragment)

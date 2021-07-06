@@ -2,7 +2,6 @@ package com.frogobox.kickstart.core
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -11,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.frogobox.admob.core.admob.FrogoAdmobActivity
 import com.frogobox.kickstart.R
-import com.frogobox.kickstart.util.SingleFunc
+import com.google.gson.Gson
 
 /**
  * Created by Faisal Amir
@@ -30,12 +29,22 @@ import com.frogobox.kickstart.util.SingleFunc
  * com.frogobox.basemusicplayer.base
  *
  */
-open class BaseActivity<T: ViewBinding> : FrogoAdmobActivity(), IBaseActivity {
+abstract class BaseActivity<VB: ViewBinding> : FrogoAdmobActivity(), IBaseActivity {
 
-    protected lateinit var binding: T
+    protected lateinit var binding: VB
+
+    abstract fun setupViewBinding(): VB
+
+    abstract fun setupViewModel()
+
+    abstract fun setupUI()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = setupViewBinding()
+        setContentView(binding.root)
+        setupViewModel()
+        setupUI()
         setupAdmob()
     }
 
@@ -115,19 +124,15 @@ open class BaseActivity<T: ViewBinding> : FrogoAdmobActivity(), IBaseActivity {
         data: Model
     ) {
         val intent = Intent(this, ClassActivity::class.java)
-        val extraData = SingleFunc.ConverterJson.toJson(data)
+        val extraData = Gson().toJson(data)
         intent.putExtra(extraKey, extraData)
         this.startActivity(intent)
     }
 
     protected inline fun <reified Model> baseGetExtraData(extraKey: String): Model {
         val extraIntent = intent.getStringExtra(extraKey)
-        val extraData = SingleFunc.ConverterJson.fromJson<Model>(extraIntent)
+        val extraData = Gson().fromJson(extraIntent, Model::class.java)
         return extraData
-    }
-
-    protected fun baseLayoutInflater(): LayoutInflater {
-        return LayoutInflater.from(this)
     }
 
 }

@@ -1,6 +1,5 @@
 package com.frogobox.kickstart.source.local
 
-import android.content.Context
 import android.content.SharedPreferences
 import com.frogobox.kickstart.source.model.ArticleResponse
 import com.frogobox.kickstart.source.model.Favorite
@@ -33,9 +32,6 @@ class FrogoLocalDataSource(
     private val sharedPreferences: SharedPreferences,
     private val favoriteDao: FavoriteDao
 ) : FrogoDataSource {
-
-    override fun usingChuckInterceptor(context: Context) {
-    }
 
     override suspend fun getTopHeadline(
         apiKey: String,
@@ -82,7 +78,7 @@ class FrogoLocalDataSource(
         return true
     }
 
-    override fun getRoomFavorite(callback: FrogoDataSource.GetRoomDataCallBack<List<Favorite>>) {
+    override fun getRoomFavorite(callback: FrogoDataSource.GetLocalCallback<List<Favorite>>) {
 
     }
 

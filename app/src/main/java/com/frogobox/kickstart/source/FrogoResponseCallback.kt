@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.core
+package com.frogobox.kickstart.source
 
 /**
  * Created by Faisal Amir
@@ -17,12 +17,16 @@ package com.frogobox.kickstart.core
  * com.frogobox.publicspeakingbooster.base
  *
  */
-interface BaseDataSource {
-    interface ResponseCallback<T> {
-        fun onShowProgressDialog()
-        fun onHideProgressDialog()
-        fun onSuccess(data: T)
-        fun onEmpty()
-        fun onFailed(statusCode: Int, errorMessage: String? = "")
-    }
+interface FrogoResponseCallback<T> {
+
+    fun onSuccess(data: T)
+
+    fun onFailed(statusCode: Int, errorMessage: String? = "")
+
+    fun onEmptyData()
+
+    fun onShowProgressDialog()
+
+    fun onHideProgressDialog()
+
 }
