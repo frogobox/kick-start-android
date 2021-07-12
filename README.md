@@ -45,22 +45,6 @@ Min API level is set to 21, so the presented approach is suitable for over 94% o
 -   [Retrofit](https://square.github.io/retrofit/)  - type-safe HTTP client.
 -   [Glide](https://github.com/bumptech/glide)  - image loading and caching library
 
-## How To Use This Project
-- Just Clone on Your Android Studio
-- Learn this code project for inject to your project
-- String test ads can found on build.gradle in folder app
-- Change in release build variant on build.gradle with your admob id
-
-## Special From This Project
-- Inheritance RecyclerViewAdapter (BaseViewAdapter, BasViewHolder, BaseListener)
-- Inheritance AdmobActivity (BaseAdmobActivity)
-- Certainly Clean Code
-
-## Minus From This Project
-- Comment code are too simple
-- Only one thought is the creator of the project
-- Creator of this project indeed need your help
-
 ## Colaborator
 Very open to anyone, I'll write your name under this, please contribute by sending an email to me
 
