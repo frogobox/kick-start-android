@@ -1,5 +1,6 @@
 package com.frogobox.kickstart.mvvm.favorite
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.frogobox.kickstart.core.BaseFragment
@@ -23,6 +24,6 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
         }
     }
 
-    override fun setupUI() {}
+    override fun setupUI(savedInstanceState: Bundle?) {}
 
 }

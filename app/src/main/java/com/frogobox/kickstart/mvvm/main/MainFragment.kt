@@ -1,5 +1,6 @@
 package com.frogobox.kickstart.mvvm.main
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +42,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         }
     }
 
-    override fun setupUI() {}
+    override fun setupUI(savedInstanceState: Bundle?) {}
 
     private fun setupRvNews(data: List<Article>) {
 

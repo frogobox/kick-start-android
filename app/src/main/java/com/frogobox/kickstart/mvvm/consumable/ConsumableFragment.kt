@@ -1,5 +1,6 @@
 package com.frogobox.kickstart.mvvm.consumable
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
@@ -56,7 +57,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
 
     }
 
-    override fun setupUI() {}
+    override fun setupUI(savedInstanceState: Bundle?) {}
 
     private fun setupCategory(data: List<String>) {
 
