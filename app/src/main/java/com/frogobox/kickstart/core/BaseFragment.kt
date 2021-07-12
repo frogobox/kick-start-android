@@ -30,6 +30,8 @@ import com.google.gson.Gson
  */
 abstract class BaseFragment<VB : ViewBinding> : Fragment(), IBaseFragment {
 
+    protected lateinit var mBaseActivity: BaseActivity<*>
+
     protected var binding : VB? = null
 
     abstract fun setupViewBinding(inflater: LayoutInflater, container: ViewGroup): VB
@@ -57,8 +59,6 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment(), IBaseFragment {
         super.onDestroy()
         binding = null
     }
-
-    lateinit var mBaseActivity: BaseActivity<*>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

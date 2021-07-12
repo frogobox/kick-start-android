@@ -30,4 +30,6 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>() {
         }
     }
 
+
+
 }

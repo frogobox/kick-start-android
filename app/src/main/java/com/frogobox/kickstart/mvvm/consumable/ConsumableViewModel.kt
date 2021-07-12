@@ -1,13 +1,9 @@
 package com.frogobox.kickstart.mvvm.consumable
 
 import android.app.Application
-import android.util.Log
-import com.frogobox.frogonewsapi.ConsumeNewsApi
-import com.frogobox.frogonewsapi.callback.NewsResultCallback
 import com.frogobox.frogonewsapi.data.model.Article
 import com.frogobox.frogonewsapi.data.response.ArticleResponse
 import com.frogobox.frogonewsapi.util.NewsConstant.COUNTRY_ID
-import com.frogobox.frogonewsapi.util.NewsUrl
 import com.frogobox.kickstart.core.BaseViewModel
 import com.frogobox.kickstart.source.FrogoDataRepository
 import com.frogobox.kickstart.source.FrogoDataSource

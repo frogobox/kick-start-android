@@ -1,7 +1,6 @@
 package com.frogobox.kickstart.mvvm.detail
 
 import android.app.Application
-import com.frogobox.frogonewsapi.data.model.Article
 import com.frogobox.kickstart.core.BaseViewModel
 import com.frogobox.kickstart.source.FrogoDataRepository
 import com.frogobox.kickstart.source.model.Favorite

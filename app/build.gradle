@@ -82,8 +82,6 @@ android {
         def debugAttribute = " Development"
         def nameAppDebug = nameApp + debugAttribute
 
-
-
         // Naming APK // AAB
         setProperty("archivesBaseName", nameAPK + versionName + "#" + versionCode + "-"
                 + new Date().format('ddMMyy'))
