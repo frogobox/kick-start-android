@@ -20,10 +20,6 @@ This Is Latest Release (Still Being Developed)
 
 
 ## Screenshoot Apps
-Light Theme	|	Dark Theme	|
-:----------:|:-------------:|
-<span align="center"><img width="200px" height="360px" src="docs/image/ss_light.png"></span> | <span align="center"><img width="200px" height="360px" src="docs/image/ss_dark.png"></span> |
-
 | UI 1 | UI 2 | UI 3 |
 |:----:|:----:|:----:|
 |<span align="center"><img width="200px" height="360px" src="docs/image/ss_1.png"></span> | <span align="center"><img width="200px" height="360px" src="docs/image/ss_2.png"></span> | <span align="center"><img width="200px" height="360px" src="docs/image/ss_3.png"></span> |
