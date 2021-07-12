@@ -30,9 +30,6 @@ data class Favorite(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "table_id")
     var table_id: Int = 0,
-    
-    @ColumnInfo(name = "source")
-    var source: Source? = null,
 
     @ColumnInfo(name = "author")
     var author: String? = null,
