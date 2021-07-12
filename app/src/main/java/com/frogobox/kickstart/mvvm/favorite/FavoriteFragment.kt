@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.frogobox.kickstart.core.BaseFragment
 import com.frogobox.kickstart.databinding.FragmentFavoriteBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
 
+    private val favoriteViewModel : FavoriteViewModel by viewModel()
 
     override fun setupViewBinding(
         inflater: LayoutInflater,
@@ -16,12 +18,11 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     }
 
     override fun setupViewModel() {
-        TODO("Not yet implemented")
+        favoriteViewModel.apply {
+
+        }
     }
 
-    override fun setupUI() {
-        TODO("Not yet implemented")
-    }
-
+    override fun setupUI() {}
 
 }

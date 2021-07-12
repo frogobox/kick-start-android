@@ -10,6 +10,8 @@ import com.frogobox.frogonewsapi.util.NewsConstant.COUNTRY_ID
 import com.frogobox.frogonewsapi.util.NewsUrl
 import com.frogobox.kickstart.core.BaseViewModel
 import com.frogobox.kickstart.source.FrogoDataRepository
+import com.frogobox.kickstart.source.FrogoDataSource
+import com.frogobox.kickstart.util.Constant
 import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_BUSINESS
 import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_ENTERTAIMENT
 import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_GENERAL
@@ -41,75 +43,70 @@ class ConsumableViewModel(
     }
 
     fun getTopHeadline(category: String) {
-        val consumeNewsApi = ConsumeNewsApi(NewsUrl.NEWS_API_KEY)
-        consumeNewsApi.usingChuckInterceptor(context)
-        consumeNewsApi.getTopHeadline( // Adding Base Parameter on main function
+
+        repository.consumeTopHeadline(
+            Constant.ApiUrl.NEWS_API_KEY,
             null,
             null,
             category,
             COUNTRY_ID,
             null,
             null,
-            object : NewsResultCallback<ArticleResponse> {
-                override fun getResultData(data: ArticleResponse) {
-                    // Your Ui or data
+            object : FrogoDataSource.GetRemoteCallback<ArticleResponse> {
+                override fun onSuccess(data: ArticleResponse) {
                     data.articles?.let { listArticle.postValue(it) }
                 }
 
-                override fun failedResult(statusCode: Int, errorMessage: String?) {
-                    // Your failed to do
+                override fun onFailed(statusCode: Int, errorMessage: String?) {
                     eventFailed.postValue(errorMessage)
                 }
 
-                override fun onShowProgress() {
-                    // Your Progress Show
-                    Log.d("RxJavaShow", "Show Progress")
+                override fun onEmptyData(check: Boolean) {
+                    eventEmptyData.postValue(check)
+                }
+
+                override fun onShowProgressDialog() {
                     eventShowProgress.postValue(true)
                 }
 
-                override fun onHideProgress() {
-                    // Your Progress Hide
-                    Log.d("RxJavaHide", "Hide Progress")
+                override fun onHideProgressDialog() {
                     eventShowProgress.postValue(false)
                 }
-
-            })
+            }
+        )
     }
 
     fun getRandomTopHeadline() {
-        val consumeNewsApi = ConsumeNewsApi(NewsUrl.NEWS_API_KEY)
-        consumeNewsApi.usingChuckInterceptor(context)
-        consumeNewsApi.getTopHeadline( // Adding Base Parameter on main function
+        repository.consumeTopHeadline(
+            Constant.ApiUrl.NEWS_API_KEY,
             null,
             null,
             null,
             COUNTRY_ID,
             null,
             null,
-            object : NewsResultCallback<ArticleResponse> {
-                override fun getResultData(data: ArticleResponse) {
-                    // Your Ui or data
+            object : FrogoDataSource.GetRemoteCallback<ArticleResponse> {
+                override fun onSuccess(data: ArticleResponse) {
                     data.articles?.let { listArticleRandom.postValue(it) }
                 }
 
-                override fun failedResult(statusCode: Int, errorMessage: String?) {
-                    // Your failed to do
+                override fun onFailed(statusCode: Int, errorMessage: String?) {
                     eventFailed.postValue(errorMessage)
                 }
 
-                override fun onShowProgress() {
-                    // Your Progress Show
-                    Log.d("RxJavaShow", "Show Progress")
+                override fun onEmptyData(check: Boolean) {
+                    eventEmptyData.postValue(check)
+                }
+
+                override fun onShowProgressDialog() {
                     eventShowProgress.postValue(true)
                 }
 
-                override fun onHideProgress() {
-                    // Your Progress Hide
-                    Log.d("RxJavaHide", "Hide Progress")
+                override fun onHideProgressDialog() {
                     eventShowProgress.postValue(false)
                 }
-
-            })
+            }
+        )
     }
 
 }

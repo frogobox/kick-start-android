@@ -1,19 +1,17 @@
 package com.frogobox.kickstart.mvvm.main
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.frogobox.frogonewsapi.data.model.Article
 import com.frogobox.kickstart.R
 
 import com.frogobox.kickstart.core.BaseFragment
 import com.frogobox.kickstart.databinding.FragmentMainBinding
 import com.frogobox.kickstart.mvvm.detail.DetailActivity
-import com.frogobox.kickstart.source.model.Article
 import com.frogobox.recycler.core.IFrogoViewAdapter
-import com.google.gson.Gson
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : BaseFragment<FragmentMainBinding>() {
@@ -49,15 +47,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
         val newsAdapter = object : IFrogoViewAdapter<Article> {
             override fun onItemClicked(data: Article) {
-                val intent = Intent(requireContext(), DetailActivity::class.java)
-                val extraData = Gson().toJson(data)
-                intent.putExtra("EXTRA_DATA_ARTICLE", extraData)
-                startActivity(intent)
+                baseStartActivity<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
             }
 
-            override fun onItemLongClicked(data: Article) {
-
-            }
+            override fun onItemLongClicked(data: Article) {}
 
             override fun setupInitComponent(view: View, data: Article) {
                 view.findViewById<TextView>(R.id.tv_title).text = data.title

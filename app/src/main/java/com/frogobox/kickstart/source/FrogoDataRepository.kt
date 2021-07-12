@@ -1,9 +1,9 @@
 package com.frogobox.kickstart.source
 
 
-import com.frogobox.kickstart.source.model.ArticleResponse
+import com.frogobox.frogonewsapi.data.response.ArticleResponse
+import com.frogobox.frogonewsapi.data.response.SourceResponse
 import com.frogobox.kickstart.source.model.Favorite
-import com.frogobox.kickstart.source.model.SourceResponse
 import com.frogobox.kickstart.source.local.FrogoLocalDataSource
 import com.frogobox.kickstart.source.remote.FrogoRemoteDataSource
 
@@ -116,6 +116,28 @@ open class FrogoDataRepository(
 
     override fun nukeRoomFavorite(): Boolean {
         return localDataSource.nukeRoomFavorite()
+    }
+
+    override fun consumeTopHeadline(
+        apiKey: String,
+        q: String?,
+        sources: String?,
+        category: String?,
+        country: String?,
+        pageSize: Int?,
+        page: Int?,
+        callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
+    ) {
+        remoteDataSource.consumeTopHeadline(
+            apiKey,
+            q,
+            sources,
+            category,
+            country,
+            pageSize,
+            page,
+            callback
+        )
     }
 
 }

@@ -1,8 +1,8 @@
 package com.frogobox.kickstart.source
 
-import com.frogobox.kickstart.source.model.ArticleResponse
+import com.frogobox.frogonewsapi.data.response.ArticleResponse
+import com.frogobox.frogonewsapi.data.response.SourceResponse
 import com.frogobox.kickstart.source.model.Favorite
-import com.frogobox.kickstart.source.model.SourceResponse
 
 /**
  * Created by Faisal Amir
@@ -80,7 +80,20 @@ interface FrogoDataSource {
     fun nukeRoomFavorite() : Boolean
     // ---------------------------------------------------------------------------------------------
 
-    // Interface Helper ---------------------------------------------------------------------------
+    // Consumable Source ---------------------------------------------------------------------------
+
+    fun consumeTopHeadline(
+        apiKey: String,
+        q: String?,
+        sources: String?,
+        category: String?,
+        country: String?,
+        pageSize: Int?,
+        page: Int?,
+        callback: GetRemoteCallback<ArticleResponse>
+    )
+
+    // Interface Helper ----------------------------------------------------------------------------
 
     // Response Callback
     interface GetRemoteCallback<T> : FrogoResponseCallback<T>

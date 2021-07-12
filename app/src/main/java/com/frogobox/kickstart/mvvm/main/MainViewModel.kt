@@ -2,8 +2,8 @@ package com.frogobox.kickstart.mvvm.main
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
+import com.frogobox.frogonewsapi.data.response.ArticleResponse
 import com.frogobox.kickstart.core.BaseViewModel
-import com.frogobox.kickstart.source.model.ArticleResponse
 import com.frogobox.kickstart.source.FrogoDataRepository
 import com.frogobox.kickstart.source.FrogoDataSource
 import com.frogobox.kickstart.util.SingleLiveEvent
@@ -57,9 +57,10 @@ class MainViewModel(private val context: Application, private val repository: Fr
                         eventFailed.postValue(errorMessage)
                     }
 
-                    override fun onEmptyData() {
-                        eventEmptyData.postValue(true)
+                    override fun onEmptyData(check: Boolean) {
+                        eventEmptyData.postValue(check)
                     }
+
 
                 }
             )

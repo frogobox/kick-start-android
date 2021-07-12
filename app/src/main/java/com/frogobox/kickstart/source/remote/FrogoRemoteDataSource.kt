@@ -1,8 +1,15 @@
 package com.frogobox.kickstart.source.remote
 
-import com.frogobox.kickstart.source.model.ArticleResponse
+import android.util.Log
+import com.frogobox.frogonewsapi.ConsumeNewsApi
+import com.frogobox.frogonewsapi.callback.NewsResultCallback
+import com.frogobox.frogonewsapi.data.response.ArticleResponse
+import com.frogobox.frogonewsapi.data.response.SourceResponse
+import com.frogobox.frogonewsapi.util.NewsConstant
+import com.frogobox.frogonewsapi.util.NewsUrl
+import com.frogobox.kickstart.BuildConfig
+import com.frogobox.kickstart.FrogoApplication
 import com.frogobox.kickstart.source.model.Favorite
-import com.frogobox.kickstart.source.model.SourceResponse
 import com.frogobox.kickstart.source.FrogoDataSource
 import com.frogobox.kickstart.source.remote.network.FrogoApiClient
 import com.frogobox.kickstart.util.SingleFunc.Func.noAction
@@ -50,8 +57,9 @@ object FrogoRemoteDataSource : FrogoDataSource {
         if (serviceApiClient.isSuccessful) {
             if (serviceApiClient.body() != null) {
                 callback.onSuccess(serviceApiClient.body()!!)
+                callback.onEmptyData(false)
             } else {
-                callback.onEmptyData()
+                callback.onEmptyData(true)
             }
             callback.onHideProgressDialog()
         } else {
@@ -94,8 +102,9 @@ object FrogoRemoteDataSource : FrogoDataSource {
         if (serviceApiClient.isSuccessful) {
             if (serviceApiClient.body() != null) {
                 callback.onSuccess(serviceApiClient.body()!!)
+                callback.onEmptyData(false)
             } else {
-                callback.onEmptyData()
+                callback.onEmptyData(true)
             }
             callback.onHideProgressDialog()
         } else {
@@ -117,8 +126,9 @@ object FrogoRemoteDataSource : FrogoDataSource {
         if (serviceApiClient.isSuccessful) {
             if (serviceApiClient.body() != null) {
                 callback.onSuccess(serviceApiClient.body()!!)
+                callback.onEmptyData(false)
             } else {
-                callback.onEmptyData()
+                callback.onEmptyData(true)
             }
             callback.onHideProgressDialog()
         } else {
@@ -152,6 +162,52 @@ object FrogoRemoteDataSource : FrogoDataSource {
 
     override fun nukeRoomFavorite(): Boolean {
         return noAction()
+    }
+
+    override fun consumeTopHeadline(
+        apiKey: String,
+        q: String?,
+        sources: String?,
+        category: String?,
+        country: String?,
+        pageSize: Int?,
+        page: Int?,
+        callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
+    ) {
+        val consumeNewsApi = ConsumeNewsApi(apiKey)
+        if (BuildConfig.DEBUG) {
+            consumeNewsApi.usingChuckInterceptor(FrogoApplication.getContext())
+        }
+        consumeNewsApi.getTopHeadline( // Adding Base Parameter on main function
+            q,
+            sources,
+            category,
+            country,
+            pageSize,
+            page,
+            object : NewsResultCallback<ArticleResponse> {
+                override fun getResultData(data: ArticleResponse) {
+                    // Your Ui or data
+                    callback.onSuccess(data)
+                }
+
+                override fun failedResult(statusCode: Int, errorMessage: String?) {
+                    // Your failed to do
+                    callback.onFailed(statusCode, errorMessage)
+                }
+
+                override fun onShowProgress() {
+                    // Your Progress Show
+                    Log.d("RxJavaShow", "Show Progress")
+                    callback.onShowProgressDialog()
+                }
+
+                override fun onHideProgress() {
+                    // Your Progress Hide
+                    Log.d("RxJavaHide", "Hide Progress")
+                    callback.onHideProgressDialog()
+                }
+            })
     }
 
 

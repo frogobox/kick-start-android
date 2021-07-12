@@ -23,7 +23,7 @@ interface FrogoResponseCallback<T> {
 
     fun onFailed(statusCode: Int, errorMessage: String? = "")
 
-    fun onEmptyData()
+    fun onEmptyData(check : Boolean)
 
     fun onShowProgressDialog()
 

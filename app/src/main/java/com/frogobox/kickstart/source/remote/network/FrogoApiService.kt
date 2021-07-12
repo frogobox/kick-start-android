@@ -1,7 +1,7 @@
 package com.frogobox.kickstart.source.remote.network
 
-import com.frogobox.kickstart.source.model.ArticleResponse
-import com.frogobox.kickstart.source.model.SourceResponse
+import com.frogobox.frogonewsapi.data.response.ArticleResponse
+import com.frogobox.frogonewsapi.data.response.SourceResponse
 import com.frogobox.kickstart.util.Constant
 import retrofit2.Response
 import retrofit2.http.GET
