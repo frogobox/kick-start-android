@@ -1,6 +1,7 @@
 package com.frogobox.kickstart.di
 
 import com.frogobox.kickstart.mvvm.consumable.ConsumableViewModel
+import com.frogobox.kickstart.mvvm.detail.DetailViewModel
 import com.frogobox.kickstart.mvvm.favorite.FavoriteViewModel
 import com.frogobox.kickstart.mvvm.main.MainViewModel
 import org.koin.android.ext.koin.androidApplication
@@ -32,6 +33,10 @@ val viewModelModule = module {
 
     viewModel {
         ConsumableViewModel(androidApplication(), get())
+    }
+
+    viewModel {
+        DetailViewModel(androidApplication(), get())
     }
 
 }

@@ -7,8 +7,11 @@ import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.source.FrogoDataSource
 import com.frogobox.kickstart.source.local.dao.FavoriteDao
 import com.frogobox.kickstart.util.AppExecutors
+import com.frogobox.kickstart.util.SingleCallback
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by Faisal Amir
@@ -75,11 +78,42 @@ class FrogoLocalDataSource(
     }
 
     override fun saveRoomFavorite(data: Favorite): Boolean {
+        appExecutors.diskIO.execute {
+            favoriteDao.insertData(data)
+        }
         return true
     }
 
     override fun getRoomFavorite(callback: FrogoDataSource.GetLocalCallback<List<Favorite>>) {
+        appExecutors.diskIO.execute {
+            favoriteDao.getAllData()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : SingleCallback<List<Favorite>>() {
+                    override fun onCallbackSucces(data: List<Favorite>) {
+                        callback.onShowProgressDialog()
+                        callback.onSuccess(data)
+                        if (data.isEmpty()) {
+                            callback.onEmptyData(true)
+                        } else {
+                            callback.onEmptyData(false)
+                        }
+                        callback.onHideProgressDialog()
+                    }
 
+                    override fun onCallbackError(code: Int, errorMessage: String) {
+                        callback.onFailed(code, errorMessage)
+                    }
+
+                    override fun onAddSubscribe(disposable: Disposable) {
+                        addSubscribe(disposable = disposable)
+                    }
+
+                    override fun onCompleted() {
+                        callback.onHideProgressDialog()
+                    }
+                })
+        }
     }
 
     override fun updateRoomFavorite(
@@ -93,10 +127,16 @@ class FrogoLocalDataSource(
 
 
     override fun deleteRoomFavorite(tableId: Int): Boolean {
+        appExecutors.diskIO.execute {
+            favoriteDao.deleteDataFromTableId(tableId)
+        }
         return true
     }
 
     override fun nukeRoomFavorite(): Boolean {
+        appExecutors.diskIO.execute {
+            favoriteDao.nukeData()
+        }
         return true
     }
 
@@ -112,14 +152,20 @@ class FrogoLocalDataSource(
     ) {
 
     }
-
     private
     var compositeDisposable: CompositeDisposable? = null
 
     fun addSubscribe(disposable: Disposable) {
         if (compositeDisposable == null) {
             compositeDisposable = CompositeDisposable()
+
             compositeDisposable?.add(disposable)
+        }
+    }
+
+    private fun clearSubscribe() {
+        if (compositeDisposable != null) {
+            compositeDisposable?.clear()
         }
     }
 

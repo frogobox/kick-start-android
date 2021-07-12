@@ -3,7 +3,9 @@ package com.frogobox.kickstart.source.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.frogobox.frogonewsapi.data.model.Source
 import com.frogobox.kickstart.util.Constant.RoomDatabase.TABLE_NAME_FAVORITE
+import com.google.gson.annotations.SerializedName
 
 /**
  * Created by Faisal Amir
@@ -28,11 +30,29 @@ data class Favorite(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "table_id")
     var table_id: Int = 0,
+    
+    @ColumnInfo(name = "source")
+    var source: Source? = null,
 
-    @ColumnInfo(name = "type")
-    var type: String? = "",
+    @ColumnInfo(name = "author")
+    var author: String? = null,
 
-    @ColumnInfo(name = "linkImage")
-    var linkImage: String? = ""
+    @ColumnInfo(name = "title")
+    var title: String? = null,
+
+    @ColumnInfo(name = "description")
+    var description: String? = null,
+
+    @ColumnInfo(name = "url")
+    var url: String? = null,
+
+    @ColumnInfo(name = "urlToImage")
+    var urlToImage: String? = null,
+
+    @ColumnInfo(name = "publishedAt")
+    var publishedAt: String? = null,
+
+    @ColumnInfo(name = "content")
+    var content: String? = null
 
 )
