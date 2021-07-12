@@ -1,78 +1,72 @@
 package com.frogobox.kickstart.mvvm.main
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
-import com.bumptech.glide.Glide
 import com.frogobox.kickstart.R
 import com.frogobox.kickstart.core.BaseActivity
 import com.frogobox.kickstart.databinding.ActivityMainBinding
-import com.frogobox.kickstart.mvvm.detail.DetailActivity
-import com.frogobox.kickstart.source.model.Article
-import com.frogobox.recycler.core.IFrogoViewAdapter
-import com.google.gson.Gson
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.frogobox.kickstart.mvvm.consumable.ConsumableFragment
+import com.frogobox.kickstart.mvvm.favorite.FavoriteFragment
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
-
-    private val mainViewModel: MainViewModel by viewModel()
 
     override fun setupViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
     }
 
-    override fun setupViewModel() {
-        mainViewModel.apply {
+    override fun setupViewModel() {}
 
-            getTopHeadline()
+    override fun setupUI(savedInstanceState: Bundle?) {
+        setupToolbar()
+        setupBottomNav(binding.framelayoutMainContainer.id)
+        setupFragment(savedInstanceState)
+    }
 
-            topHeadlineLive.observe(this@MainActivity, {
-                it.articles?.let { it1 -> setupRvNews(it1) }
-            })
+    private fun setupToolbar() {
+        supportActionBar?.elevation = 0f
+    }
 
-            eventShowProgress.observe(this@MainActivity, {
-                setupEventProgressView(binding.progressView, it)
-            })
-
+    private fun setupFragment(savedInstanceState: Bundle?) {
+        if (savedInstanceState == null) {
+            binding.bottomNavMainMenu.selectedItemId = R.id.bottom_menu_consumable
         }
     }
 
-    override fun setupUI() {}
+    private fun setupBottomNav(frameLayout: Int) {
+        binding.bottomNavMainMenu.apply {
+            clearAnimation()
+            itemIconTintList = null
 
-    private fun setupRvNews(data: List<Article>) {
+            setOnNavigationItemSelectedListener {
+                when (it.itemId) {
+                    R.id.bottom_menu_consumable -> {
+                        setupCustomTitleToolbar(R.string.title_consumable)
+                        setupChildFragment(
+                            frameLayout,
+                            ConsumableFragment()
+                        )
+                    }
 
-        val newsAdapter = object : IFrogoViewAdapter<Article> {
-            override fun onItemClicked(data: Article) {
-                val intent = Intent(this@MainActivity, DetailActivity::class.java)
-                val extraData = Gson().toJson(data)
-                intent.putExtra("EXTRA_DATA_ARTICLE", extraData)
-                startActivity(intent)
-            }
+                    R.id.bottom_menu_favorite -> {
+                        setupCustomTitleToolbar(R.string.title_fav)
+                        setupChildFragment(
+                            frameLayout,
+                            FavoriteFragment()
+                        )
+                    }
 
-            override fun onItemLongClicked(data: Article) {
+                    R.id.bottom_menu_main -> {
+                        setupCustomTitleToolbar(R.string.title_main)
+                        setupChildFragment(
+                            frameLayout,
+                            MainFragment()
+                        )
+                    }
+                }
 
-            }
-
-            override fun setupInitComponent(view: View, data: Article) {
-                view.findViewById<TextView>(R.id.tv_title).text = data.title
-                view.findViewById<TextView>(R.id.tv_description).text = data.publishedAt
-                view.findViewById<TextView>(R.id.tv_published).text = data.description
-                Glide.with(view.context).load(data.urlToImage).into(view.findViewById(R.id.iv_url))
+                true
             }
         }
 
-        binding.rvNews
-            .injector<Article>()
-            .addData(data)
-            .addCustomView(R.layout.list_news_article_vertical)
-            .addEmptyView(null)
-            .addCallback(newsAdapter)
-            .createLayoutLinearVertical(false)
-            .build()
     }
-
-
-
 
 }

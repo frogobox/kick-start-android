@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.frogobox.admob.core.admob.FrogoAdmobActivity
+import com.frogobox.admob.ui.FrogoAdmobActivity
 import com.frogobox.kickstart.R
 import com.google.gson.Gson
 
@@ -37,24 +37,23 @@ abstract class BaseActivity<VB: ViewBinding> : FrogoAdmobActivity(), IBaseActivi
 
     abstract fun setupViewModel()
 
-    abstract fun setupUI()
+    abstract fun setupUI(savedInstanceState: Bundle?)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = setupViewBinding()
         setContentView(binding.root)
         setupViewModel()
-        setupUI()
+        setupUI(savedInstanceState)
         setupAdmob()
     }
 
     private fun setupAdmob() {
-        setBasePublisherID(getString(R.string.admob_publisher_id))
-        setBaseBannerAdUnitID(getString(R.string.admob_banner))
-        setBaseInterstialAdUnitID(getString(R.string.admob_interstitial))
-        setBaseRewardedAdUnitID(getString(R.string.admob_rewarded))
-        setBaseRewardedInterstitialAdUnitID(getString(R.string.admob_rewarded_interstitial))
-        setBaseAdmob()
+        setupAdsPublisher(getString(R.string.admob_publisher_id))
+        setupAdsBanner(getString(R.string.admob_banner))
+        setupAdsInterstitial(getString(R.string.admob_interstitial))
+        setupAdsRewarded(getString(R.string.admob_rewarded))
+        setupAdsRewardedInterstitial(getString(R.string.admob_rewarded_interstitial))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -113,6 +112,10 @@ abstract class BaseActivity<VB: ViewBinding> : FrogoAdmobActivity(), IBaseActivi
         extraDataResult: Model
     ) {
         fragment.baseNewInstance(argumentKey, extraDataResult)
+    }
+
+    protected fun setupCustomTitleToolbar(title: Int) {
+        supportActionBar?.setTitle(title)
     }
 
     protected inline fun <reified ClassActivity> baseStartActivity() {

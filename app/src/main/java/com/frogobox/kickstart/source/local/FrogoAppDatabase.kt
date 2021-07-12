@@ -34,7 +34,6 @@ import com.frogobox.kickstart.util.Constant.RoomDatabase.DATABASE_NAME
     ], version = 1
 )
 
-
 abstract class FrogoAppDatabase : RoomDatabase() {
 
     abstract fun favoriteScriptDao(): FavoriteDao

@@ -20,16 +20,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<!--    <item-->
-<!--            android:id="@+id/bottom_menu_fashion"-->
-<!--            android:icon="@drawable/ic_bottom_nav_fashion"-->
-<!--            android:title="@string/title_fashion"-->
-<!--            app:showAsAction="ifRoom"/>-->
+    <item
+        android:id="@+id/bottom_menu_main"
+        android:icon="@drawable/ic_tv"
+        android:title="@string/title_main"
+        app:showAsAction="ifRoom"/>
 
-<!--    <item-->
-<!--            android:id="@+id/bottom_menu_favorite"-->
-<!--            android:icon="@drawable/ic_bottom_nav_favorite"-->
-<!--            android:title="@string/title_favorite"-->
-<!--            app:showAsAction="ifRoom"/>-->
+    <item
+        android:id="@+id/bottom_menu_consumable"
+        android:icon="@drawable/ic_movie"
+        android:title="@string/title_consumable"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/bottom_menu_favorite"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/title_fav"
+        app:showAsAction="ifRoom"/>
+
 
 </menu>

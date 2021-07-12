@@ -8,9 +8,11 @@
     <string name="ads_size_smart_banner">SMART_BANNER</string> <!-- match_parent -->
 
     <string name="about_frogobox">Frogobox Software Industry</string>
+    <string name="about_copyright">© Copyright 2019</string>
+
     <string name="title_about_us">toolbar_about_us</string>
     <string name="title_copyright">Copyright</string>
-    <string name="about_copyright">© Copyright 2019</string>
+
     <string name="dummyLong">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam veniam similiquevoluptates odit, ipsum laborum architecto distinctio harum, provident fugiat praesentium ex quod doloreslaudantium aliquid quidem placeat incidunt vitae!</string>
     <string name="dummy">Dummy</string>
 
@@ -24,4 +26,10 @@
 
     <!-- ^^^ TEMPLATE CODE ^^^  -->
 
+    <string name="title_main">Main</string>
+    <string name="title_fav">Favorite</string>
+    <string name="title_consumable">Consumable</string>
+
+
 </resources>
+

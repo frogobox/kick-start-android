@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/frogoColorWhite">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/frogo_dimen_100dp"
+        android:background="@color/colorPrimary"/>
+
+    <com.frogobox.recycler.widget.FrogoRecyclerView
+        android:id="@+id/rv_news_general"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingLeft="@dimen/frogo_dimen_16dp"
+        tools:listitem="@layout/content_article_vertical" />
+
+    <com.frogobox.recycler.widget.FrogoRecyclerView
+        android:id="@+id/rv_category"
+        android:layout_below="@id/rv_news_general"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingLeft="@dimen/frogo_dimen_16dp"
+        tools:listitem="@layout/content_article_vertical" />
+
+    <TextView
+        android:id="@+id/tv_top_headline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="News Today"
+        android:textAllCaps="true"
+        android:layout_marginStart="@dimen/frogo_dimen_16dp"
+        android:layout_marginEnd="@dimen/frogo_dimen_16dp"
+        android:layout_marginBottom="@dimen/frogo_dimen_16dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@id/rv_category" />
+
+    <com.frogobox.recycler.widget.FrogoRecyclerView
+        android:id="@+id/rv_news_category"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tv_top_headline"
+        android:clipToPadding="false"
+        tools:listitem="@layout/content_article_vertical" />
+
+    <ProgressBar
+        android:id="@+id/progress_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>
