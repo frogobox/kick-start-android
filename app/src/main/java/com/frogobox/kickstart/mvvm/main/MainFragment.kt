@@ -36,7 +36,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             })
 
             eventShowProgress.observe(requireActivity(), {
-                binding?.progressView?.let { it1 -> setupEventProgressView(it1, it) }
+                binding.progressView.let { it1 -> setupEventProgressView(it1, it) }
             })
 
         }
@@ -61,7 +61,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             }
         }
 
-        binding?.rvNews?.apply {
+        binding.rvNews.apply {
             injector<Article>()
                 .addData(data)
                 .addCustomView(R.layout.content_article_vertical)

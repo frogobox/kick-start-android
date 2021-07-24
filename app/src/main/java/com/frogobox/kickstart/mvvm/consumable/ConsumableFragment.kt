@@ -50,7 +50,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
             })
 
             eventShowProgress.observe(requireActivity(), {
-                setupEventProgressView(binding?.progressView!!, it)
+                setupEventProgressView(binding.progressView, it)
             })
 
         }
@@ -64,7 +64,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
         val adapterCallback = object : IFrogoBindingAdapter<String, ContentCategoryBinding> {
             override fun onItemClicked(data: String) {
                 consumableViewModel.getTopHeadline(data)
-                binding?.tvTopHeadline?.text = "category $data"
+                binding.tvTopHeadline.text = "category $data"
             }
 
             override fun onItemLongClicked(data: String) {}
@@ -82,7 +82,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
             }
         }
 
-        binding?.apply {
+        binding.apply {
             rvCategory.injectorBinding<String, ContentCategoryBinding>()
                 .addCallback(adapterCallback)
                 .addData(data)
@@ -127,7 +127,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                 }
             }
 
-        binding?.apply {
+        binding.apply {
 
             rvNewsGeneral.injectorBinding<Article, ContentArticleHorizontalBinding>()
                 .addCallback(adapterCallback)
@@ -159,10 +159,10 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                 }
 
                 override fun setupInitComponent(
-                    view: ContentArticleVerticalBinding,
+                    binding: ContentArticleVerticalBinding,
                     data: Article
                 ) {
-                    view.apply {
+                    binding.apply {
                         tvTitle.text = data.title
                         tvPublished.text = data.publishedAt
                         tvDescription.text = data.description
@@ -171,7 +171,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                 }
             }
 
-        binding?.apply {
+        binding.apply {
 
             rvNewsCategory.injectorBinding<Article, ContentArticleVerticalBinding>()
                 .addCallback(adapterCallback)
