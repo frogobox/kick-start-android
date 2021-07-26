@@ -3,6 +3,7 @@ package com.frogobox.kickstart.util
 import android.Manifest
 import android.os.Environment
 import com.frogobox.kickstart.BuildConfig
+import com.frogobox.kickstart.util.Constant.Ext.CSV
 
 /**
  * Created by Faisal Amir
@@ -31,11 +32,6 @@ object Constant {
     const val FRAGMENT_DIALOG = "dialog"
 
     const val SPLASH_INTERVAL = 1000
-
-    const val EXTENSION_CSV = ".csv"
-    const val BASE_PATH_RAW = "src/com/frogobox/raw"
-    const val PATH_DATA_CSV = "/influencers$EXTENSION_CSV"
-    const val PATH_RAW_CSV_DATA = BASE_PATH_RAW + PATH_DATA_CSV
 
     object ApiUrl {
         const val NEWS_BASE_URL = "http://newsapi.org/"
@@ -134,35 +130,6 @@ object Constant {
 
     }
 
-    object Date {
-
-        // Format Second
-        const val SECOND_MILLIS = 1000
-        const val MINUTE_MILLIS = 60 * SECOND_MILLIS
-        const val HOUR_MILLIS = 60 * MINUTE_MILLIS
-        const val DAY_MILLIS = 24 * HOUR_MILLIS
-
-        // Format Date
-        const val DATE_TIME_GLOBAL = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" //
-        const val DATE_TIME_STANDARD = "yyyy-MM-dd HH:mm:ss" // 2018-10-02 12:12:12
-        const val DATE_ENGLISH_YYYY_MM_DD = "yyyy-MM-dd" // 2018-10-02
-        const val DATE_ENGLISH_YYYY_MM_DD_CLEAR = "yyyy MM dd" // 2018 10 02
-        const val DATE_DD_MM_YYYY = "dd-MM-yyyy" // 02-10-2018
-        const val DATE_EEEE_DD_MM_YYYY = "EEEE, dd MMMM yyyy" // 02-10-2018
-        const val DATE_DD_MM_YYYY_CLEAR = "dd MM yyyy" // 02-10-2018
-
-
-        // Format Time
-        const val TIME_GENERAL_HH_MM_SS = "HH:mm:ss" // 12:12:12
-        const val TIME_GENERAL_HH_MM = "HH:mm" // 12:12
-
-        // Format Day
-        const val DAY_WITH_DATE_TIME_ENGLISH = "EEE, MMM dd yyyy HH:mm" // Mon, Aug 12 2018 12:12
-        const val DAY_WITH_DATE_TIME_LOCALE = "EEE, dd MMM yyyy HH:mm" // Sen, 12 Agt 2019 12:12
-        const val DAY_WITH_DATE_TIME_ENGLISH_FULL = "EEEE, MMMM dd yyyy HH:mm" // Monday, August 12 2018 12:12
-        const val DAY_WITH_DATE_TIME_LOCALE_FULL = "EEEE, dd MMMM yyyy HH:mm" // Senin, 12 Agustus 2018 12:12
-
-    }
 
     object RoomDatabase {
         val DATABASE_NAME = {BuildConfig.DATABASE_NAME}
@@ -182,11 +149,10 @@ object Constant {
         const val CODE_NAME = 1
         const val CODE_REQUEST_VIDEO_PERMISSIONS = 1
         val CODE_VIDEO_PERMISSIONS = arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
-
     }
 
     object Arg {
-        const val BASE_ARGUMENTS = BuildConfig.APPLICATION_ID
+        private const val BASE_ARGUMENTS = BuildConfig.APPLICATION_ID
         const val ARGUMENTS_SCRIPT = "$BASE_ARGUMENTS.ARGUMENTS_SCRIPT"
         const val ARGUMENTS_EXAMPLE_SCRIPT = "$BASE_ARGUMENTS.ARGUMENTS_EXAMPLE_SCRIPT"
         const val ARGUMENTS_FAVORITE_SCRIPT = "$BASE_ARGUMENTS.ARGUMENTS_FAVORITE_SCRIPT"
@@ -197,7 +163,7 @@ object Constant {
     }
 
     object Extra {
-        const val BASE_EXTRA = BuildConfig.APPLICATION_ID
+        private const val BASE_EXTRA = BuildConfig.APPLICATION_ID
         const val EXTRA_OPTION = "$BASE_EXTRA.EXTRA_OPTION"
         const val EXTRA_FASHION = "$BASE_EXTRA.EXTRA_FASHION"
         const val EXTRA_FAVORITE_SCRIPT = "$BASE_EXTRA.EXTRA_FAVORITE_SCRIPT"
@@ -225,15 +191,19 @@ object Constant {
     object Ext {
         const val MP4 = ".mp4"
         const val PNG = ".png"
+        const val CSV = ".csv"
     }
 
     object Dir {
-        const val BASE_FILE_NAME = "SPEECH_"
-        const val BASE_DIR_NAME = "BaseMusicPlayer"
-        val DIR_NAME = "${Environment.DIRECTORY_PICTURES}/$BASE_DIR_NAME"
+        private const val BASE_FILE_NAME = "SPEECH_"
+        private const val BASE_DIR_NAME = "BaseMusicPlayer"
 
+        val DIR_NAME = "${Environment.DIRECTORY_PICTURES}/$BASE_DIR_NAME"
         val VIDEO_FILE_NAME = "$BASE_FILE_NAME${System.currentTimeMillis()}${Ext.MP4}"
 
+        const val BASE_PATH_RAW = "src/com/frogobox/raw"
+        const val PATH_DATA_CSV = "/influencers$CSV"
+        const val PATH_RAW_CSV_DATA = BASE_PATH_RAW + PATH_DATA_CSV
     }
 
 }

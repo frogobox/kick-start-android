@@ -17,8 +17,8 @@ import android.content.SharedPreferences
  */
 object SinglePreference {
 
-    fun getSp(context: Context): SharedPreferences {
-        return context.getSharedPreferences(Constant.Pref.PREF_NAME, Context.MODE_PRIVATE)
+    fun getSp(context: Context, prefName: String): SharedPreferences {
+        return context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
 
     }
 

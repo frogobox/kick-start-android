@@ -5,14 +5,12 @@ import com.frogobox.frogonewsapi.ConsumeNewsApi
 import com.frogobox.frogonewsapi.callback.NewsResultCallback
 import com.frogobox.frogonewsapi.data.response.ArticleResponse
 import com.frogobox.frogonewsapi.data.response.SourceResponse
-import com.frogobox.frogonewsapi.util.NewsConstant
-import com.frogobox.frogonewsapi.util.NewsUrl
 import com.frogobox.kickstart.BuildConfig
 import com.frogobox.kickstart.FrogoApplication
 import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.source.FrogoDataSource
 import com.frogobox.kickstart.source.remote.network.FrogoApiClient
-import com.frogobox.kickstart.util.SingleFunc.Func.noAction
+import com.frogobox.kickstart.util.SingleFunc.noAction
 
 /**
  * Created by Faisal Amir
