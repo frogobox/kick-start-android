@@ -33,6 +33,14 @@ object Constant {
 
     const val SPLASH_INTERVAL = 1000
 
+    object Arg {
+        private const val BASE_ARGUMENTS = BuildConfig.APPLICATION_ID
+    }
+
+    object Extra {
+        private const val BASE_EXTRA = BuildConfig.APPLICATION_ID
+    }
+
     object ApiUrl {
         const val NEWS_BASE_URL = "http://newsapi.org/"
         const val NEWS_API_KEY = "84d090d0537548ee8ac77620217b1b52"
@@ -137,38 +145,15 @@ object Constant {
         const val TABLE_NAME_FAVORITE = "favorite"
     }
 
-    object TypeData {
-        const val TYPE_INT = "TYPE_INT"
-        const val TYPE_STRING = "TYPE_STRING"
-        const val TYPE_FLOAT = "TYPE_FLOAT"
-        const val TYPE_BOOLEAN = "TYPE_BOOLEAN"
-        const val TYPE_OBJECT = "TYPE_OBJECT"
-    }
-
     object Code {
         const val CODE_NAME = 1
         const val CODE_REQUEST_VIDEO_PERMISSIONS = 1
         val CODE_VIDEO_PERMISSIONS = arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
     }
 
-    object Arg {
-        private const val BASE_ARGUMENTS = BuildConfig.APPLICATION_ID
-        const val ARGUMENTS_SCRIPT = "$BASE_ARGUMENTS.ARGUMENTS_SCRIPT"
-        const val ARGUMENTS_EXAMPLE_SCRIPT = "$BASE_ARGUMENTS.ARGUMENTS_EXAMPLE_SCRIPT"
-        const val ARGUMENTS_FAVORITE_SCRIPT = "$BASE_ARGUMENTS.ARGUMENTS_FAVORITE_SCRIPT"
-    }
 
     object Pref {
         const val PREF_NAME = "BaseMusicPlayer"
-    }
-
-    object Extra {
-        private const val BASE_EXTRA = BuildConfig.APPLICATION_ID
-        const val EXTRA_OPTION = "$BASE_EXTRA.EXTRA_OPTION"
-        const val EXTRA_FASHION = "$BASE_EXTRA.EXTRA_FASHION"
-        const val EXTRA_FAVORITE_SCRIPT = "$BASE_EXTRA.EXTRA_FAVORITE_SCRIPT"
-        const val EXTRA_EXAMPLE_SCRIPT = "$BASE_EXTRA.EXTRA_EXAMPLE_SCRIPT"
-        const val EXTRA_CATEGORY = "$BASE_EXTRA.EXTRA_CATEGORY"
     }
 
     object Value {
@@ -200,10 +185,6 @@ object Constant {
 
         val DIR_NAME = "${Environment.DIRECTORY_PICTURES}/$BASE_DIR_NAME"
         val VIDEO_FILE_NAME = "$BASE_FILE_NAME${System.currentTimeMillis()}${Ext.MP4}"
-
-        const val BASE_PATH_RAW = "src/com/frogobox/raw"
-        const val PATH_DATA_CSV = "/influencers$CSV"
-        const val PATH_RAW_CSV_DATA = BASE_PATH_RAW + PATH_DATA_CSV
     }
 
 }

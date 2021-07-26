@@ -6,12 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.frogobox.kickstart.util.Constant.Extra.EXTRA_OPTION
-import com.frogobox.kickstart.util.Constant.TypeData.TYPE_BOOLEAN
-import com.frogobox.kickstart.util.Constant.TypeData.TYPE_FLOAT
-import com.frogobox.kickstart.util.Constant.TypeData.TYPE_INT
-import com.frogobox.kickstart.util.Constant.TypeData.TYPE_OBJECT
-import com.frogobox.kickstart.util.Constant.TypeData.TYPE_STRING
 import com.google.gson.Gson
 
 /**
@@ -35,6 +29,12 @@ import com.google.gson.Gson
 object Navigation {
 
     lateinit var bundle: Any
+
+    const val TYPE_INT = "TYPE_INT"
+    const val TYPE_STRING = "TYPE_STRING"
+    const val TYPE_FLOAT = "TYPE_FLOAT"
+    const val TYPE_BOOLEAN = "TYPE_BOOLEAN"
+    const val TYPE_OBJECT = "TYPE_OBJECT"
 
     object BundleHelper {
 
@@ -87,14 +87,14 @@ object Navigation {
             return bundle as T
         }
 
-        fun createOptionBundle(tag: Int): Bundle {
+        fun createOptionBundle(tag: Int, extraKey: String): Bundle {
             val extraBundle = Bundle()
-            extraBundle.putInt(EXTRA_OPTION, tag)
+            extraBundle.putInt(extraKey, tag)
             return extraBundle
         }
 
-        fun getOptionBundle(activity: Activity): Int {
-            return activity.intent.extras?.getInt(EXTRA_OPTION)!!
+        fun getOptionBundle(activity: Activity, extraKey: String): Int {
+            return activity.intent.extras?.getInt(extraKey)!!
         }
 
     }

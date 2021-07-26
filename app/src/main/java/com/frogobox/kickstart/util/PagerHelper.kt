@@ -21,7 +21,7 @@ import androidx.fragment.app.FragmentPagerAdapter
  * com.frogobox.basemusicplayer.util.helper
  *
  */
-@Suppress("DEPRECATION")
+
 class PagerHelper(fragmentManager: FragmentManager): FragmentPagerAdapter(fragmentManager){
 
     private val fragments = ArrayList<Fragment>()
