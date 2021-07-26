@@ -6,10 +6,6 @@ plugins {
 
 android {
 
-    def versionMajor = 1
-    def versionMinor = 0
-    def versionPatch = 0
-
     def appDomain = "com"
     def appDevConsole = "frogobox"
     def appName = "kickstart"
@@ -61,15 +57,16 @@ android {
         viewBinding = true
     }
 
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion projectCompileSdkVersion
+    buildToolsVersion projectBuildToolsVersion
 
     defaultConfig {
         applicationId projectApplicationId
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdkVersion projectMinSdkVersion
+        targetSdkVersion projectTargetSdkVersion
         versionCode projectVersionCode
         versionName projectVersionName
+
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -83,8 +80,7 @@ android {
         def nameAppDebug = nameApp + debugAttribute
 
         // Naming APK // AAB
-        setProperty("archivesBaseName", nameAPK + versionName + "#" + versionCode + "-"
-                + new Date().format('ddMMyy'))
+        setProperty("archivesBaseName", "${nameAPK}(${versionName})#${gitCurrentBranch()}")
 
         resConfigs "en", "id"
 
@@ -138,6 +134,15 @@ android {
 
         }
     }
+}
+
+static def gitCurrentBranch() {
+    def branch = ""
+    def proc = "git rev-parse --abbrev-ref HEAD".execute()
+    proc.in.eachLine { line -> branch = line }
+    proc.err.eachLine { line -> println line }
+    proc.waitFor()
+    branch
 }
 
 dependencies {
