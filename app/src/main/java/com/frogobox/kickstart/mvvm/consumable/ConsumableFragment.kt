@@ -12,6 +12,7 @@ import com.frogobox.kickstart.databinding.ContentCategoryBinding
 import com.frogobox.kickstart.databinding.FragmentConsumableBinding
 import com.frogobox.kickstart.mvvm.detail.DetailActivity
 import com.frogobox.kickstart.util.Constant
+import com.frogobox.recycler.core.FrogoRecyclerNotifyListener
 import com.frogobox.recycler.core.IFrogoBindingAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -33,25 +34,25 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
             getRandomTopHeadline()
             getTopHeadline(Constant.NewsConstant.CATEGORY_BUSINESS)
 
-            listCategory.observe(requireActivity(), {
+            listCategory.observe(requireActivity()) {
                 setupCategory(it)
-            })
+            }
 
-            listArticle.observe(requireActivity(), {
+            listArticle.observe(requireActivity()) {
                 setupRvNews(it)
-            })
+            }
 
-            listArticleRandom.observe(requireActivity(), {
+            listArticleRandom.observe(requireActivity()) {
                 setupRvHeader(it)
-            })
+            }
 
-            eventFailed.observe(requireActivity(), {
+            eventFailed.observe(requireActivity()) {
                 showToast(it)
-            })
+            }
 
-            eventShowProgress.observe(requireActivity(), {
+            eventShowProgress.observe(requireActivity()) {
                 setupEventProgressView(binding.progressView, it)
-            })
+            }
 
         }
 
@@ -62,12 +63,22 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
     private fun setupCategory(data: List<String>) {
 
         val adapterCallback = object : IFrogoBindingAdapter<String, ContentCategoryBinding> {
-            override fun onItemClicked(data: String) {
+            override fun onItemClicked(
+                binding: ContentCategoryBinding,
+                data: String,
+                position: Int,
+                notifyListener: FrogoRecyclerNotifyListener<String>
+            ) {
                 consumableViewModel.getTopHeadline(data)
-                binding.tvTopHeadline.text = "category $data"
+                binding.tvCategory.text = "category $data"
             }
 
-            override fun onItemLongClicked(data: String) {}
+            override fun onItemLongClicked(
+                binding: ContentCategoryBinding,
+                data: String,
+                position: Int,
+                notifyListener: FrogoRecyclerNotifyListener<String>
+            ) {}
 
             override fun setViewBinding(parent: ViewGroup): ContentCategoryBinding {
                 return ContentCategoryBinding.inflate(
@@ -77,8 +88,13 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                 )
             }
 
-            override fun setupInitComponent(view: ContentCategoryBinding, data: String) {
-                view.tvCategory.text = data
+            override fun setupInitComponent(
+                binding: ContentCategoryBinding,
+                data: String,
+                position: Int,
+                notifyListener: FrogoRecyclerNotifyListener<String>
+            ) {
+                binding.tvCategory.text = data
             }
         }
 
@@ -97,12 +113,22 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
 
         val adapterCallback =
             object : IFrogoBindingAdapter<Article, ContentArticleHorizontalBinding> {
-                override fun onItemClicked(data: Article) {
+                override fun onItemClicked(
+                    binding: ContentArticleHorizontalBinding,
+                    data: Article,
+                    position: Int,
+                    notifyListener: FrogoRecyclerNotifyListener<Article>
+                ) {
                     baseStartActivity<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
                     setupShowAdsInterstitial()
                 }
 
-                override fun onItemLongClicked(data: Article) {
+                override fun onItemLongClicked(
+                    binding: ContentArticleHorizontalBinding,
+                    data: Article,
+                    position: Int,
+                    notifyListener: FrogoRecyclerNotifyListener<Article>
+                ) {
                     data.description?.let { showToast(it) }
                 }
 
@@ -115,10 +141,12 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                 }
 
                 override fun setupInitComponent(
-                    view: ContentArticleHorizontalBinding,
-                    data: Article
+                    binding: ContentArticleHorizontalBinding,
+                    data: Article,
+                    position: Int,
+                    notifyListener: FrogoRecyclerNotifyListener<Article>
                 ) {
-                    view.apply {
+                    binding.apply {
                         tvTitle.text = data.title
                         tvPublished.text = data.publishedAt
                         tvDescription.text = data.description
@@ -141,12 +169,22 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
 
         val adapterCallback =
             object : IFrogoBindingAdapter<Article, ContentArticleVerticalBinding> {
-                override fun onItemClicked(data: Article) {
+                override fun onItemClicked(
+                    binding: ContentArticleVerticalBinding,
+                    data: Article,
+                    position: Int,
+                    notifyListener: FrogoRecyclerNotifyListener<Article>
+                ) {
                     baseStartActivity<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
                     setupShowAdsInterstitial()
                 }
 
-                override fun onItemLongClicked(data: Article) {
+                override fun onItemLongClicked(
+                    binding: ContentArticleVerticalBinding,
+                    data: Article,
+                    position: Int,
+                    notifyListener: FrogoRecyclerNotifyListener<Article>
+                ) {
                     data.description?.let { showToast(it) }
                 }
 
@@ -160,7 +198,9 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
 
                 override fun setupInitComponent(
                     binding: ContentArticleVerticalBinding,
-                    data: Article
+                    data: Article,
+                    position: Int,
+                    notifyListener: FrogoRecyclerNotifyListener<Article>
                 ) {
                     binding.apply {
                         tvTitle.text = data.title

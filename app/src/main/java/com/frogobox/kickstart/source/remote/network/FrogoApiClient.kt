@@ -36,7 +36,6 @@ object FrogoApiClient {
         val mClient = if (BuildConfig.DEBUG) {
             OkHttpClient.Builder()
                 .addInterceptor(mLoggingInterceptor)
-                .addInterceptor(ChuckInterceptor(FrogoApplication.getContext()))
                 .readTimeout(30, TimeUnit.SECONDS)
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .build()

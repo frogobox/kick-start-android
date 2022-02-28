@@ -173,9 +173,6 @@ object FrogoRemoteDataSource : FrogoDataSource {
         callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
     ) {
         val consumeNewsApi = ConsumeNewsApi(apiKey)
-        if (BuildConfig.DEBUG) {
-            consumeNewsApi.usingChuckInterceptor(FrogoApplication.getContext())
-        }
         consumeNewsApi.getTopHeadline( // Adding Base Parameter on main function
             q,
             sources,

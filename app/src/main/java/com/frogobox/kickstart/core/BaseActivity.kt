@@ -56,7 +56,7 @@ abstract class BaseActivity<VB: ViewBinding> : FrogoAdmobActivity(), IBaseActivi
         setupAdsRewardedInterstitial(getString(R.string.admob_rewarded_interstitial))
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         return true
     }
 

@@ -12,6 +12,7 @@ import com.frogobox.kickstart.R
 import com.frogobox.kickstart.core.BaseFragment
 import com.frogobox.kickstart.databinding.FragmentMainBinding
 import com.frogobox.kickstart.mvvm.detail.DetailActivity
+import com.frogobox.recycler.core.FrogoRecyclerNotifyListener
 import com.frogobox.recycler.core.IFrogoViewAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -31,13 +32,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
             getTopHeadline()
 
-            topHeadlineLive.observe(requireActivity(), {
+            topHeadlineLive.observe(requireActivity()) {
                 it.articles?.let { it1 -> setupRvNews(it1) }
-            })
+            }
 
-            eventShowProgress.observe(requireActivity(), {
-                binding.progressView.let { it1 -> setupEventProgressView(it1, it) }
-            })
+            eventShowProgress.observe(requireActivity()) {
+                setupEventProgressView(binding.progressView, it)
+            }
 
         }
     }
@@ -47,13 +48,28 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     private fun setupRvNews(data: List<Article>) {
 
         val newsAdapter = object : IFrogoViewAdapter<Article> {
-            override fun onItemClicked(data: Article) {
+            override fun onItemClicked(
+                view: View,
+                data: Article,
+                position: Int,
+                notifyListener: FrogoRecyclerNotifyListener<Article>
+            ) {
                 baseStartActivity<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
             }
 
-            override fun onItemLongClicked(data: Article) {}
+            override fun onItemLongClicked(
+                view: View,
+                data: Article,
+                position: Int,
+                notifyListener: FrogoRecyclerNotifyListener<Article>
+            ) {}
 
-            override fun setupInitComponent(view: View, data: Article) {
+            override fun setupInitComponent(
+                view: View,
+                data: Article,
+                position: Int,
+                notifyListener: FrogoRecyclerNotifyListener<Article>
+            ) {
                 view.findViewById<TextView>(R.id.tv_title).text = data.title
                 view.findViewById<TextView>(R.id.tv_description).text = data.publishedAt
                 view.findViewById<TextView>(R.id.tv_published).text = data.description

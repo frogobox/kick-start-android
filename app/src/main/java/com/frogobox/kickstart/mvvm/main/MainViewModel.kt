@@ -60,8 +60,6 @@ class MainViewModel(private val context: Application, private val repository: Fr
                     override fun onEmptyData(check: Boolean) {
                         eventEmptyData.postValue(check)
                     }
-
-
                 }
             )
         }
