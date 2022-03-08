@@ -1,10 +1,9 @@
 ![ScreenShoot Apps](docs/image/ss_banner.png?raw=true)
 
 ## About This Project
+[![Android-CI](https://github.com/frogobox/frogo-kick-start-android/actions/workflows/android-ci.yml/badge.svg)](https://github.com/frogobox/frogo-kick-start-android/actions/workflows/android-ci.yml)
 - Privacy Policy [Click Here](https://github.com/frogobox/frogo-kick-start-android/blob/master/PRIVACY-POLICY.md)
 - License [Click Here](https://github.com/frogobox/frogo-kick-start-android/blob/master/LICENSE)
-- Privacy Policy [Click Here]()
-- License [Click Here]()
 - Template Reuse Code For Monetizing Apps
 - Template Code Monetize FrogoBox For Android Kick Start Project
 
