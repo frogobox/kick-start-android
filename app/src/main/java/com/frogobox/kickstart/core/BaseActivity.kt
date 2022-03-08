@@ -48,8 +48,8 @@ abstract class BaseActivity<VB: ViewBinding> : FrogoAdmobActivity(), IBaseActivi
         setupAdmob()
     }
 
-    private fun setupAdmob() {
-        setupAdsPublisher(getString(R.string.admob_publisher_id))
+    override fun setupAdmob() {
+        setupAdsApp(getString(R.string.admob_app_id))
         setupAdsBanner(getString(R.string.admob_banner))
         setupAdsInterstitial(getString(R.string.admob_interstitial))
         setupAdsRewarded(getString(R.string.admob_rewarded))

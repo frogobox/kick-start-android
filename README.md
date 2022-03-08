@@ -1,17 +1,12 @@
 ![ScreenShoot Apps](docs/image/ss_banner.png?raw=true)
 
 ## About This Project
-Template Reuse Code For Monetizing Apps
-Template Code Monetize FrogoBox For Android Kick Start Project
-
-## Helper Sample Link
-- frogo-recycler-view [Click Here](https://github.com/amirisback/frogo-recycler-view)
-- frogo-admob [Click Here](https://github.com/amirisback/frogo-admob)
-- frogo-ui-kit [Click Here](https://github.com/amirisback/frogo-ui-kit)
-- frogo-log [Click Here](https://github.com/amirisback/frogo-log)
-- frogo-notification [Click Here](https://github.com/amirisback/frogo-notification)
-- MVVM [Click Here](https://github.com/amirisback/android-architecture-modularization)
-- Awesome API Implemented [Click Here](https://github.com/amirisback/awesome-frogo-consumable-apps)
+- Privacy Policy [Click Here](https://github.com/frogobox/frogo-kick-start-android/blob/master/PRIVACY-POLICY.md)
+- License [Click Here](https://github.com/frogobox/frogo-kick-start-android/blob/master/LICENSE)
+- Privacy Policy [Click Here]()
+- License [Click Here]()
+- Template Reuse Code For Monetizing Apps
+- Template Code Monetize FrogoBox For Android Kick Start Project
 
 ## Version Release
 This Is Latest Release (Still Being Developed)

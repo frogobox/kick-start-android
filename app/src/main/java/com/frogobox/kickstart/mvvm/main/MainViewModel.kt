@@ -2,7 +2,7 @@ package com.frogobox.kickstart.mvvm.main
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
-import com.frogobox.frogonewsapi.data.response.ArticleResponse
+import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.kickstart.core.BaseViewModel
 import com.frogobox.kickstart.source.FrogoDataRepository
 import com.frogobox.kickstart.source.FrogoDataSource

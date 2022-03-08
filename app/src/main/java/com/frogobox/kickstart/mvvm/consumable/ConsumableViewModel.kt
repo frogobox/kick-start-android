@@ -1,9 +1,8 @@
 package com.frogobox.kickstart.mvvm.consumable
 
 import android.app.Application
-import com.frogobox.frogonewsapi.data.model.Article
-import com.frogobox.frogonewsapi.data.response.ArticleResponse
-import com.frogobox.frogonewsapi.util.NewsConstant.COUNTRY_ID
+import com.frogobox.coreapi.news.model.Article
+import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.kickstart.core.BaseViewModel
 import com.frogobox.kickstart.source.FrogoDataRepository
 import com.frogobox.kickstart.source.FrogoDataSource
@@ -15,6 +14,7 @@ import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_HEALTH
 import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_SCIENCE
 import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_SPORTS
 import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_TECHNOLOGY
+import com.frogobox.kickstart.util.Constant.NewsConstant.COUNTRY_ID
 import com.frogobox.kickstart.util.SingleLiveEvent
 
 class ConsumableViewModel(

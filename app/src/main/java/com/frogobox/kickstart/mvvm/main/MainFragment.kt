@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.frogobox.frogonewsapi.data.model.Article
+import com.frogobox.coreapi.news.model.Article
 import com.frogobox.kickstart.R
 
 import com.frogobox.kickstart.core.BaseFragment

@@ -2,7 +2,7 @@ package com.frogobox.kickstart.mvvm.detail
 
 import android.os.Bundle
 import com.bumptech.glide.Glide
-import com.frogobox.frogonewsapi.data.model.Article
+import com.frogobox.coreapi.news.model.Article
 import com.frogobox.kickstart.core.BaseActivity
 import com.frogobox.kickstart.databinding.ActivityDetailBinding
 

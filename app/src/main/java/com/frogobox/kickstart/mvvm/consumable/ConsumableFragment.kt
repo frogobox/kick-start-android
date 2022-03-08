@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.frogobox.frogonewsapi.data.model.Article
+import com.frogobox.coreapi.news.model.Article
 import com.frogobox.kickstart.core.BaseFragment
 import com.frogobox.kickstart.databinding.ContentArticleHorizontalBinding
 import com.frogobox.kickstart.databinding.ContentArticleVerticalBinding

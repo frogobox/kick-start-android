@@ -1,14 +1,12 @@
 package com.frogobox.kickstart.source.remote
 
 import android.util.Log
-import com.frogobox.frogonewsapi.ConsumeNewsApi
-import com.frogobox.frogonewsapi.callback.NewsResultCallback
-import com.frogobox.frogonewsapi.data.response.ArticleResponse
-import com.frogobox.frogonewsapi.data.response.SourceResponse
-import com.frogobox.kickstart.BuildConfig
-import com.frogobox.kickstart.FrogoApplication
-import com.frogobox.kickstart.source.model.Favorite
+import com.frogobox.api.news.ConsumeNewsApi
+import com.frogobox.coreapi.ConsumeApiResponse
+import com.frogobox.coreapi.news.response.ArticleResponse
+import com.frogobox.coreapi.news.response.SourceResponse
 import com.frogobox.kickstart.source.FrogoDataSource
+import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.source.remote.network.FrogoApiClient
 import com.frogobox.kickstart.util.SingleFunc.noAction
 
@@ -180,17 +178,7 @@ object FrogoRemoteDataSource : FrogoDataSource {
             country,
             pageSize,
             page,
-            object : NewsResultCallback<ArticleResponse> {
-                override fun getResultData(data: ArticleResponse) {
-                    // Your Ui or data
-                    callback.onSuccess(data)
-                }
-
-                override fun failedResult(statusCode: Int, errorMessage: String?) {
-                    // Your failed to do
-                    callback.onFailed(statusCode, errorMessage)
-                }
-
+            object : ConsumeApiResponse<ArticleResponse> {
                 override fun onShowProgress() {
                     // Your Progress Show
                     Log.d("RxJavaShow", "Show Progress")
@@ -201,6 +189,16 @@ object FrogoRemoteDataSource : FrogoDataSource {
                     // Your Progress Hide
                     Log.d("RxJavaHide", "Hide Progress")
                     callback.onHideProgressDialog()
+                }
+
+                override fun onFailed(statusCode: Int, errorMessage: String?) {
+                    // Your failed to do
+                    callback.onFailed(statusCode, errorMessage)
+                }
+
+                override fun onSuccess(data: ArticleResponse) {
+                    // Your Ui or data
+                    callback.onSuccess(data)
                 }
             })
     }
