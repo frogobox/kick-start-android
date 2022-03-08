@@ -129,6 +129,14 @@ dependencies {
     implementation("com.google.android.material:material:1.5.0")
     implementation("com.google.android.gms:play-services-ads:20.6.0")
 
+    implementation(Frogo.sdk)
+    implementation(Frogo.ui)
+    implementation(Frogo.consumeApi)
+    implementation(Frogo.recyclerView)
+    implementation(Frogo.admob)
+    implementation(Frogo.log)
+    implementation(Frogo.notification)
+
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
@@ -142,14 +150,6 @@ dependencies {
 
     implementation("com.facebook.stetho:stetho:1.5.1")
     implementation("com.readystatesoftware.chuck:library:1.1.0")
-
-    implementation(Frogo.recyclerView)
-    implementation(Frogo.log)
-    implementation(Frogo.notification)
-    implementation(Frogo.sdk)
-    implementation(Frogo.ui)
-    implementation(Frogo.consumeApi)
-    implementation("com.github.amirisback:frogo-admob:4.1.8")
 
     implementation(Koin.core)
     implementation(Koin.android)
