@@ -2,8 +2,8 @@ package com.frogobox.kickstart.util
 
 import com.frogobox.kickstart.core.BaseApiModel
 import com.google.gson.Gson
-import io.reactivex.SingleObserver
-import io.reactivex.disposables.Disposable
+import io.reactivex.rxjava3.core.SingleObserver
+import io.reactivex.rxjava3.disposables.Disposable
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException

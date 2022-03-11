@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.util.Constant.RoomDatabase.TABLE_NAME_FAVORITE
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Single
 
 /**
  * Created by Faisal Amir

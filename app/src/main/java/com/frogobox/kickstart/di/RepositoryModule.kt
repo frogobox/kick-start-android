@@ -5,7 +5,7 @@ import com.frogobox.kickstart.source.FrogoDataRepository
 import com.frogobox.kickstart.source.local.FrogoAppDatabase
 import com.frogobox.kickstart.source.local.FrogoLocalDataSource
 import com.frogobox.kickstart.source.remote.FrogoRemoteDataSource
-import com.frogobox.kickstart.util.AppExecutors
+import com.frogobox.sdk.util.AppExecutors
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 

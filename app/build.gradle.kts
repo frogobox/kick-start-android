@@ -117,7 +117,6 @@ dependencies {
     implementation(Androidx.viewPager2)
     implementation(Androidx.preferenceKtx)
 
-    implementation(Google.animations)
     implementation(Google.material)
     implementation(Google.gson)
     implementation(Google.admob)
@@ -130,7 +129,6 @@ dependencies {
     implementation(Androidx.Room.ktx)
     implementation(Androidx.Room.runtime)
     implementation(Androidx.Room.paging)
-    implementation(Androidx.Room.rxJava2)
     implementation(Androidx.Room.rxJava3)
 
     implementation(Square.okhttp)
@@ -138,14 +136,7 @@ dependencies {
 
     implementation(Square.Retrofit2.retrofit)
     implementation(Square.Retrofit2.converterGson)
-
-    implementation(Square.Retrofit2.adapterRxJava)
-    implementation(Square.Retrofit2.adapterRxJava2)
     implementation(Square.Retrofit2.adapterRxJava3)
-
-    // Deprecated
-    implementation(Reactivex.rxJava2)
-    implementation(Reactivex.rxAndroid2)
 
     // Latest Version
     implementation(Reactivex.rxJava3)
