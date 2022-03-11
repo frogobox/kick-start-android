@@ -158,7 +158,6 @@ dependencies {
     implementation(Frogo.notification)
 
     implementation(Util.glide)
-    implementation("com.readystatesoftware.chuck:library:1.1.0")
 
     api(JetBrains.coroutinesCore)
     api(JetBrains.coroutinesAndroid)
