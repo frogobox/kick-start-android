@@ -29,7 +29,7 @@ open class ProjectDataRepository(
     private val localDataSource: ProjectLocalDataSource
 ) : ProjectDataSource {
 
-    override suspend fun getTopHeadline(
+    override fun getTopHeadline(
         apiKey: String,
         q: String?,
         sources: String?,
@@ -51,7 +51,7 @@ open class ProjectDataRepository(
         )
     }
 
-    override suspend fun getEverythings(
+    override fun getEverythings(
         apiKey: String,
         q: String?,
         from: String?,
@@ -83,7 +83,7 @@ open class ProjectDataRepository(
         )
     }
 
-    override suspend fun getSources(
+    override fun getSources(
         apiKey: String,
         language: String,
         country: String,

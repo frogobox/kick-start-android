@@ -5,10 +5,13 @@ import com.frogobox.api.news.ConsumeNewsApi
 import com.frogobox.coreapi.ConsumeApiResponse
 import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.coreapi.news.response.SourceResponse
+import com.frogobox.coresdk.FrogoApiObserver
 import com.frogobox.kickstart.source.ProjectDataSource
 import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.source.remote.network.ProjectApiClient
 import com.frogobox.kickstart.util.SingleFunc.noAction
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 /**
  * Created by Faisal Amir
@@ -29,7 +32,7 @@ import com.frogobox.kickstart.util.SingleFunc.noAction
  */
 object ProjectRemoteDataSource : ProjectDataSource {
 
-    override suspend fun getTopHeadline(
+    override fun getTopHeadline(
         apiKey: String,
         q: String?,
         sources: String?,
@@ -39,7 +42,7 @@ object ProjectRemoteDataSource : ProjectDataSource {
         page: Int?,
         callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
     ) {
-        val serviceApiClient = ProjectApiClient.create().getTopHeadline(
+        ProjectApiClient.create().getTopHeadline(
             apiKey,
             q,
             sources,
@@ -47,25 +50,22 @@ object ProjectRemoteDataSource : ProjectDataSource {
             country,
             pageSize,
             page
-        )
+        ).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { callback.onShowProgress() }
+            .doOnTerminate { callback.onHideProgress() }
+            .subscribe(object : FrogoApiObserver<ArticleResponse>() {
+                override fun onSuccess(data: ArticleResponse) {
+                    callback.onSuccess(data)
+                }
 
-        callback.onShowProgressDialog()
-        if (serviceApiClient.isSuccessful) {
-            if (serviceApiClient.body() != null) {
-                callback.onSuccess(serviceApiClient.body()!!)
-                callback.onEmptyData(false)
-            } else {
-                callback.onEmptyData(true)
-            }
-            callback.onHideProgressDialog()
-        } else {
-            callback.onFailed(500, serviceApiClient.message())
-            callback.onHideProgressDialog()
-        }
-
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onFailed(code, errorMessage)
+                }
+            })
     }
 
-    override suspend fun getEverythings(
+    override fun getEverythings(
         apiKey: String,
         q: String?,
         from: String?,
@@ -80,7 +80,7 @@ object ProjectRemoteDataSource : ProjectDataSource {
         page: Int?,
         callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
     ) {
-        val serviceApiClient = ProjectApiClient.create().getEverythings(
+        ProjectApiClient.create().getEverythings(
             apiKey,
             q,
             from,
@@ -93,44 +93,43 @@ object ProjectRemoteDataSource : ProjectDataSource {
             sortBy,
             pageSize,
             page
-        )
-        callback.onShowProgressDialog()
-        if (serviceApiClient.isSuccessful) {
-            if (serviceApiClient.body() != null) {
-                callback.onSuccess(serviceApiClient.body()!!)
-                callback.onEmptyData(false)
-            } else {
-                callback.onEmptyData(true)
-            }
-            callback.onHideProgressDialog()
-        } else {
-            callback.onFailed(500, serviceApiClient.message())
-            callback.onHideProgressDialog()
-        }
+        ).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { callback.onShowProgress() }
+            .doOnTerminate { callback.onHideProgress() }
+            .subscribe(object : FrogoApiObserver<ArticleResponse>() {
+                override fun onSuccess(data: ArticleResponse) {
+                    callback.onSuccess(data)
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onFailed(code, errorMessage)
+                }
+            })
     }
 
-    override suspend fun getSources(
+    override fun getSources(
         apiKey: String,
         language: String,
         country: String,
         category: String,
         callback: ProjectDataSource.GetRemoteCallback<SourceResponse>
     ) {
-        val serviceApiClient =
-            ProjectApiClient.create().getSources(apiKey, language, country, category)
-        callback.onShowProgressDialog()
-        if (serviceApiClient.isSuccessful) {
-            if (serviceApiClient.body() != null) {
-                callback.onSuccess(serviceApiClient.body()!!)
-                callback.onEmptyData(false)
-            } else {
-                callback.onEmptyData(true)
-            }
-            callback.onHideProgressDialog()
-        } else {
-            callback.onFailed(500, serviceApiClient.message())
-            callback.onHideProgressDialog()
-        }
+        ProjectApiClient.create().getSources(apiKey, language, country, category)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { callback.onShowProgress() }
+            .doOnTerminate { callback.onHideProgress() }
+            .subscribe(object : FrogoApiObserver<SourceResponse>() {
+                override fun onSuccess(data: SourceResponse) {
+                    callback.onSuccess(data)
+                }
+
+                override fun onFailure(code: Int, errorMessage: String) {
+                    callback.onFailed(code, errorMessage)
+                }
+            })
+
     }
 
 
@@ -182,13 +181,13 @@ object ProjectRemoteDataSource : ProjectDataSource {
                 override fun onShowProgress() {
                     // Your Progress Show
                     Log.d("RxJavaShow", "Show Progress")
-                    callback.onShowProgressDialog()
+                    callback.onShowProgress()
                 }
 
                 override fun onHideProgress() {
                     // Your Progress Hide
                     Log.d("RxJavaHide", "Hide Progress")
-                    callback.onHideProgressDialog()
+                    callback.onHideProgress()
                 }
 
                 override fun onFailed(statusCode: Int, errorMessage: String?) {

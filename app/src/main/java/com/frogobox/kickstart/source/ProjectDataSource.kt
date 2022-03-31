@@ -26,7 +26,7 @@ interface ProjectDataSource {
     // API Server ----------------------------------------------------------------------------------
 
     // Get Top Headline
-    suspend fun getTopHeadline(
+    fun getTopHeadline(
         apiKey: String,
         q: String?,
         sources: String?,
@@ -38,7 +38,7 @@ interface ProjectDataSource {
     )
 
     // Get Everythings
-    suspend fun getEverythings(
+    fun getEverythings(
         apiKey: String,
         q: String?,
         from: String?,
@@ -55,7 +55,7 @@ interface ProjectDataSource {
     )
 
     // Get Sources
-    suspend fun getSources(
+    fun getSources(
         apiKey: String,
         language: String,
         country: String,

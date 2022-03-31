@@ -58,14 +58,14 @@ class ConsumableViewModel(
                 }
 
                 override fun onEmptyData(check: Boolean) {
-                    eventEmptyData.postValue(check)
+                    eventEmpty.postValue(check)
                 }
 
-                override fun onShowProgressDialog() {
+                override fun onShowProgress() {
                     eventShowProgress.postValue(true)
                 }
 
-                override fun onHideProgressDialog() {
+                override fun onHideProgress() {
                     eventShowProgress.postValue(false)
                 }
             }
@@ -91,14 +91,14 @@ class ConsumableViewModel(
                 }
 
                 override fun onEmptyData(check: Boolean) {
-                    eventEmptyData.postValue(check)
+                    eventEmpty.postValue(check)
                 }
 
-                override fun onShowProgressDialog() {
+                override fun onShowProgress() {
                     eventShowProgress.postValue(true)
                 }
 
-                override fun onHideProgressDialog() {
+                override fun onHideProgress() {
                     eventShowProgress.postValue(false)
                 }
             }

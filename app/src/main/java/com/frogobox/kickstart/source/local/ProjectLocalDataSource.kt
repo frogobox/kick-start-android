@@ -3,9 +3,9 @@ package com.frogobox.kickstart.source.local
 import android.content.SharedPreferences
 import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.coreapi.news.response.SourceResponse
-import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.source.ProjectDataSource
 import com.frogobox.kickstart.source.local.dao.FavoriteDao
+import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.util.SingleCallback
 import com.frogobox.sdk.util.AppExecutors
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -36,7 +36,7 @@ class ProjectLocalDataSource(
     private val favoriteDao: FavoriteDao
 ) : ProjectDataSource {
 
-    override suspend fun getTopHeadline(
+    override fun getTopHeadline(
         apiKey: String,
         q: String?,
         sources: String?,
@@ -49,7 +49,7 @@ class ProjectLocalDataSource(
 
     }
 
-    override suspend fun getEverythings(
+    override fun getEverythings(
         apiKey: String,
         q: String?,
         from: String?,
@@ -67,7 +67,7 @@ class ProjectLocalDataSource(
 
     }
 
-    override suspend fun getSources(
+    override fun getSources(
         apiKey: String,
         language: String,
         country: String,
@@ -91,14 +91,14 @@ class ProjectLocalDataSource(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : SingleCallback<List<Favorite>>() {
                     override fun onCallbackSucces(data: List<Favorite>) {
-                        callback.onShowProgressDialog()
+                        callback.onShowProgress()
                         callback.onSuccess(data)
                         if (data.isEmpty()) {
                             callback.onEmptyData(true)
                         } else {
                             callback.onEmptyData(false)
                         }
-                        callback.onHideProgressDialog()
+                        callback.onHideProgress()
                     }
 
                     override fun onCallbackError(code: Int, errorMessage: String) {
@@ -110,7 +110,7 @@ class ProjectLocalDataSource(
                     }
 
                     override fun onCompleted() {
-                        callback.onHideProgressDialog()
+                        callback.onHideProgress()
                     }
                 })
         }
@@ -152,6 +152,7 @@ class ProjectLocalDataSource(
     ) {
 
     }
+
     private
     var compositeDisposable: CompositeDisposable? = null
 

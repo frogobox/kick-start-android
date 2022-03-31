@@ -41,11 +41,11 @@ class MainViewModel(private val context: Application, private val repository: Pr
                 null,
                 null,
                 object : ProjectDataSource.GetRemoteCallback<ArticleResponse> {
-                    override fun onShowProgressDialog() {
+                    override fun onShowProgress() {
                         eventShowProgress.postValue(true)
                     }
 
-                    override fun onHideProgressDialog() {
+                    override fun onHideProgress() {
                         eventShowProgress.postValue(false)
                     }
 
@@ -58,7 +58,7 @@ class MainViewModel(private val context: Application, private val repository: Pr
                     }
 
                     override fun onEmptyData(check: Boolean) {
-                        eventEmptyData.postValue(check)
+                        eventEmpty.postValue(check)
                     }
                 }
             )

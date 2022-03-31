@@ -3,7 +3,7 @@ package com.frogobox.kickstart.source.remote.network
 import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.coreapi.news.response.SourceResponse
 import com.frogobox.kickstart.util.Constant
-import retrofit2.Response
+import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -23,7 +23,7 @@ interface ProjectApiService {
 
     // Get Top Headline
     @GET(Constant.ApiUrl.NEWS_URL_TOP_HEADLINE)
-    suspend fun getTopHeadline(
+    fun getTopHeadline(
         @Query(Constant.NewsConstant.QUERY_API_KEY) apiKey: String,
         @Query(Constant.NewsConstant.QUERY_Q) q: String?,
         @Query(Constant.NewsConstant.QUERY_SOURCES) sources: String?,
@@ -31,7 +31,7 @@ interface ProjectApiService {
         @Query(Constant.NewsConstant.QUERY_COUNTRY) country: String?,
         @Query(Constant.NewsConstant.QUERY_PAGE_SIZE) pageSize: Int?,
         @Query(Constant.NewsConstant.QUERY_PAGE) page: Int?
-    ): Response<ArticleResponse>
+    ): Observable<ArticleResponse>
 
     // Get Everythings
     @GET(Constant.ApiUrl.NEWS_URL_EVERYTHING)
@@ -48,7 +48,7 @@ interface ProjectApiService {
         @Query(Constant.NewsConstant.QUERY_SORT_BY) sortBy: String?,
         @Query(Constant.NewsConstant.QUERY_PAGE_SIZE) pageSize: Int?,
         @Query(Constant.NewsConstant.QUERY_PAGE) page: Int?
-    ): Response<ArticleResponse>
+    ): Observable<ArticleResponse>
 
     // Get Sources
     @GET(Constant.ApiUrl.NEWS_URL_SOURCES)
@@ -57,6 +57,6 @@ interface ProjectApiService {
         @Query(Constant.NewsConstant.QUERY_LANGUAGE) language: String,
         @Query(Constant.NewsConstant.QUERY_COUNTRY) country: String,
         @Query(Constant.NewsConstant.QUERY_CATEGORY) category: String
-    ): Response<SourceResponse>
+    ): Observable<SourceResponse>
 
 }

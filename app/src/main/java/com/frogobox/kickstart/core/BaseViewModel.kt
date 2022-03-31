@@ -3,6 +3,7 @@ package com.frogobox.kickstart.core
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.frogobox.kickstart.util.SingleLiveEvent
+import com.frogobox.sdk.FrogoViewModel
 
 /**
  * Created by Faisal Amir
@@ -21,8 +22,6 @@ import com.frogobox.kickstart.util.SingleLiveEvent
  * com.frogobox.basemusicplayer.base
  *
  */
-open class BaseViewModel(application: Application) : AndroidViewModel(application) {
-    var eventShowProgress = SingleLiveEvent<Boolean>()
-    var eventEmptyData = SingleLiveEvent<Boolean>()
-    var eventFailed = SingleLiveEvent<String>()
+abstract class BaseViewModel(application: Application) : FrogoViewModel(application) {
+
 }

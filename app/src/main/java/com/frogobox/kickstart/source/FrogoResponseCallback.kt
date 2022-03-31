@@ -25,8 +25,8 @@ interface FrogoResponseCallback<T> {
 
     fun onEmptyData(check : Boolean)
 
-    fun onShowProgressDialog()
+    fun onShowProgress()
 
-    fun onHideProgressDialog()
+    fun onHideProgress()
 
 }
