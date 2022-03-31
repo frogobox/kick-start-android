@@ -1,3 +1,3 @@
 object DependencyGradle {
-    const val KOTLIN_VERSION = "1.6.10"
+    const val KOTLIN_VERSION = Version.JetBrains.kotlin
 }

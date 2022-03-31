@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.coreapi.news.response.SourceResponse
 import com.frogobox.kickstart.source.model.Favorite
-import com.frogobox.kickstart.source.FrogoDataSource
+import com.frogobox.kickstart.source.ProjectDataSource
 import com.frogobox.kickstart.source.local.dao.FavoriteDao
 import com.frogobox.kickstart.util.SingleCallback
 import com.frogobox.sdk.util.AppExecutors
@@ -30,11 +30,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers
  * com.frogobox.publicspeakingbooster.source.local
  *
  */
-class FrogoLocalDataSource(
+class ProjectLocalDataSource(
     private val appExecutors: AppExecutors,
     private val sharedPreferences: SharedPreferences,
     private val favoriteDao: FavoriteDao
-) : FrogoDataSource {
+) : ProjectDataSource {
 
     override suspend fun getTopHeadline(
         apiKey: String,
@@ -44,7 +44,7 @@ class FrogoLocalDataSource(
         country: String?,
         pageSize: Int?,
         page: Int?,
-        callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
+        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
     ) {
 
     }
@@ -62,7 +62,7 @@ class FrogoLocalDataSource(
         sortBy: String?,
         pageSize: Int?,
         page: Int?,
-        callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
+        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
     ) {
 
     }
@@ -72,7 +72,7 @@ class FrogoLocalDataSource(
         language: String,
         country: String,
         category: String,
-        callback: FrogoDataSource.GetRemoteCallback<SourceResponse>
+        callback: ProjectDataSource.GetRemoteCallback<SourceResponse>
     ) {
 
     }
@@ -84,7 +84,7 @@ class FrogoLocalDataSource(
         return true
     }
 
-    override fun getRoomFavorite(callback: FrogoDataSource.GetLocalCallback<List<Favorite>>) {
+    override fun getRoomFavorite(callback: ProjectDataSource.GetLocalCallback<List<Favorite>>) {
         appExecutors.diskIO.execute {
             favoriteDao.getAllData()
                 .subscribeOn(Schedulers.io())
@@ -148,7 +148,7 @@ class FrogoLocalDataSource(
         country: String?,
         pageSize: Int?,
         page: Int?,
-        callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
+        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
     ) {
 
     }

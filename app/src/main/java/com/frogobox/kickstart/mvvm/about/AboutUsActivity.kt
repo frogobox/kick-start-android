@@ -12,7 +12,7 @@ class AboutUsActivity : BaseActivity<ActivityAboutUsBinding>() {
 
     override fun setupViewModel() {}
 
-    override fun setupUI(savedInstanceState: Bundle?) {
+    override fun setupOnCreate(savedInstanceState: Bundle?) {
         setupDetailActivity("")
     }
 }

@@ -4,8 +4,8 @@ import android.app.Application
 import com.frogobox.coreapi.news.model.Article
 import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.kickstart.core.BaseViewModel
-import com.frogobox.kickstart.source.FrogoDataRepository
-import com.frogobox.kickstart.source.FrogoDataSource
+import com.frogobox.kickstart.source.ProjectDataRepository
+import com.frogobox.kickstart.source.ProjectDataSource
 import com.frogobox.kickstart.util.Constant
 import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_BUSINESS
 import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_ENTERTAIMENT
@@ -19,7 +19,7 @@ import com.frogobox.kickstart.util.SingleLiveEvent
 
 class ConsumableViewModel(
     private val context: Application,
-    private val repository: FrogoDataRepository
+    private val repository: ProjectDataRepository
 ) : BaseViewModel(context) {
 
     var listArticleRandom = SingleLiveEvent<List<Article>>()
@@ -48,7 +48,7 @@ class ConsumableViewModel(
             COUNTRY_ID,
             null,
             null,
-            object : FrogoDataSource.GetRemoteCallback<ArticleResponse> {
+            object : ProjectDataSource.GetRemoteCallback<ArticleResponse> {
                 override fun onSuccess(data: ArticleResponse) {
                     data.articles?.let { listArticle.postValue(it) }
                 }
@@ -81,7 +81,7 @@ class ConsumableViewModel(
             COUNTRY_ID,
             null,
             null,
-            object : FrogoDataSource.GetRemoteCallback<ArticleResponse> {
+            object : ProjectDataSource.GetRemoteCallback<ArticleResponse> {
                 override fun onSuccess(data: ArticleResponse) {
                     data.articles?.let { listArticleRandom.postValue(it) }
                 }

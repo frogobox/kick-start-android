@@ -19,20 +19,4 @@ import com.google.android.gms.ads.AdView
 
 interface IBaseFragment {
 
-    fun setupShowAdsInterstitial()
-
-    fun setupShowAdsBanner(mAdView: AdView)
-
-    fun setupChildFragment(frameId: Int, fragment: Fragment)
-
-    fun checkArgument(argsKey: String): Boolean
-
-    fun setupEventEmptyView(view: View, isEmpty: Boolean)
-
-    fun setupEventProgressView(view: View, progress: Boolean)
-
-    fun showToast(message: String)
-
-    fun <Model> baseNewInstance(argsKey: String, data: Model)
-
 }

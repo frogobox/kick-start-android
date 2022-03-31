@@ -5,9 +5,9 @@ import com.frogobox.api.news.ConsumeNewsApi
 import com.frogobox.coreapi.ConsumeApiResponse
 import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.coreapi.news.response.SourceResponse
-import com.frogobox.kickstart.source.FrogoDataSource
+import com.frogobox.kickstart.source.ProjectDataSource
 import com.frogobox.kickstart.source.model.Favorite
-import com.frogobox.kickstart.source.remote.network.FrogoApiClient
+import com.frogobox.kickstart.source.remote.network.ProjectApiClient
 import com.frogobox.kickstart.util.SingleFunc.noAction
 
 /**
@@ -27,7 +27,7 @@ import com.frogobox.kickstart.util.SingleFunc.noAction
  * com.frogobox.publicspeakingbooster.source.remote
  *
  */
-object FrogoRemoteDataSource : FrogoDataSource {
+object ProjectRemoteDataSource : ProjectDataSource {
 
     override suspend fun getTopHeadline(
         apiKey: String,
@@ -37,9 +37,9 @@ object FrogoRemoteDataSource : FrogoDataSource {
         country: String?,
         pageSize: Int?,
         page: Int?,
-        callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
+        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
     ) {
-        val serviceApiClient = FrogoApiClient.create().getTopHeadline(
+        val serviceApiClient = ProjectApiClient.create().getTopHeadline(
             apiKey,
             q,
             sources,
@@ -78,9 +78,9 @@ object FrogoRemoteDataSource : FrogoDataSource {
         sortBy: String?,
         pageSize: Int?,
         page: Int?,
-        callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
+        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
     ) {
-        val serviceApiClient = FrogoApiClient.create().getEverythings(
+        val serviceApiClient = ProjectApiClient.create().getEverythings(
             apiKey,
             q,
             from,
@@ -114,10 +114,10 @@ object FrogoRemoteDataSource : FrogoDataSource {
         language: String,
         country: String,
         category: String,
-        callback: FrogoDataSource.GetRemoteCallback<SourceResponse>
+        callback: ProjectDataSource.GetRemoteCallback<SourceResponse>
     ) {
         val serviceApiClient =
-            FrogoApiClient.create().getSources(apiKey, language, country, category)
+            ProjectApiClient.create().getSources(apiKey, language, country, category)
         callback.onShowProgressDialog()
         if (serviceApiClient.isSuccessful) {
             if (serviceApiClient.body() != null) {
@@ -139,7 +139,7 @@ object FrogoRemoteDataSource : FrogoDataSource {
     }
 
 
-    override fun getRoomFavorite(callback: FrogoDataSource.GetLocalCallback<List<Favorite>>) {
+    override fun getRoomFavorite(callback: ProjectDataSource.GetLocalCallback<List<Favorite>>) {
         noAction()
     }
 
@@ -168,7 +168,7 @@ object FrogoRemoteDataSource : FrogoDataSource {
         country: String?,
         pageSize: Int?,
         page: Int?,
-        callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
+        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
     ) {
         val consumeNewsApi = ConsumeNewsApi(apiKey)
         consumeNewsApi.getTopHeadline( // Adding Base Parameter on main function

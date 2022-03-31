@@ -2,6 +2,7 @@ package com.frogobox.kickstart.mvvm.favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.frogobox.kickstart.core.BaseFragment
 import com.frogobox.kickstart.databinding.FragmentFavoriteBinding
@@ -13,7 +14,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
 
     override fun setupViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup
+        container: ViewGroup?
     ): FragmentFavoriteBinding {
         return FragmentFavoriteBinding.inflate(inflater, container, false)
     }
@@ -24,6 +25,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
         }
     }
 
-    override fun setupUI(savedInstanceState: Bundle?) {}
+    override fun setupOnViewCreated(view: View, savedInstanceState: Bundle?) {
 
+    }
 }

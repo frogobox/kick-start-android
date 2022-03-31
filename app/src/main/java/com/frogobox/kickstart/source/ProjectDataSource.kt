@@ -21,7 +21,7 @@ import com.frogobox.kickstart.source.model.Favorite
  * com.frogobox.basemusicplayer.source
  *
  */
-interface FrogoDataSource {
+interface ProjectDataSource {
 
     // API Server ----------------------------------------------------------------------------------
 

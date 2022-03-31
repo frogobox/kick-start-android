@@ -1,9 +1,7 @@
 package com.frogobox.kickstart.source.remote.network
 
 import com.frogobox.kickstart.BuildConfig
-import com.frogobox.kickstart.FrogoApplication
 import com.frogobox.kickstart.util.Constant
-import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -27,9 +25,9 @@ import java.util.concurrent.TimeUnit
  * com.frogobox.publicspeakingbooster.source.remote.network
  *
  */
-object FrogoApiClient {
+object ProjectApiClient {
 
-    fun create(): FrogoApiService {
+    fun create(): ProjectApiService {
         val mLoggingInterceptor = HttpLoggingInterceptor()
         mLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
@@ -50,7 +48,7 @@ object FrogoApiClient {
             .baseUrl(Constant.ApiUrl.NEWS_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(mClient)
-            .build().create(FrogoApiService::class.java)
+            .build().create(ProjectApiService::class.java)
     }
 
 }

@@ -2,7 +2,7 @@ package com.frogobox.kickstart.mvvm.detail
 
 import android.app.Application
 import com.frogobox.kickstart.core.BaseViewModel
-import com.frogobox.kickstart.source.FrogoDataRepository
+import com.frogobox.kickstart.source.ProjectDataRepository
 import com.frogobox.kickstart.source.model.Favorite
 
 /*
@@ -19,9 +19,8 @@ import com.frogobox.kickstart.source.model.Favorite
  */
 class DetailViewModel(
     private val context: Application,
-    private val repository: FrogoDataRepository
+    private val repository: ProjectDataRepository
 ) : BaseViewModel(context) {
-
 
     fun saveToRoom(data: Favorite) {
         repository.saveRoomFavorite(data)

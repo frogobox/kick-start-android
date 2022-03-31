@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -96,7 +98,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    tasks.withType<KotlinCompile> {
         kotlinOptions {
             jvmTarget = JavaVersion.VERSION_11.toString()
         }
@@ -120,7 +122,6 @@ dependencies {
     implementation(Google.material)
     implementation(Google.gson)
     implementation(Google.admob)
-    implementation(Google.userMessagingPlatform)
 
     implementation(Androidx.Lifecycle.viewmodelKtx)
     implementation(Androidx.Lifecycle.livedataKtx)
@@ -131,8 +132,8 @@ dependencies {
     implementation(Androidx.Room.paging)
     implementation(Androidx.Room.rxJava3)
 
-    implementation(Square.okhttp)
-    implementation(Square.okhttpLogging)
+    implementation(Square.OkHttp.okhttp)
+    implementation(Square.OkHttp.loggingInterceptor)
 
     implementation(Square.Retrofit2.retrofit)
     implementation(Square.Retrofit2.converterGson)
@@ -154,17 +155,16 @@ dependencies {
     implementation(Frogo.consumeApi)
     implementation(Frogo.recyclerView)
     implementation(Frogo.admob)
-    implementation(Frogo.log)
-    implementation(Frogo.notification)
 
-    implementation(Util.glide)
+    implementation(GitHub.glide)
+    implementation(GitHub.chucker)
 
     api(JetBrains.coroutinesCore)
     api(JetBrains.coroutinesAndroid)
 
     kapt(Androidx.Lifecycle.compiler)
     kapt(Androidx.Room.compiler)
-    kapt(Util.glideCompiler)
+    kapt(GitHub.glideCompiler)
 
     testImplementation(Androidx.junit4)
     testImplementation(Androidx.Room.roomTest)

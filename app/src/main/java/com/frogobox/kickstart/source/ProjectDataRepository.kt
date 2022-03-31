@@ -4,8 +4,8 @@ package com.frogobox.kickstart.source
 import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.coreapi.news.response.SourceResponse
 import com.frogobox.kickstart.source.model.Favorite
-import com.frogobox.kickstart.source.local.FrogoLocalDataSource
-import com.frogobox.kickstart.source.remote.FrogoRemoteDataSource
+import com.frogobox.kickstart.source.local.ProjectLocalDataSource
+import com.frogobox.kickstart.source.remote.ProjectRemoteDataSource
 
 /**
  * Created by Faisal Amir
@@ -24,10 +24,10 @@ import com.frogobox.kickstart.source.remote.FrogoRemoteDataSource
  * com.frogobox.basemusicplayer.source
  *
  */
-open class FrogoDataRepository(
-    private val remoteDataSource: FrogoRemoteDataSource,
-    private val localDataSource: FrogoLocalDataSource
-) : FrogoDataSource {
+open class ProjectDataRepository(
+    private val remoteDataSource: ProjectRemoteDataSource,
+    private val localDataSource: ProjectLocalDataSource
+) : ProjectDataSource {
 
     override suspend fun getTopHeadline(
         apiKey: String,
@@ -37,7 +37,7 @@ open class FrogoDataRepository(
         country: String?,
         pageSize: Int?,
         page: Int?,
-        callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
+        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
     ) {
         remoteDataSource.getTopHeadline(
             apiKey,
@@ -64,7 +64,7 @@ open class FrogoDataRepository(
         sortBy: String?,
         pageSize: Int?,
         page: Int?,
-        callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
+        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
     ) {
         remoteDataSource.getEverythings(
             apiKey,
@@ -88,7 +88,7 @@ open class FrogoDataRepository(
         language: String,
         country: String,
         category: String,
-        callback: FrogoDataSource.GetRemoteCallback<SourceResponse>
+        callback: ProjectDataSource.GetRemoteCallback<SourceResponse>
     ) {
         remoteDataSource.getSources(apiKey, language, country, category, callback)
     }
@@ -97,7 +97,7 @@ open class FrogoDataRepository(
         return localDataSource.saveRoomFavorite(data)
     }
 
-    override fun getRoomFavorite(callback: FrogoDataSource.GetLocalCallback<List<Favorite>>) {
+    override fun getRoomFavorite(callback: ProjectDataSource.GetLocalCallback<List<Favorite>>) {
         localDataSource.getRoomFavorite(callback)
     }
 
@@ -126,7 +126,7 @@ open class FrogoDataRepository(
         country: String?,
         pageSize: Int?,
         page: Int?,
-        callback: FrogoDataSource.GetRemoteCallback<ArticleResponse>
+        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
     ) {
         remoteDataSource.consumeTopHeadline(
             apiKey,

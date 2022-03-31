@@ -22,7 +22,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     override fun setupViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup
+        container: ViewGroup?
     ): FragmentMainBinding {
         return FragmentMainBinding.inflate(inflater, container, false)
     }
@@ -37,13 +37,14 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             }
 
             eventShowProgress.observe(requireActivity()) {
-                setupEventProgressView(binding.progressView, it)
+                setupProgressView(binding.progressView, it)
             }
 
         }
     }
 
-    override fun setupUI(savedInstanceState: Bundle?) {}
+    override fun setupOnViewCreated(view: View, savedInstanceState: Bundle?) {
+    }
 
     private fun setupRvNews(data: List<Article>) {
 
@@ -54,7 +55,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 position: Int,
                 notifyListener: FrogoRecyclerNotifyListener<Article>
             ) {
-                baseStartActivity<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
+                frogoStartActivity<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
             }
 
             override fun onItemLongClicked(
@@ -62,7 +63,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 data: Article,
                 position: Int,
                 notifyListener: FrogoRecyclerNotifyListener<Article>
-            ) {}
+            ) {
+            }
 
             override fun setupInitComponent(
                 view: View,

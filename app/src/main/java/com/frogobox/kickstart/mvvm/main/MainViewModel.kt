@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.viewModelScope
 import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.kickstart.core.BaseViewModel
-import com.frogobox.kickstart.source.FrogoDataRepository
-import com.frogobox.kickstart.source.FrogoDataSource
+import com.frogobox.kickstart.source.ProjectDataRepository
+import com.frogobox.kickstart.source.ProjectDataSource
 import com.frogobox.kickstart.util.SingleLiveEvent
 import com.frogobox.kickstart.util.Constant
 import kotlinx.coroutines.launch
@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
  * com.frogobox.kickstart.viewmodel
  * 
  */
-class MainViewModel(private val context: Application, private val repository: FrogoDataRepository) :
+class MainViewModel(private val context: Application, private val repository: ProjectDataRepository) :
     BaseViewModel(context) {
 
     var topHeadlineLive = SingleLiveEvent<ArticleResponse>()
@@ -40,7 +40,7 @@ class MainViewModel(private val context: Application, private val repository: Fr
                 Constant.NewsConstant.COUNTRY_ID,
                 null,
                 null,
-                object : FrogoDataSource.GetRemoteCallback<ArticleResponse> {
+                object : ProjectDataSource.GetRemoteCallback<ArticleResponse> {
                     override fun onShowProgressDialog() {
                         eventShowProgress.postValue(true)
                     }

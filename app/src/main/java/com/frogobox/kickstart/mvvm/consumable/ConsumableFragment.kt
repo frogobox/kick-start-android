@@ -2,6 +2,7 @@ package com.frogobox.kickstart.mvvm.consumable
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.frogobox.coreapi.news.model.Article
@@ -22,7 +23,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
 
     override fun setupViewBinding(
         inflater: LayoutInflater,
-        container: ViewGroup
+        container: ViewGroup?
     ): FragmentConsumableBinding {
         return FragmentConsumableBinding.inflate(inflater, container, false)
     }
@@ -51,14 +52,16 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
             }
 
             eventShowProgress.observe(requireActivity()) {
-                setupEventProgressView(binding.progressView, it)
+                setupProgressView(binding.progressView, it)
             }
 
         }
 
     }
 
-    override fun setupUI(savedInstanceState: Bundle?) {}
+    override fun setupOnViewCreated(view: View, savedInstanceState: Bundle?) {
+
+    }
 
     private fun setupCategory(data: List<String>) {
 
@@ -78,7 +81,8 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                 data: String,
                 position: Int,
                 notifyListener: FrogoRecyclerNotifyListener<String>
-            ) {}
+            ) {
+            }
 
             override fun setViewBinding(parent: ViewGroup): ContentCategoryBinding {
                 return ContentCategoryBinding.inflate(
@@ -119,8 +123,8 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                     position: Int,
                     notifyListener: FrogoRecyclerNotifyListener<Article>
                 ) {
-                    baseStartActivity<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
-                    setupShowAdsInterstitial()
+                    frogoStartActivity<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
+                    showInterstitial()
                 }
 
                 override fun onItemLongClicked(
@@ -175,8 +179,8 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                     position: Int,
                     notifyListener: FrogoRecyclerNotifyListener<Article>
                 ) {
-                    baseStartActivity<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
-                    setupShowAdsInterstitial()
+                    frogoStartActivity<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
+                    showInterstitial()
                 }
 
                 override fun onItemLongClicked(
@@ -220,5 +224,6 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                 .build()
         }
     }
+
 
 }

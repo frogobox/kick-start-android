@@ -34,27 +34,27 @@ import com.frogobox.kickstart.util.Constant.RoomDatabase.DATABASE_NAME
     ], version = 1
 )
 
-abstract class FrogoAppDatabase : RoomDatabase() {
+abstract class ProjectAppDatabase : RoomDatabase() {
 
     abstract fun favoriteScriptDao(): FavoriteDao
 
     companion object {
 
         @Volatile
-        private var INSTANCE: FrogoAppDatabase? = null
+        private var INSTANCE: ProjectAppDatabase? = null
 
-        fun getInstance(context: Context): FrogoAppDatabase =
+        fun getInstance(context: Context): ProjectAppDatabase =
             INSTANCE ?: synchronized(this) {
                 INSTANCE ?: buildDatabase(context).also {
                     INSTANCE = it
                 }
             }
 
-        private fun buildDatabase(context: Context): FrogoAppDatabase {
+        private fun buildDatabase(context: Context): ProjectAppDatabase {
             return if (BuildConfig.DEBUG) {
                 Room.databaseBuilder(
                     context.applicationContext,
-                    FrogoAppDatabase::class.java, DATABASE_NAME.toString()
+                    ProjectAppDatabase::class.java, DATABASE_NAME.toString()
                 )
                     .addMigrations(MIGRATION_2_3)
                     .fallbackToDestructiveMigration() // FOR DEVELOPMENT ONLY !!!!
@@ -62,7 +62,7 @@ abstract class FrogoAppDatabase : RoomDatabase() {
             } else {
                 Room.databaseBuilder(
                     context.applicationContext,
-                    FrogoAppDatabase::class.java,
+                    ProjectAppDatabase::class.java,
                     DATABASE_NAME.toString()
                 )
                     .addMigrations(MIGRATION_2_3)

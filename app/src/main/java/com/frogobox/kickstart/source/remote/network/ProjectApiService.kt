@@ -19,7 +19,7 @@ import retrofit2.http.Query
  * All rights reserved
  *
  */
-interface FrogoApiService {
+interface ProjectApiService {
 
     // Get Top Headline
     @GET(Constant.ApiUrl.NEWS_URL_TOP_HEADLINE)

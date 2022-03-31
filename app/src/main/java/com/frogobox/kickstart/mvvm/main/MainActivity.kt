@@ -15,7 +15,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun setupViewModel() {}
 
-    override fun setupUI(savedInstanceState: Bundle?) {
+    override fun setupOnCreate(savedInstanceState: Bundle?) {
         setupToolbar()
         setupBottomNav(binding.framelayoutMainContainer.id)
         setupFragment(savedInstanceState)
@@ -39,7 +39,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             setOnNavigationItemSelectedListener {
                 when (it.itemId) {
                     R.id.bottom_menu_consumable -> {
-                        setupCustomTitleToolbar(R.string.title_consumable)
+                        supportActionBar?.title = getString(R.string.title_consumable)
                         setupChildFragment(
                             frameLayout,
                             ConsumableFragment()
@@ -47,7 +47,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     }
 
                     R.id.bottom_menu_favorite -> {
-                        setupCustomTitleToolbar(R.string.title_fav)
+                        supportActionBar?.title = getString(R.string.title_fav)
                         setupChildFragment(
                             frameLayout,
                             FavoriteFragment()
@@ -55,7 +55,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     }
 
                     R.id.bottom_menu_main -> {
-                        setupCustomTitleToolbar(R.string.title_main)
+                        supportActionBar?.title = getString(R.string.title_main)
                         setupChildFragment(
                             frameLayout,
                             MainFragment()
