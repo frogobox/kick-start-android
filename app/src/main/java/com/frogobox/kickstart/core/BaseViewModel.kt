@@ -1,8 +1,6 @@
 package com.frogobox.kickstart.core
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import com.frogobox.kickstart.util.SingleLiveEvent
 import com.frogobox.sdk.FrogoViewModel
 
 /**

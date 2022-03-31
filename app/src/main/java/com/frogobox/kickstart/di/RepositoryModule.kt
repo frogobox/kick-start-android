@@ -25,7 +25,11 @@ import org.koin.dsl.module
 val repositoryModule = module {
 
     single {
-        ProjectDataRepository(ProjectRemoteDataSource, get())
+        PreferenceManager.getDefaultSharedPreferences(androidContext())
+    }
+
+    single {
+        ProjectAppDatabase.getInstance(androidContext()).favoriteScriptDao()
     }
 
     single {
@@ -33,13 +37,7 @@ val repositoryModule = module {
     }
 
     single {
-        PreferenceManager.getDefaultSharedPreferences(androidContext())
+        ProjectDataRepository(ProjectRemoteDataSource, get())
     }
-
-
-    single {
-        ProjectAppDatabase.getInstance(androidContext()).favoriteScriptDao()
-    }
-
 
 }

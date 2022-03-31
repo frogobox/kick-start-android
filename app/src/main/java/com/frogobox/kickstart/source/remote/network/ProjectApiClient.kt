@@ -1,6 +1,8 @@
 package com.frogobox.kickstart.source.remote.network
 
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.frogobox.coreapi.news.NewsConstant
+import com.frogobox.coreapi.news.NewsUrl
 import com.frogobox.coresdk.FrogoApiClient
 import com.frogobox.kickstart.BuildConfig
 import com.frogobox.kickstart.ProjectApplication
@@ -27,7 +29,7 @@ object ProjectApiClient {
 
     fun create(): ProjectApiService {
         return FrogoApiClient.create(
-            Constant.ApiUrl.NEWS_BASE_URL,
+            NewsUrl.BASE_URL,
             BuildConfig.DEBUG,
             ChuckerInterceptor(ProjectApplication.getContext())
         )

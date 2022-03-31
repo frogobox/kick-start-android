@@ -1,30 +1,31 @@
 package com.frogobox.kickstart.mvvm.consumable
 
 import android.app.Application
+import com.frogobox.coreapi.news.NewsConstant.CATEGORY_BUSINESS
+import com.frogobox.coreapi.news.NewsConstant.CATEGORY_ENTERTAIMENT
+import com.frogobox.coreapi.news.NewsConstant.CATEGORY_GENERAL
+import com.frogobox.coreapi.news.NewsConstant.CATEGORY_HEALTH
+import com.frogobox.coreapi.news.NewsConstant.CATEGORY_SCIENCE
+import com.frogobox.coreapi.news.NewsConstant.CATEGORY_SPORTS
+import com.frogobox.coreapi.news.NewsConstant.CATEGORY_TECHNOLOGY
+import com.frogobox.coreapi.news.NewsConstant.COUNTRY_ID
+import com.frogobox.coreapi.news.NewsUrl
 import com.frogobox.coreapi.news.model.Article
 import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.kickstart.core.BaseViewModel
 import com.frogobox.kickstart.source.ProjectDataRepository
 import com.frogobox.kickstart.source.ProjectDataSource
-import com.frogobox.kickstart.util.Constant
-import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_BUSINESS
-import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_ENTERTAIMENT
-import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_GENERAL
-import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_HEALTH
-import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_SCIENCE
-import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_SPORTS
-import com.frogobox.kickstart.util.Constant.NewsConstant.CATEGORY_TECHNOLOGY
-import com.frogobox.kickstart.util.Constant.NewsConstant.COUNTRY_ID
-import com.frogobox.kickstart.util.SingleLiveEvent
+
+import com.frogobox.sdk.FrogoMutableLiveData
 
 class ConsumableViewModel(
     private val context: Application,
     private val repository: ProjectDataRepository
 ) : BaseViewModel(context) {
 
-    var listArticleRandom = SingleLiveEvent<List<Article>>()
-    var listArticle = SingleLiveEvent<List<Article>>()
-    var listCategory = SingleLiveEvent<MutableList<String>>()
+    var listArticleRandom = FrogoMutableLiveData<List<Article>>()
+    var listArticle = FrogoMutableLiveData<List<Article>>()
+    var listCategory = FrogoMutableLiveData<MutableList<String>>()
 
     fun getCategory() {
         val categories = mutableListOf<String>()
@@ -41,7 +42,7 @@ class ConsumableViewModel(
     fun getTopHeadline(category: String) {
 
         repository.consumeTopHeadline(
-            Constant.ApiUrl.NEWS_API_KEY,
+            NewsUrl.API_KEY,
             null,
             null,
             category,
@@ -74,7 +75,7 @@ class ConsumableViewModel(
 
     fun getRandomTopHeadline() {
         repository.consumeTopHeadline(
-            Constant.ApiUrl.NEWS_API_KEY,
+            NewsUrl.API_KEY,
             null,
             null,
             null,

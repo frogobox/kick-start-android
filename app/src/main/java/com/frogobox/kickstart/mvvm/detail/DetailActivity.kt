@@ -17,7 +17,9 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>() {
         return ActivityDetailBinding.inflate(layoutInflater)
     }
 
-    override fun setupViewModel() {}
+    override fun setupViewModel() {
+
+    }
 
     override fun setupOnCreate(savedInstanceState: Bundle?) {
         setupDetailActivity("Detail Berita")

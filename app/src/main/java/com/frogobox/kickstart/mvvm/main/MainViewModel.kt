@@ -2,12 +2,13 @@ package com.frogobox.kickstart.mvvm.main
 
 import android.app.Application
 import androidx.lifecycle.viewModelScope
+import com.frogobox.coreapi.news.NewsConstant
+import com.frogobox.coreapi.news.NewsUrl
 import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.kickstart.core.BaseViewModel
 import com.frogobox.kickstart.source.ProjectDataRepository
 import com.frogobox.kickstart.source.ProjectDataSource
-import com.frogobox.kickstart.util.SingleLiveEvent
-import com.frogobox.kickstart.util.Constant
+import com.frogobox.sdk.FrogoMutableLiveData
 import kotlinx.coroutines.launch
 
 /*
@@ -25,19 +26,22 @@ import kotlinx.coroutines.launch
  * com.frogobox.kickstart.viewmodel
  * 
  */
-class MainViewModel(private val context: Application, private val repository: ProjectDataRepository) :
+class MainViewModel(
+    private val context: Application,
+    private val repository: ProjectDataRepository
+) :
     BaseViewModel(context) {
 
-    var topHeadlineLive = SingleLiveEvent<ArticleResponse>()
+    var topHeadlineLive = FrogoMutableLiveData<ArticleResponse>()
 
     fun getTopHeadline() {
         viewModelScope.launch {
             repository.getTopHeadline(
-                Constant.ApiUrl.NEWS_API_KEY,
+                NewsUrl.API_KEY,
                 null,
                 null,
                 null,
-                Constant.NewsConstant.COUNTRY_ID,
+                NewsConstant.COUNTRY_ID,
                 null,
                 null,
                 object : ProjectDataSource.GetRemoteCallback<ArticleResponse> {

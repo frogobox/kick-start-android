@@ -3,10 +3,10 @@ package com.frogobox.kickstart.source.local
 import android.content.SharedPreferences
 import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.coreapi.news.response.SourceResponse
+import com.frogobox.coresdk.FrogoLocalObserver
 import com.frogobox.kickstart.source.ProjectDataSource
 import com.frogobox.kickstart.source.local.dao.FavoriteDao
 import com.frogobox.kickstart.source.model.Favorite
-import com.frogobox.kickstart.util.SingleCallback
 import com.frogobox.sdk.util.AppExecutors
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -89,7 +89,7 @@ class ProjectLocalDataSource(
             favoriteDao.getAllData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : SingleCallback<List<Favorite>>() {
+                .subscribe(object : FrogoLocalObserver<List<Favorite>>() {
                     override fun onCallbackSucces(data: List<Favorite>) {
                         callback.onShowProgress()
                         callback.onSuccess(data)

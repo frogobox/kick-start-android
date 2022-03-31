@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.frogobox.coreapi.news.NewsConstant
 import com.frogobox.coreapi.news.model.Article
 import com.frogobox.kickstart.core.BaseFragment
 import com.frogobox.kickstart.databinding.ContentArticleHorizontalBinding
@@ -33,7 +34,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
 
             getCategory()
             getRandomTopHeadline()
-            getTopHeadline(Constant.NewsConstant.CATEGORY_BUSINESS)
+            getTopHeadline(NewsConstant.CATEGORY_BUSINESS)
 
             listCategory.observe(requireActivity()) {
                 setupCategory(it)
