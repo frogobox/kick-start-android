@@ -1,7 +1,7 @@
 package com.frogobox.kickstart.core
 
 import android.app.Application
-import com.frogobox.sdk.FrogoViewModel
+import com.frogobox.sdk.view.FrogoViewModel
 
 /**
  * Created by Faisal Amir

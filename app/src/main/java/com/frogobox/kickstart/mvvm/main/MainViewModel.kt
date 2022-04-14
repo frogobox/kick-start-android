@@ -8,7 +8,7 @@ import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.kickstart.core.BaseViewModel
 import com.frogobox.kickstart.source.ProjectDataRepository
 import com.frogobox.kickstart.source.ProjectDataSource
-import com.frogobox.sdk.FrogoMutableLiveData
+import com.frogobox.sdk.util.FrogoMutableLiveData
 import kotlinx.coroutines.launch
 
 /*

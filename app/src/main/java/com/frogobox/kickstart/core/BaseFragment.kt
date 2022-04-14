@@ -1,7 +1,7 @@
 package com.frogobox.kickstart.core
 
 import androidx.viewbinding.ViewBinding
-import com.frogobox.sdk.FrogoFragment
+import com.frogobox.sdk.view.FrogoFragment
 
 /**
  * Created by Faisal Amir

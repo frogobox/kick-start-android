@@ -5,13 +5,12 @@ import com.frogobox.api.news.ConsumeNewsApi
 import com.frogobox.coreapi.ConsumeApiResponse
 import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.coreapi.news.response.SourceResponse
-import com.frogobox.coresdk.FrogoApiObserver
+import com.frogobox.coresdk.response.FrogoDataResponse
 import com.frogobox.kickstart.source.ProjectDataSource
 import com.frogobox.kickstart.source.model.Favorite
 import com.frogobox.kickstart.source.remote.network.ProjectApiClient
 import com.frogobox.kickstart.util.SingleFunc.noAction
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
+import com.frogobox.sdk.ext.doApiRequest
 
 /**
  * Created by Faisal Amir
@@ -50,19 +49,26 @@ object ProjectRemoteDataSource : ProjectDataSource {
             country,
             pageSize,
             page
-        ).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { callback.onShowProgress() }
-            .doOnTerminate { callback.onHideProgress() }
-            .subscribe(object : FrogoApiObserver<ArticleResponse>() {
-                override fun onSuccess(data: ArticleResponse) {
-                    callback.onSuccess(data)
-                }
+        ).doApiRequest(object : FrogoDataResponse<ArticleResponse> {
+            override fun onFailed(statusCode: Int, errorMessage: String) {
+                callback.onFailed(statusCode, errorMessage)
+            }
 
-                override fun onFailure(code: Int, errorMessage: String) {
-                    callback.onFailed(code, errorMessage)
-                }
-            })
+            override fun onFinish() {}
+
+            override fun onHideProgress() {
+                callback.onHideProgress()
+            }
+
+            override fun onShowProgress() {
+                callback.onShowProgress()
+            }
+
+            override fun onSuccess(data: ArticleResponse) {
+                callback.onSuccess(data)
+            }
+        }) {
+        }
     }
 
     override fun getEverythings(
@@ -93,19 +99,26 @@ object ProjectRemoteDataSource : ProjectDataSource {
             sortBy,
             pageSize,
             page
-        ).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { callback.onShowProgress() }
-            .doOnTerminate { callback.onHideProgress() }
-            .subscribe(object : FrogoApiObserver<ArticleResponse>() {
-                override fun onSuccess(data: ArticleResponse) {
-                    callback.onSuccess(data)
-                }
+        ).doApiRequest(object : FrogoDataResponse<ArticleResponse> {
+            override fun onFailed(statusCode: Int, errorMessage: String) {
+                callback.onFailed(statusCode, errorMessage)
+            }
 
-                override fun onFailure(code: Int, errorMessage: String) {
-                    callback.onFailed(code, errorMessage)
-                }
-            })
+            override fun onFinish() {}
+
+            override fun onHideProgress() {
+                callback.onHideProgress()
+            }
+
+            override fun onShowProgress() {
+                callback.onShowProgress()
+            }
+
+            override fun onSuccess(data: ArticleResponse) {
+                callback.onSuccess(data)
+            }
+        }) {
+        }
     }
 
     override fun getSources(
@@ -116,19 +129,26 @@ object ProjectRemoteDataSource : ProjectDataSource {
         callback: ProjectDataSource.GetRemoteCallback<SourceResponse>
     ) {
         ProjectApiClient.create().getSources(apiKey, language, country, category)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { callback.onShowProgress() }
-            .doOnTerminate { callback.onHideProgress() }
-            .subscribe(object : FrogoApiObserver<SourceResponse>() {
+            .doApiRequest(object : FrogoDataResponse<SourceResponse> {
+                override fun onFailed(statusCode: Int, errorMessage: String) {
+                    callback.onFailed(statusCode, errorMessage)
+                }
+
+                override fun onFinish() {}
+
+                override fun onHideProgress() {
+                    callback.onHideProgress()
+                }
+
+                override fun onShowProgress() {
+                    callback.onShowProgress()
+                }
+
                 override fun onSuccess(data: SourceResponse) {
                     callback.onSuccess(data)
                 }
-
-                override fun onFailure(code: Int, errorMessage: String) {
-                    callback.onFailed(code, errorMessage)
-                }
-            })
+            }) {
+            }
 
     }
 
@@ -190,9 +210,13 @@ object ProjectRemoteDataSource : ProjectDataSource {
                     callback.onHideProgress()
                 }
 
-                override fun onFailed(statusCode: Int, errorMessage: String?) {
+                override fun onFailed(statusCode: Int, errorMessage: String) {
                     // Your failed to do
                     callback.onFailed(statusCode, errorMessage)
+                }
+
+                override fun onFinish() {
+                    // Your finish to do
                 }
 
                 override fun onSuccess(data: ArticleResponse) {

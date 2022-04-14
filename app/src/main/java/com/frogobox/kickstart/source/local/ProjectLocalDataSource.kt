@@ -3,7 +3,7 @@ package com.frogobox.kickstart.source.local
 import android.content.SharedPreferences
 import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.coreapi.news.response.SourceResponse
-import com.frogobox.coresdk.FrogoLocalObserver
+import com.frogobox.coresdk.observer.FrogoLocalObserver
 import com.frogobox.kickstart.source.ProjectDataSource
 import com.frogobox.kickstart.source.local.dao.FavoriteDao
 import com.frogobox.kickstart.source.model.Favorite
@@ -90,7 +90,20 @@ class ProjectLocalDataSource(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : FrogoLocalObserver<List<Favorite>>() {
-                    override fun onCallbackSucces(data: List<Favorite>) {
+
+                    override fun onLocalFailure(code: Int, errorMessage: String) {
+                        callback.onFailed(code, errorMessage)
+                    }
+
+                    override fun onLocalFinish() {
+
+                    }
+
+                    override fun onLocalStartObserver(disposable: Disposable) {
+                        addSubscribe(disposable = disposable)
+                    }
+
+                    override fun onLocalSuccess(data: List<Favorite>) {
                         callback.onShowProgress()
                         callback.onSuccess(data)
                         if (data.isEmpty()) {
@@ -98,18 +111,6 @@ class ProjectLocalDataSource(
                         } else {
                             callback.onEmptyData(false)
                         }
-                        callback.onHideProgress()
-                    }
-
-                    override fun onCallbackError(code: Int, errorMessage: String) {
-                        callback.onFailed(code, errorMessage)
-                    }
-
-                    override fun onAddSubscribe(disposable: Disposable) {
-                        addSubscribe(disposable = disposable)
-                    }
-
-                    override fun onCompleted() {
                         callback.onHideProgress()
                     }
                 })
