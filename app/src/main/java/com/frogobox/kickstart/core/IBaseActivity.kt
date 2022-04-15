@@ -15,4 +15,5 @@ package com.frogobox.kickstart.core
  */
 
 interface IBaseActivity {
+
 }

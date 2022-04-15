@@ -1,9 +1,5 @@
 package com.frogobox.kickstart.core
 
-import android.view.View
-import androidx.fragment.app.Fragment
-import com.google.android.gms.ads.AdView
-
 /*
  * Created by Faisal Amir on 13/05/2020
  * BaseMusicPlayer Source Code

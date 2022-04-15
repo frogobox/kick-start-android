@@ -1,17 +1,9 @@
 package com.frogobox.kickstart.core
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.frogobox.admob.ui.FrogoAdmobActivity
 import com.frogobox.admob.ui.FrogoSdkAdmobActivity
 import com.frogobox.kickstart.R
-import com.google.gson.Gson
 
 /**
  * Created by Faisal Amir
@@ -30,7 +22,7 @@ import com.google.gson.Gson
  * com.frogobox.basemusicplayer.base
  *
  */
-abstract class BaseActivity<VB: ViewBinding> : FrogoSdkAdmobActivity<VB>(), IBaseActivity {
+abstract class BaseActivity<VB : ViewBinding> : FrogoSdkAdmobActivity<VB>(), IBaseActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
