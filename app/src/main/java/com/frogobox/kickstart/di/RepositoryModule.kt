@@ -1,10 +1,12 @@
 package com.frogobox.kickstart.di
 
-import androidx.preference.PreferenceManager
 import com.frogobox.kickstart.source.ProjectDataRepository
 import com.frogobox.kickstart.source.local.ProjectAppDatabase
 import com.frogobox.kickstart.source.local.ProjectLocalDataSource
 import com.frogobox.kickstart.source.remote.ProjectRemoteDataSource
+import com.frogobox.kickstart.util.appPrefName
+import com.frogobox.sdk.preference.FrogoPreference
+import com.frogobox.sdk.preference.FrogoSinglePreference
 import com.frogobox.sdk.util.AppExecutors
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -25,7 +27,7 @@ import org.koin.dsl.module
 val repositoryModule = module {
 
     single {
-        PreferenceManager.getDefaultSharedPreferences(androidContext())
+        FrogoPreference(androidContext(), appPrefName)
     }
 
     single {
@@ -37,7 +39,11 @@ val repositoryModule = module {
     }
 
     single {
-        ProjectDataRepository(ProjectRemoteDataSource, get())
+        ProjectRemoteDataSource(get(), get(), get(), get(), get())
+    }
+
+    single {
+        ProjectDataRepository(get(), get())
     }
 
 }

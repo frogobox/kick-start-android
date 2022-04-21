@@ -2,8 +2,8 @@ package com.frogobox.kickstart.source.remote.network
 
 import com.frogobox.coreapi.news.NewsUrl
 import com.frogobox.coresdk.source.FrogoApiClient
-import com.frogobox.kickstart.BuildConfig
 import com.frogobox.kickstart.ProjectApplication
+import com.frogobox.kickstart.util.appIsDebug
 import com.frogobox.sdk.ext.usingChuck
 
 /**
@@ -25,10 +25,9 @@ import com.frogobox.sdk.ext.usingChuck
  */
 object ProjectApiClient {
 
-    fun create(): ProjectApiService {
+    fun createNewsApiService(): NewsApiService {
         return FrogoApiClient.create(
-            NewsUrl.BASE_URL,
-            BuildConfig.DEBUG,
+            NewsUrl.BASE_URL, appIsDebug,
             ProjectApplication.getContext().usingChuck()
         )
     }

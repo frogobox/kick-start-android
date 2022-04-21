@@ -1,6 +1,7 @@
 package com.frogobox.kickstart
 
 import android.content.Context
+import com.frogobox.kickstart.di.consumeApiModule
 import com.frogobox.kickstart.di.repositoryModule
 import com.frogobox.kickstart.di.viewModelModule
 import com.frogobox.sdk.FrogoApplication
@@ -29,7 +30,7 @@ class ProjectApplication : FrogoApplication() {
     }
 
     override fun setupKoinModule(koinApplication: KoinApplication) {
-        koinApplication.modules(listOf(repositoryModule, viewModelModule))
+        koinApplication.modules(listOf(repositoryModule, viewModelModule, consumeApiModule))
     }
 
     override fun setupOnCreate() {

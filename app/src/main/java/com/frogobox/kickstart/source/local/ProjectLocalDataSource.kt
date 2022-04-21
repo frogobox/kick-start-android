@@ -1,17 +1,16 @@
 package com.frogobox.kickstart.source.local
 
-import android.content.SharedPreferences
 import com.frogobox.coreapi.news.response.ArticleResponse
-import com.frogobox.coreapi.news.response.SourceResponse
-import com.frogobox.coresdk.observer.FrogoLocalObserver
+import com.frogobox.kickstart.model.Favorite
 import com.frogobox.kickstart.source.ProjectDataSource
+import com.frogobox.kickstart.source.callback.ProjectDataCallback
+import com.frogobox.kickstart.source.callback.ProjectStateCallback
 import com.frogobox.kickstart.source.local.dao.FavoriteDao
-import com.frogobox.kickstart.source.model.Favorite
+import com.frogobox.sdk.ext.executeRoomDB
+import com.frogobox.sdk.ext.fetchRoomDB
+import com.frogobox.sdk.preference.FrogoPreference
+import com.frogobox.sdk.source.FrogoLocalDataSource
 import com.frogobox.sdk.util.AppExecutors
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.schedulers.Schedulers
 
 /**
  * Created by Faisal Amir
@@ -32,9 +31,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
  */
 class ProjectLocalDataSource(
     private val appExecutors: AppExecutors,
-    private val sharedPreferences: SharedPreferences,
+    private val frogoPreference: FrogoPreference,
     private val favoriteDao: FavoriteDao
-) : ProjectDataSource {
+) : FrogoLocalDataSource(appExecutors, frogoPreference), ProjectDataSource {
 
     override fun getTopHeadline(
         apiKey: String,
@@ -44,131 +43,36 @@ class ProjectLocalDataSource(
         country: String?,
         pageSize: Int?,
         page: Int?,
-        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
+        callback: ProjectDataCallback<ArticleResponse>
     ) {
-
     }
 
-    override fun getEverythings(
-        apiKey: String,
-        q: String?,
-        from: String?,
-        to: String?,
-        qInTitle: String?,
-        sources: String?,
-        domains: String?,
-        excludeDomains: String?,
-        language: String?,
-        sortBy: String?,
-        pageSize: Int?,
-        page: Int?,
-        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
-    ) {
 
+    override fun saveFavorite(data: Favorite, callback: ProjectStateCallback) {
+        favoriteDao.insertData(data).executeRoomDB(callback)
     }
 
-    override fun getSources(
-        apiKey: String,
-        language: String,
-        country: String,
-        category: String,
-        callback: ProjectDataSource.GetRemoteCallback<SourceResponse>
-    ) {
-
-    }
-
-    override fun saveRoomFavorite(data: Favorite): Boolean {
-        appExecutors.diskIO.execute {
-            favoriteDao.insertData(data)
-        }
-        return true
-    }
-
-    override fun getRoomFavorite(callback: ProjectDataSource.GetLocalCallback<List<Favorite>>) {
-        appExecutors.diskIO.execute {
-            favoriteDao.getAllData()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : FrogoLocalObserver<List<Favorite>>() {
-
-                    override fun onLocalFailure(code: Int, errorMessage: String) {
-                        callback.onFailed(code, errorMessage)
-                    }
-
-                    override fun onLocalFinish() {
-
-                    }
-
-                    override fun onLocalStartObserver(disposable: Disposable) {
-                        addSubscribe(disposable = disposable)
-                    }
-
-                    override fun onLocalSuccess(data: List<Favorite>) {
-                        callback.onShowProgress()
-                        callback.onSuccess(data)
-                        if (data.isEmpty()) {
-                            callback.onEmptyData(true)
-                        } else {
-                            callback.onEmptyData(false)
-                        }
-                        callback.onHideProgress()
-                    }
-                })
+    override fun getFavorite(callback: ProjectDataCallback<List<Favorite>>) {
+        favoriteDao.getAllData().fetchRoomDB(callback) {
+            addSubscribe(it)
         }
     }
 
-    override fun updateRoomFavorite(
+    override fun updateFavorite(
         tableId: Int,
         title: String,
         description: String,
         dateTime: String
-    ): Boolean {
-        return true
-    }
-
-
-    override fun deleteRoomFavorite(tableId: Int): Boolean {
-        appExecutors.diskIO.execute {
-            favoriteDao.deleteDataFromTableId(tableId)
-        }
-        return true
-    }
-
-    override fun nukeRoomFavorite(): Boolean {
-        appExecutors.diskIO.execute {
-            favoriteDao.nukeData()
-        }
-        return true
-    }
-
-    override fun consumeTopHeadline(
-        apiKey: String,
-        q: String?,
-        sources: String?,
-        category: String?,
-        country: String?,
-        pageSize: Int?,
-        page: Int?,
-        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
     ) {
 
     }
 
-    private
-    var compositeDisposable: CompositeDisposable? = null
-
-    fun addSubscribe(disposable: Disposable) {
-        if (compositeDisposable == null) {
-            compositeDisposable = CompositeDisposable()
-
-            compositeDisposable?.add(disposable)
-        }
+    override fun deleteFavorite(tableId: Int, callback: ProjectStateCallback) {
+        favoriteDao.deleteDataFromTableId(tableId).executeRoomDB(callback)
     }
 
-    private fun clearSubscribe() {
-        if (compositeDisposable != null) {
-            compositeDisposable?.clear()
-        }
+    override fun nukeFavorite(callback: ProjectStateCallback) {
+        favoriteDao.nukeData().executeRoomDB(callback)
     }
 
 }

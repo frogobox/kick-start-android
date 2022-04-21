@@ -1,16 +1,19 @@
 package com.frogobox.kickstart.source.remote
 
-import android.util.Log
+import com.frogobox.api.meal.ConsumeTheMealDbApi
+import com.frogobox.api.movie.ConsumeMovieApi
 import com.frogobox.api.news.ConsumeNewsApi
-import com.frogobox.coreapi.ConsumeApiResponse
+import com.frogobox.api.pixabay.ConsumePixabayApi
+import com.frogobox.api.sport.ConsumeTheSportDbApi
 import com.frogobox.coreapi.news.response.ArticleResponse
-import com.frogobox.coreapi.news.response.SourceResponse
 import com.frogobox.coresdk.response.FrogoDataResponse
+import com.frogobox.kickstart.model.Favorite
 import com.frogobox.kickstart.source.ProjectDataSource
-import com.frogobox.kickstart.source.model.Favorite
+import com.frogobox.kickstart.source.callback.ProjectDataCallback
+import com.frogobox.kickstart.source.callback.ProjectStateCallback
 import com.frogobox.kickstart.source.remote.network.ProjectApiClient
-import com.frogobox.kickstart.util.SingleFunc.noAction
 import com.frogobox.sdk.ext.doApiRequest
+import com.frogobox.sdk.source.FrogoRemoteDataSource
 
 /**
  * Created by Faisal Amir
@@ -29,7 +32,13 @@ import com.frogobox.sdk.ext.doApiRequest
  * com.frogobox.publicspeakingbooster.source.remote
  *
  */
-object ProjectRemoteDataSource : ProjectDataSource {
+class ProjectRemoteDataSource(
+    val consumeNewsApi: ConsumeNewsApi,
+    val consumeMovieApi: ConsumeMovieApi,
+    val consumeTheMealDbApi: ConsumeTheMealDbApi,
+    val consumeTheSportDbApi: ConsumeTheSportDbApi,
+    val consumePixabayApi: ConsumePixabayApi
+) : FrogoRemoteDataSource(), ProjectDataSource {
 
     override fun getTopHeadline(
         apiKey: String,
@@ -39,9 +48,9 @@ object ProjectRemoteDataSource : ProjectDataSource {
         country: String?,
         pageSize: Int?,
         page: Int?,
-        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
+        callback: ProjectDataCallback<ArticleResponse>
     ) {
-        ProjectApiClient.create().getTopHeadline(
+        ProjectApiClient.createNewsApiService().getTopHeadline(
             apiKey,
             q,
             sources,
@@ -54,7 +63,9 @@ object ProjectRemoteDataSource : ProjectDataSource {
                 callback.onFailed(statusCode, errorMessage)
             }
 
-            override fun onFinish() {}
+            override fun onFinish() {
+                callback.onFinish()
+            }
 
             override fun onHideProgress() {
                 callback.onHideProgress()
@@ -65,166 +76,29 @@ object ProjectRemoteDataSource : ProjectDataSource {
             }
 
             override fun onSuccess(data: ArticleResponse) {
-                callback.onSuccess(data)
-            }
-        }) {
-        }
-    }
-
-    override fun getEverythings(
-        apiKey: String,
-        q: String?,
-        from: String?,
-        to: String?,
-        qInTitle: String?,
-        sources: String?,
-        domains: String?,
-        excludeDomains: String?,
-        language: String?,
-        sortBy: String?,
-        pageSize: Int?,
-        page: Int?,
-        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
-    ) {
-        ProjectApiClient.create().getEverythings(
-            apiKey,
-            q,
-            from,
-            to,
-            qInTitle,
-            sources,
-            domains,
-            excludeDomains,
-            language,
-            sortBy,
-            pageSize,
-            page
-        ).doApiRequest(object : FrogoDataResponse<ArticleResponse> {
-            override fun onFailed(statusCode: Int, errorMessage: String) {
-                callback.onFailed(statusCode, errorMessage)
-            }
-
-            override fun onFinish() {}
-
-            override fun onHideProgress() {
-                callback.onHideProgress()
-            }
-
-            override fun onShowProgress() {
-                callback.onShowProgress()
-            }
-
-            override fun onSuccess(data: ArticleResponse) {
-                callback.onSuccess(data)
-            }
-        }) {
-        }
-    }
-
-    override fun getSources(
-        apiKey: String,
-        language: String,
-        country: String,
-        category: String,
-        callback: ProjectDataSource.GetRemoteCallback<SourceResponse>
-    ) {
-        ProjectApiClient.create().getSources(apiKey, language, country, category)
-            .doApiRequest(object : FrogoDataResponse<SourceResponse> {
-                override fun onFailed(statusCode: Int, errorMessage: String) {
-                    callback.onFailed(statusCode, errorMessage)
-                }
-
-                override fun onFinish() {}
-
-                override fun onHideProgress() {
-                    callback.onHideProgress()
-                }
-
-                override fun onShowProgress() {
-                    callback.onShowProgress()
-                }
-
-                override fun onSuccess(data: SourceResponse) {
+                if (data.articles?.isEmpty()!!) {
+                    callback.onEmptyData()
+                } else {
                     callback.onSuccess(data)
                 }
-            }) {
             }
-
+        }) {
+            addSubscribe(it)
+        }
     }
 
+    override fun saveFavorite(data: Favorite, callback: ProjectStateCallback) {}
 
-    override fun saveRoomFavorite(data: Favorite): Boolean {
-        return noAction()
-    }
+    override fun getFavorite(callback: ProjectDataCallback<List<Favorite>>) {}
 
-
-    override fun getRoomFavorite(callback: ProjectDataSource.GetLocalCallback<List<Favorite>>) {
-        noAction()
-    }
-
-    override fun updateRoomFavorite(
+    override fun updateFavorite(
         tableId: Int,
         title: String,
         description: String,
         dateTime: String
-    ): Boolean {
-        return noAction()
-    }
+    ) {}
 
-    override fun deleteRoomFavorite(tableId: Int): Boolean {
-        return noAction()
-    }
+    override fun deleteFavorite(tableId: Int, callback: ProjectStateCallback) {}
 
-    override fun nukeRoomFavorite(): Boolean {
-        return noAction()
-    }
-
-    override fun consumeTopHeadline(
-        apiKey: String,
-        q: String?,
-        sources: String?,
-        category: String?,
-        country: String?,
-        pageSize: Int?,
-        page: Int?,
-        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
-    ) {
-        val consumeNewsApi = ConsumeNewsApi(apiKey)
-        consumeNewsApi.getTopHeadline( // Adding Base Parameter on main function
-            q,
-            sources,
-            category,
-            country,
-            pageSize,
-            page,
-            object : ConsumeApiResponse<ArticleResponse> {
-                override fun onShowProgress() {
-                    // Your Progress Show
-                    Log.d("RxJavaShow", "Show Progress")
-                    callback.onShowProgress()
-                }
-
-                override fun onHideProgress() {
-                    // Your Progress Hide
-                    Log.d("RxJavaHide", "Hide Progress")
-                    callback.onHideProgress()
-                }
-
-                override fun onFailed(statusCode: Int, errorMessage: String) {
-                    // Your failed to do
-                    callback.onFailed(statusCode, errorMessage)
-                }
-
-                override fun onFinish() {
-                    // Your finish to do
-                }
-
-                override fun onSuccess(data: ArticleResponse) {
-                    // Your Ui or data
-                    callback.onSuccess(data)
-                }
-            })
-    }
-
-
+    override fun nukeFavorite(callback: ProjectStateCallback) {}
 }

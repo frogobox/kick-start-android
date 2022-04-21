@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.viewbinding.ViewBinding
 import com.frogobox.admob.ui.FrogoSdkAdmobActivity
 import com.frogobox.kickstart.R
+import com.frogobox.sdk.preference.FrogoPreference
+import com.frogobox.sdk.preference.FrogoSinglePreference
+import org.koin.android.ext.android.inject
 
 /**
  * Created by Faisal Amir
@@ -23,6 +26,8 @@ import com.frogobox.kickstart.R
  *
  */
 abstract class BaseActivity<VB : ViewBinding> : FrogoSdkAdmobActivity<VB>(), IBaseActivity {
+
+    protected val singlePref : FrogoPreference by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

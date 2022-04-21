@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.source.model
+package com.frogobox.kickstart.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -3,7 +3,8 @@ package com.frogobox.kickstart.mvvm.detail
 import android.app.Application
 import com.frogobox.kickstart.core.BaseViewModel
 import com.frogobox.kickstart.source.ProjectDataRepository
-import com.frogobox.kickstart.source.model.Favorite
+import com.frogobox.kickstart.model.Favorite
+import com.frogobox.kickstart.source.callback.ProjectStateCallback
 
 /*
  * Created by faisalamir on 12/07/21
@@ -20,10 +21,31 @@ import com.frogobox.kickstart.source.model.Favorite
 class DetailViewModel(
     private val context: Application,
     private val repository: ProjectDataRepository
-) : BaseViewModel(context) {
+) : BaseViewModel(context, repository) {
 
     fun saveToRoom(data: Favorite) {
-        repository.saveRoomFavorite(data)
+        repository.saveFavorite(data, object : ProjectStateCallback {
+            override fun onFailed(statusCode: Int, errorMessage: String) {
+                
+            }
+
+            override fun onFinish() {
+                
+            }
+
+            override fun onHideProgress() {
+                
+            }
+
+            override fun onShowProgress() {
+                
+            }
+
+            override fun onSuccess() {
+                
+            }
+
+        })
     }
 
 }

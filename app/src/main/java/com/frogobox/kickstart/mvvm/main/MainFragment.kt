@@ -90,4 +90,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mainViewModel.onClearDisposable()
+    }
+
 }

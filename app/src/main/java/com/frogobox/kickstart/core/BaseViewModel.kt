@@ -1,6 +1,7 @@
 package com.frogobox.kickstart.core
 
 import android.app.Application
+import com.frogobox.kickstart.source.ProjectDataRepository
 import com.frogobox.sdk.view.FrogoViewModel
 
 /**
@@ -20,6 +21,14 @@ import com.frogobox.sdk.view.FrogoViewModel
  * com.frogobox.basemusicplayer.base
  *
  */
-abstract class BaseViewModel(application: Application) : FrogoViewModel(application) {
+open class BaseViewModel(
+    application: Application,
+    private val repository: ProjectDataRepository
+) : FrogoViewModel(application) {
+
+    override fun onClearDisposable() {
+        super.onClearDisposable()
+        repository.onClearDisposables()
+    }
 
 }

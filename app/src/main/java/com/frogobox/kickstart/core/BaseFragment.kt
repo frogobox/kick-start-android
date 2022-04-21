@@ -1,7 +1,9 @@
 package com.frogobox.kickstart.core
 
 import androidx.viewbinding.ViewBinding
+import com.frogobox.sdk.preference.FrogoPreference
 import com.frogobox.sdk.view.FrogoFragment
+import org.koin.android.ext.android.inject
 
 /**
  * Created by Faisal Amir
@@ -21,6 +23,8 @@ import com.frogobox.sdk.view.FrogoFragment
  *
  */
 abstract class BaseFragment<VB : ViewBinding> : FrogoFragment<VB>(), IBaseFragment {
+
+    protected val singlePref : FrogoPreference by inject()
 
     protected val mActivity: BaseActivity<*> by lazy {
         (activity as BaseActivity<*>)

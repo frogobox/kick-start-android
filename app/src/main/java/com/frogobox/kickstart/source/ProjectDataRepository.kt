@@ -1,11 +1,19 @@
 package com.frogobox.kickstart.source
 
 
+import com.frogobox.api.meal.ConsumeTheMealDbApi
+import com.frogobox.api.movie.ConsumeMovieApi
+import com.frogobox.api.news.ConsumeNewsApi
+import com.frogobox.api.pixabay.ConsumePixabayApi
+import com.frogobox.api.sport.ConsumeTheSportDbApi
 import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.coreapi.news.response.SourceResponse
-import com.frogobox.kickstart.source.model.Favorite
+import com.frogobox.kickstart.model.Favorite
+import com.frogobox.kickstart.source.callback.ProjectDataCallback
+import com.frogobox.kickstart.source.callback.ProjectStateCallback
 import com.frogobox.kickstart.source.local.ProjectLocalDataSource
 import com.frogobox.kickstart.source.remote.ProjectRemoteDataSource
+import com.frogobox.sdk.source.FrogoRepository
 
 /**
  * Created by Faisal Amir
@@ -24,10 +32,17 @@ import com.frogobox.kickstart.source.remote.ProjectRemoteDataSource
  * com.frogobox.basemusicplayer.source
  *
  */
-open class ProjectDataRepository(
+
+class ProjectDataRepository(
     private val remoteDataSource: ProjectRemoteDataSource,
     private val localDataSource: ProjectLocalDataSource
-) : ProjectDataSource {
+) : FrogoRepository(remoteDataSource, localDataSource), ProjectDataSource {
+
+    val consumeNewsApi: ConsumeNewsApi = remoteDataSource.consumeNewsApi
+    val consumeMovieApi: ConsumeMovieApi = remoteDataSource.consumeMovieApi
+    val consumeTheMealDbApi: ConsumeTheMealDbApi = remoteDataSource.consumeTheMealDbApi
+    val consumeTheSportDbApi: ConsumeTheSportDbApi = remoteDataSource.consumeTheSportDbApi
+    val consumePixabayApi: ConsumePixabayApi = remoteDataSource.consumePixabayApi
 
     override fun getTopHeadline(
         apiKey: String,
@@ -37,7 +52,7 @@ open class ProjectDataRepository(
         country: String?,
         pageSize: Int?,
         page: Int?,
-        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
+        callback: ProjectDataCallback<ArticleResponse>
     ) {
         remoteDataSource.getTopHeadline(
             apiKey,
@@ -51,93 +66,28 @@ open class ProjectDataRepository(
         )
     }
 
-    override fun getEverythings(
-        apiKey: String,
-        q: String?,
-        from: String?,
-        to: String?,
-        qInTitle: String?,
-        sources: String?,
-        domains: String?,
-        excludeDomains: String?,
-        language: String?,
-        sortBy: String?,
-        pageSize: Int?,
-        page: Int?,
-        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
-    ) {
-        remoteDataSource.getEverythings(
-            apiKey,
-            q,
-            from,
-            to,
-            qInTitle,
-            sources,
-            domains,
-            excludeDomains,
-            language,
-            sortBy,
-            pageSize,
-            page,
-            callback
-        )
+    override fun saveFavorite(data: Favorite, callback: ProjectStateCallback) {
+        
     }
 
-    override fun getSources(
-        apiKey: String,
-        language: String,
-        country: String,
-        category: String,
-        callback: ProjectDataSource.GetRemoteCallback<SourceResponse>
-    ) {
-        remoteDataSource.getSources(apiKey, language, country, category, callback)
+    override fun getFavorite(callback: ProjectDataCallback<List<Favorite>>) {
+        
     }
 
-    override fun saveRoomFavorite(data: Favorite): Boolean {
-        return localDataSource.saveRoomFavorite(data)
-    }
-
-    override fun getRoomFavorite(callback: ProjectDataSource.GetLocalCallback<List<Favorite>>) {
-        localDataSource.getRoomFavorite(callback)
-    }
-
-    override fun updateRoomFavorite(
+    override fun updateFavorite(
         tableId: Int,
         title: String,
         description: String,
         dateTime: String
-    ): Boolean {
-        return localDataSource.updateRoomFavorite(tableId, title, description, dateTime)
-    }
-
-    override fun deleteRoomFavorite(tableId: Int): Boolean {
-        return localDataSource.deleteRoomFavorite(tableId)
-    }
-
-    override fun nukeRoomFavorite(): Boolean {
-        return localDataSource.nukeRoomFavorite()
-    }
-
-    override fun consumeTopHeadline(
-        apiKey: String,
-        q: String?,
-        sources: String?,
-        category: String?,
-        country: String?,
-        pageSize: Int?,
-        page: Int?,
-        callback: ProjectDataSource.GetRemoteCallback<ArticleResponse>
     ) {
-        remoteDataSource.consumeTopHeadline(
-            apiKey,
-            q,
-            sources,
-            category,
-            country,
-            pageSize,
-            page,
-            callback
-        )
+        
     }
 
+    override fun deleteFavorite(tableId: Int, callback: ProjectStateCallback) {
+        
+    }
+
+    override fun nukeFavorite(callback: ProjectStateCallback) {
+        
+    }
 }

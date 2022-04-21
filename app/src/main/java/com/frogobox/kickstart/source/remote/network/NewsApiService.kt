@@ -20,7 +20,7 @@ import retrofit2.http.Query
  * All rights reserved
  *
  */
-interface ProjectApiService {
+interface NewsApiService {
 
     // Get Top Headline
     @GET(NewsUrl.URL_TOP_HEADLINE)

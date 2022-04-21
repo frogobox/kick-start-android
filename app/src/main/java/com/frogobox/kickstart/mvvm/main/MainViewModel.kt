@@ -8,6 +8,7 @@ import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.kickstart.core.BaseViewModel
 import com.frogobox.kickstart.source.ProjectDataRepository
 import com.frogobox.kickstart.source.ProjectDataSource
+import com.frogobox.kickstart.source.callback.ProjectDataCallback
 import com.frogobox.sdk.util.FrogoMutableLiveData
 import kotlinx.coroutines.launch
 
@@ -30,7 +31,7 @@ class MainViewModel(
     private val context: Application,
     private val repository: ProjectDataRepository
 ) :
-    BaseViewModel(context) {
+    BaseViewModel(context, repository) {
 
     var topHeadlineLive = FrogoMutableLiveData<ArticleResponse>()
 
@@ -44,7 +45,7 @@ class MainViewModel(
                 NewsConstant.COUNTRY_ID,
                 null,
                 null,
-                object : ProjectDataSource.GetRemoteCallback<ArticleResponse> {
+                object : ProjectDataCallback<ArticleResponse> {
                     override fun onShowProgress() {
                         eventShowProgress.postValue(true)
                     }
@@ -57,15 +58,22 @@ class MainViewModel(
                         topHeadlineLive.postValue(data)
                     }
 
-                    override fun onFailed(statusCode: Int, errorMessage: String?) {
+                    override fun onFailed(statusCode: Int, errorMessage: String) {
                         eventFailed.postValue(errorMessage)
                     }
 
-                    override fun onEmptyData(check: Boolean) {
-                        eventEmpty.postValue(check)
+                    override fun onFinish() {
+
                     }
+
+                    override fun onEmptyData() {
+                        eventEmpty.postValue(true)
+                    }
+
+
                 }
             )
         }
     }
+
 }

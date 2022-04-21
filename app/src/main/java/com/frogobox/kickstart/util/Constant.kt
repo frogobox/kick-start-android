@@ -2,8 +2,6 @@ package com.frogobox.kickstart.util
 
 import android.Manifest
 import android.os.Environment
-import com.frogobox.kickstart.BuildConfig
-import com.frogobox.kickstart.util.Constant.Ext.CSV
 
 /**
  * Created by Faisal Amir
@@ -34,15 +32,14 @@ object Constant {
     const val SPLASH_INTERVAL = 1000
 
     object Arg {
-        private const val BASE_ARGUMENTS = BuildConfig.APPLICATION_ID
+        private val BASE_ARGUMENTS = appApplicationId
     }
 
     object Extra {
-        private const val BASE_EXTRA = BuildConfig.APPLICATION_ID
+        private val BASE_EXTRA = appApplicationId
     }
 
     object RoomDatabase {
-        val DATABASE_NAME = {BuildConfig.DATABASE_NAME}
         const val BASE_TABLE_NAME = "table"
         const val TABLE_NAME_FAVORITE = "favorite"
     }
@@ -50,7 +47,8 @@ object Constant {
     object Code {
         const val CODE_NAME = 1
         const val CODE_REQUEST_VIDEO_PERMISSIONS = 1
-        val CODE_VIDEO_PERMISSIONS = arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
+        val CODE_VIDEO_PERMISSIONS =
+            arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
     }
 
 

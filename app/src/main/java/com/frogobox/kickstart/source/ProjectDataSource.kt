@@ -1,8 +1,10 @@
 package com.frogobox.kickstart.source
 
 import com.frogobox.coreapi.news.response.ArticleResponse
-import com.frogobox.coreapi.news.response.SourceResponse
-import com.frogobox.kickstart.source.model.Favorite
+import com.frogobox.coresdk.source.ICoreDataSource
+import com.frogobox.kickstart.model.Favorite
+import com.frogobox.kickstart.source.callback.ProjectDataCallback
+import com.frogobox.kickstart.source.callback.ProjectStateCallback
 
 /**
  * Created by Faisal Amir
@@ -21,7 +23,7 @@ import com.frogobox.kickstart.source.model.Favorite
  * com.frogobox.basemusicplayer.source
  *
  */
-interface ProjectDataSource {
+interface ProjectDataSource : ICoreDataSource {
 
     // API Server ----------------------------------------------------------------------------------
 
@@ -34,82 +36,29 @@ interface ProjectDataSource {
         country: String?,
         pageSize: Int?,
         page: Int?,
-        callback: GetRemoteCallback<ArticleResponse>
-    )
-
-    // Get Everythings
-    fun getEverythings(
-        apiKey: String,
-        q: String?,
-        from: String?,
-        to: String?,
-        qInTitle: String?,
-        sources: String?,
-        domains: String?,
-        excludeDomains: String?,
-        language: String?,
-        sortBy: String?,
-        pageSize: Int?,
-        page: Int?,
-        callback: GetRemoteCallback<ArticleResponse>
-    )
-
-    // Get Sources
-    fun getSources(
-        apiKey: String,
-        language: String,
-        country: String,
-        category: String,
-        callback: GetRemoteCallback<SourceResponse>
+        callback: ProjectDataCallback<ArticleResponse>
     )
 
     // Room Database -------------------------------------------------------------------------------
 
-    fun saveRoomFavorite(data: Favorite) : Boolean
+    fun saveFavorite(data: Favorite, callback: ProjectStateCallback)
 
     // Get
-    fun getRoomFavorite(callback: GetLocalCallback<List<Favorite>>)
+    fun getFavorite(callback: ProjectDataCallback<List<Favorite>>)
 
     // Update
-    fun updateRoomFavorite(tableId: Int, title: String, description: String, dateTime: String) : Boolean
-
-    // Delete
-    fun deleteRoomFavorite(tableId: Int) : Boolean
-
-    // Nuke
-    fun nukeRoomFavorite() : Boolean
-    // ---------------------------------------------------------------------------------------------
-
-    // Consumable Source ---------------------------------------------------------------------------
-
-    fun consumeTopHeadline(
-        apiKey: String,
-        q: String?,
-        sources: String?,
-        category: String?,
-        country: String?,
-        pageSize: Int?,
-        page: Int?,
-        callback: GetRemoteCallback<ArticleResponse>
+    fun updateFavorite(
+        tableId: Int,
+        title: String,
+        description: String,
+        dateTime: String
     )
 
-    // Interface Helper ----------------------------------------------------------------------------
-
-    // Response Callback
-    interface GetRemoteCallback<T> : FrogoResponseCallback<T>
-
-    // Save
-    interface SaveRoomDataCallBack<T>: FrogoResponseCallback<T>
-    interface SavePrefCallBack<T>: FrogoResponseCallback<T>
-
-    // Get
-    interface GetLocalCallback<T> : FrogoResponseCallback<T>
-
-    // Update
-    interface UpdateRoomDataCallBack<T> : FrogoResponseCallback<T>
-
     // Delete
-    interface DeleteRoomDataCallBack<T> : FrogoResponseCallback<T>
+    fun deleteFavorite(tableId: Int, callback: ProjectStateCallback)
+
+    // Nuke
+    fun nukeFavorite(callback: ProjectStateCallback)
     // ---------------------------------------------------------------------------------------------
 
 }

@@ -6,10 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.frogobox.kickstart.BuildConfig
-import com.frogobox.kickstart.source.model.Favorite
+import com.frogobox.kickstart.model.Favorite
 import com.frogobox.kickstart.source.local.dao.FavoriteDao
-import com.frogobox.kickstart.util.Constant.RoomDatabase.DATABASE_NAME
+import com.frogobox.kickstart.util.appDatabaseName
+import com.frogobox.kickstart.util.appIsDebug
 
 /**
  * Created by Faisal Amir
@@ -51,10 +51,11 @@ abstract class ProjectAppDatabase : RoomDatabase() {
             }
 
         private fun buildDatabase(context: Context): ProjectAppDatabase {
-            return if (BuildConfig.DEBUG) {
+            return if (appIsDebug) {
                 Room.databaseBuilder(
                     context.applicationContext,
-                    ProjectAppDatabase::class.java, DATABASE_NAME.toString()
+                    ProjectAppDatabase::class.java,
+                    appDatabaseName
                 )
                     .addMigrations(MIGRATION_2_3)
                     .fallbackToDestructiveMigration() // FOR DEVELOPMENT ONLY !!!!
@@ -63,7 +64,7 @@ abstract class ProjectAppDatabase : RoomDatabase() {
                 Room.databaseBuilder(
                     context.applicationContext,
                     ProjectAppDatabase::class.java,
-                    DATABASE_NAME.toString()
+                    appDatabaseName
                 )
                     .addMigrations(MIGRATION_2_3)
                     .build()

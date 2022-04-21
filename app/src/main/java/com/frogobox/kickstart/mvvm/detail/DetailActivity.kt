@@ -5,6 +5,7 @@ import com.bumptech.glide.Glide
 import com.frogobox.coreapi.news.model.Article
 import com.frogobox.kickstart.core.BaseActivity
 import com.frogobox.kickstart.databinding.ActivityDetailBinding
+import com.frogobox.sdk.ext.glideLoad
 
 class DetailActivity : BaseActivity<ActivityDetailBinding>() {
 
@@ -28,7 +29,7 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>() {
             tvTitle.text = extraArticle.title
             tvSource.text = extraArticle.source?.name ?: ""
             tvContent.text = extraArticle.description
-            Glide.with(this@DetailActivity).load(extraArticle.urlToImage).into(ivUrl)
+            ivUrl.glideLoad(extraArticle.urlToImage)
         }
     }
 

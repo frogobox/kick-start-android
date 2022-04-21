@@ -226,5 +226,9 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        consumableViewModel.onClearDisposable()
+    }
 
 }

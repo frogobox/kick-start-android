@@ -24,6 +24,7 @@ android {
 
         // Declaration build config
         buildConfigField("String", "DATABASE_NAME", ProjectSetting.DB)
+        buildConfigField("String", "PREF_NAME", ProjectSetting.PREF)
 
         // Naming APK // AAB
         setProperty("archivesBaseName", "${ProjectSetting.NAME_APK}(${versionName})")

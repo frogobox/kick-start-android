@@ -3,8 +3,9 @@ package com.frogobox.kickstart.source.local.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.frogobox.kickstart.source.model.Favorite
+import com.frogobox.kickstart.model.Favorite
 import com.frogobox.kickstart.util.Constant.RoomDatabase.TABLE_NAME_FAVORITE
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 
 /**
@@ -31,12 +32,12 @@ interface FavoriteDao {
     fun getAllData(): Single<List<Favorite>>
 
     @Insert
-    fun insertData(data: Favorite)
+    fun insertData(data: Favorite) : Completable
 
     @Query("DELETE FROM $TABLE_NAME_FAVORITE WHERE table_id = :tableId")
-    fun deleteDataFromTableId(tableId: Int)
+    fun deleteDataFromTableId(tableId: Int) : Completable
 
     @Query("DELETE FROM $TABLE_NAME_FAVORITE")
-    fun nukeData()
+    fun nukeData() : Completable
 
 }

@@ -1,4 +1,6 @@
-package com.frogobox.kickstart.source
+package com.frogobox.kickstart.source.callback
+
+import com.frogobox.coresdk.response.FrogoDataResponse
 
 /**
  * Created by Faisal Amir
@@ -17,16 +19,6 @@ package com.frogobox.kickstart.source
  * com.frogobox.publicspeakingbooster.base
  *
  */
-interface FrogoResponseCallback<T> {
-
-    fun onSuccess(data: T)
-
-    fun onFailed(statusCode: Int, errorMessage: String? = "")
-
-    fun onEmptyData(check : Boolean)
-
-    fun onShowProgress()
-
-    fun onHideProgress()
-
+interface ProjectDataCallback<T> : FrogoDataResponse<T> {
+    fun onEmptyData()
 }
