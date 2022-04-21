@@ -36,44 +36,42 @@ class MainViewModel(
     var topHeadlineLive = FrogoMutableLiveData<ArticleResponse>()
 
     fun getTopHeadline() {
-        viewModelScope.launch {
-            repository.getTopHeadline(
-                NewsUrl.API_KEY,
-                null,
-                null,
-                null,
-                NewsConstant.COUNTRY_ID,
-                null,
-                null,
-                object : ProjectDataCallback<ArticleResponse> {
-                    override fun onShowProgress() {
-                        eventShowProgress.postValue(true)
-                    }
+        repository.getTopHeadline(
+            NewsUrl.API_KEY,
+            null,
+            null,
+            NewsConstant.CATEGORY_TECHNOLOGY,
+            NewsConstant.COUNTRY_ID,
+            null,
+            null,
+            object : ProjectDataCallback<ArticleResponse> {
+                override fun onShowProgress() {
+                    eventShowProgress.postValue(true)
+                }
 
-                    override fun onHideProgress() {
-                        eventShowProgress.postValue(false)
-                    }
+                override fun onHideProgress() {
+                    eventShowProgress.postValue(false)
+                }
 
-                    override fun onSuccess(data: ArticleResponse) {
-                        topHeadlineLive.postValue(data)
-                    }
+                override fun onSuccess(data: ArticleResponse) {
+                    topHeadlineLive.postValue(data)
+                }
 
-                    override fun onFailed(statusCode: Int, errorMessage: String) {
-                        eventFailed.postValue(errorMessage)
-                    }
+                override fun onFailed(statusCode: Int, errorMessage: String) {
+                    eventFailed.postValue(errorMessage)
+                }
 
-                    override fun onFinish() {
-
-                    }
-
-                    override fun onEmptyData() {
-                        eventEmpty.postValue(true)
-                    }
-
+                override fun onFinish() {
 
                 }
-            )
-        }
+
+                override fun onEmptyData() {
+                    eventEmpty.postValue(true)
+                }
+
+
+            }
+        )
     }
 
 }

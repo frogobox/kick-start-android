@@ -1,12 +1,16 @@
 package com.frogobox.kickstart.di
 
+import com.frogobox.coreapi.news.NewsUrl
+import com.frogobox.coresdk.source.FrogoApiClient
 import com.frogobox.kickstart.source.ProjectDataRepository
 import com.frogobox.kickstart.source.local.ProjectAppDatabase
 import com.frogobox.kickstart.source.local.ProjectLocalDataSource
 import com.frogobox.kickstart.source.remote.ProjectRemoteDataSource
+import com.frogobox.kickstart.source.remote.network.NewsApiService
+import com.frogobox.kickstart.util.appIsDebug
 import com.frogobox.kickstart.util.appPrefName
+import com.frogobox.sdk.ext.usingChuck
 import com.frogobox.sdk.preference.FrogoPreference
-import com.frogobox.sdk.preference.FrogoSinglePreference
 import com.frogobox.sdk.util.AppExecutors
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -31,6 +35,14 @@ val repositoryModule = module {
     }
 
     single {
+        FrogoApiClient.create<NewsApiService>(
+            NewsUrl.BASE_URL,
+            appIsDebug,
+            androidContext().usingChuck()
+        )
+    }
+
+    single {
         ProjectAppDatabase.getInstance(androidContext()).favoriteScriptDao()
     }
 
@@ -39,7 +51,7 @@ val repositoryModule = module {
     }
 
     single {
-        ProjectRemoteDataSource(get(), get(), get(), get(), get())
+        ProjectRemoteDataSource(get(), get(), get(), get(), get(), get())
     }
 
     single {

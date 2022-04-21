@@ -11,7 +11,7 @@ import com.frogobox.kickstart.model.Favorite
 import com.frogobox.kickstart.source.ProjectDataSource
 import com.frogobox.kickstart.source.callback.ProjectDataCallback
 import com.frogobox.kickstart.source.callback.ProjectStateCallback
-import com.frogobox.kickstart.source.remote.network.ProjectApiClient
+import com.frogobox.kickstart.source.remote.network.NewsApiService
 import com.frogobox.sdk.ext.doApiRequest
 import com.frogobox.sdk.source.FrogoRemoteDataSource
 
@@ -37,7 +37,8 @@ class ProjectRemoteDataSource(
     val consumeMovieApi: ConsumeMovieApi,
     val consumeTheMealDbApi: ConsumeTheMealDbApi,
     val consumeTheSportDbApi: ConsumeTheSportDbApi,
-    val consumePixabayApi: ConsumePixabayApi
+    val consumePixabayApi: ConsumePixabayApi,
+    private val newsApiService: NewsApiService
 ) : FrogoRemoteDataSource(), ProjectDataSource {
 
     override fun getTopHeadline(
@@ -50,7 +51,7 @@ class ProjectRemoteDataSource(
         page: Int?,
         callback: ProjectDataCallback<ArticleResponse>
     ) {
-        ProjectApiClient.createNewsApiService().getTopHeadline(
+        newsApiService.getTopHeadline(
             apiKey,
             q,
             sources,
@@ -96,7 +97,8 @@ class ProjectRemoteDataSource(
         title: String,
         description: String,
         dateTime: String
-    ) {}
+    ) {
+    }
 
     override fun deleteFavorite(tableId: Int, callback: ProjectStateCallback) {}
 
