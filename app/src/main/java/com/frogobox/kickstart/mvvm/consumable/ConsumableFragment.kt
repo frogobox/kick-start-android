@@ -60,8 +60,8 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
 
     }
 
-    override fun setupOnViewCreated(view: View, savedInstanceState: Bundle?) {
-
+    override fun onViewCreatedExt(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreatedExt(view, savedInstanceState)
     }
 
     private fun setupCategory(data: List<String>) {

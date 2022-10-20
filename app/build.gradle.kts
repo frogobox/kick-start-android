@@ -8,6 +8,7 @@ plugins {
 
 android {
 
+    namespace = "com.frogobox.kickstart"
     compileSdk = ProjectSetting.PROJECT_COMPILE_SDK
 
     defaultConfig {

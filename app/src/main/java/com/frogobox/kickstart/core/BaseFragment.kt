@@ -2,6 +2,7 @@ package com.frogobox.kickstart.core
 
 import androidx.viewbinding.ViewBinding
 import com.frogobox.sdk.preference.FrogoPreference
+import com.frogobox.sdk.view.FrogoBindFragment
 import com.frogobox.sdk.view.FrogoFragment
 import org.koin.android.ext.android.inject
 
@@ -22,7 +23,7 @@ import org.koin.android.ext.android.inject
  * com.frogobox.basemusicplayer.activity
  *
  */
-abstract class BaseFragment<VB : ViewBinding> : FrogoFragment<VB>(), IBaseFragment {
+abstract class BaseFragment<VB : ViewBinding> : FrogoBindFragment<VB>(), IBaseFragment {
 
     protected val singlePref : FrogoPreference by inject()
 

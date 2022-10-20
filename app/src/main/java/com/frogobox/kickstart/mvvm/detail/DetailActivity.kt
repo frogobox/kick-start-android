@@ -22,7 +22,8 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>() {
 
     }
 
-    override fun setupOnCreate(savedInstanceState: Bundle?) {
+    override fun onCreateExt(savedInstanceState: Bundle?) {
+        super.onCreateExt(savedInstanceState)
         setupDetailActivity("Detail Berita")
         val extraArticle = frogoGetExtraData<Article>(EXTRA_DATA)
         binding.apply {

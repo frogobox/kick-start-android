@@ -33,7 +33,8 @@ class ProjectApplication : FrogoApplication() {
         koinApplication.modules(listOf(repositoryModule, viewModelModule, consumeApiModule))
     }
 
-    override fun setupOnCreate() {
+    override fun onCreateExt() {
+        super.onCreateExt()
         instance = this
     }
 
