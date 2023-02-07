@@ -13,14 +13,14 @@ import com.frogobox.kickstart.databinding.ContentArticleVerticalBinding
 import com.frogobox.kickstart.databinding.ContentCategoryBinding
 import com.frogobox.kickstart.databinding.FragmentConsumableBinding
 import com.frogobox.kickstart.mvvm.detail.DetailActivity
-import com.frogobox.kickstart.util.Constant
 import com.frogobox.recycler.core.FrogoRecyclerNotifyListener
 import com.frogobox.recycler.core.IFrogoBindingAdapter
+import com.frogobox.sdk.ext.startActivityExt
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
 
-    private val consumableViewModel: ConsumableViewModel by viewModel()
+    private val viewModel: ConsumableViewModel by viewModel()
 
     override fun setupViewBinding(
         inflater: LayoutInflater,
@@ -30,11 +30,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
     }
 
     override fun setupViewModel() {
-        consumableViewModel.apply {
-
-            getCategory()
-            getRandomTopHeadline()
-            getTopHeadline(NewsConstant.CATEGORY_BUSINESS)
+        viewModel.apply {
 
             listCategory.observe(requireActivity()) {
                 setupCategory(it)
@@ -52,7 +48,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                 showToast(it)
             }
 
-            eventShowProgress.observe(requireActivity()) {
+            eventShowProgressState.observe(requireActivity()) {
                 setupProgressView(binding.progressView, it)
             }
 
@@ -62,6 +58,11 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
 
     override fun onViewCreatedExt(view: View, savedInstanceState: Bundle?) {
         super.onViewCreatedExt(view, savedInstanceState)
+        viewModel.apply {
+            getCategory()
+            getRandomTopHeadline()
+            getTopHeadline(NewsConstant.CATEGORY_BUSINESS)
+        }
     }
 
     private fun setupCategory(data: List<String>) {
@@ -73,7 +74,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                 position: Int,
                 notifyListener: FrogoRecyclerNotifyListener<String>
             ) {
-                consumableViewModel.getTopHeadline(data)
+                viewModel.getTopHeadline(data)
                 binding.tvCategory.text = "category $data"
             }
 
@@ -124,7 +125,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                     position: Int,
                     notifyListener: FrogoRecyclerNotifyListener<Article>
                 ) {
-                    frogoStartActivity<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
+                    requireContext().startActivityExt<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
                     showInterstitial()
                 }
 
@@ -180,7 +181,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                     position: Int,
                     notifyListener: FrogoRecyclerNotifyListener<Article>
                 ) {
-                    frogoStartActivity<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
+                    requireContext().startActivityExt<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
                     showInterstitial()
                 }
 
@@ -228,7 +229,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
 
     override fun onDestroy() {
         super.onDestroy()
-        consumableViewModel.onClearDisposable()
+        viewModel.onClearDisposable()
     }
 
 }

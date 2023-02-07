@@ -4,10 +4,10 @@ import android.content.Context
 import com.frogobox.kickstart.di.consumeApiModule
 import com.frogobox.kickstart.di.repositoryModule
 import com.frogobox.kickstart.di.viewModelModule
-import com.frogobox.sdk.FrogoApplication
+import com.frogobox.sdk.FrogoKoinApplication
 import org.koin.core.KoinApplication
 
-/*
+/**
  * Created by Faisal Amir on 23/10/2020
  * KickStartProject Source Code
  * -----------------------------------------
@@ -20,7 +20,7 @@ import org.koin.core.KoinApplication
  *
  */
 
-class ProjectApplication : FrogoApplication() {
+class ProjectApplication : FrogoKoinApplication() {
 
     companion object {
         val TAG: String = ProjectApplication::class.java.simpleName

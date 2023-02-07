@@ -4,11 +4,10 @@ import com.frogobox.kickstart.mvvm.consumable.ConsumableViewModel
 import com.frogobox.kickstart.mvvm.detail.DetailViewModel
 import com.frogobox.kickstart.mvvm.favorite.FavoriteViewModel
 import com.frogobox.kickstart.mvvm.main.MainViewModel
-import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-/*
+/**
  * Created by Faisal Amir on 23/10/2020
  * KickStartProject Source Code
  * -----------------------------------------
@@ -24,19 +23,19 @@ import org.koin.dsl.module
 val viewModelModule = module {
 
     viewModel {
-        MainViewModel(androidApplication(), get())
+        MainViewModel(get())
     }
 
     viewModel {
-        FavoriteViewModel(androidApplication(), get())
+        FavoriteViewModel(get())
     }
 
     viewModel {
-        ConsumableViewModel(androidApplication(), get())
+        ConsumableViewModel(get())
     }
 
     viewModel {
-        DetailViewModel(androidApplication(), get())
+        DetailViewModel(get())
     }
 
 }

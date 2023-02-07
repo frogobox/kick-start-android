@@ -3,6 +3,7 @@ package com.frogobox.kickstart.core
 import android.app.Application
 import com.frogobox.kickstart.source.ProjectDataRepository
 import com.frogobox.sdk.view.FrogoViewModel
+import com.frogobox.sdk.view.FrogoViewModel2
 
 /**
  * Created by Faisal Amir
@@ -22,9 +23,8 @@ import com.frogobox.sdk.view.FrogoViewModel
  *
  */
 open class BaseViewModel(
-    application: Application,
     private val repository: ProjectDataRepository
-) : FrogoViewModel(application) {
+) : FrogoViewModel2() {
 
     override fun onClearDisposable() {
         super.onClearDisposable()

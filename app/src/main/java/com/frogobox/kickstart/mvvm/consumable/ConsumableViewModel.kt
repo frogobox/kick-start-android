@@ -1,6 +1,6 @@
 package com.frogobox.kickstart.mvvm.consumable
 
-import android.app.Application
+import androidx.lifecycle.MutableLiveData
 import com.frogobox.coreapi.news.NewsConstant.CATEGORY_BUSINESS
 import com.frogobox.coreapi.news.NewsConstant.CATEGORY_ENTERTAIMENT
 import com.frogobox.coreapi.news.NewsConstant.CATEGORY_GENERAL
@@ -14,16 +14,14 @@ import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.kickstart.core.BaseViewModel
 import com.frogobox.kickstart.source.ProjectDataRepository
 import com.frogobox.kickstart.source.callback.ProjectConsumeApiCallback
-import com.frogobox.sdk.util.FrogoMutableLiveData
 
 class ConsumableViewModel(
-    private val context: Application,
     private val repository: ProjectDataRepository
-) : BaseViewModel(context, repository) {
+) : BaseViewModel(repository) {
 
-    var listArticleRandom = FrogoMutableLiveData<List<Article>>()
-    var listArticle = FrogoMutableLiveData<List<Article>>()
-    var listCategory = FrogoMutableLiveData<MutableList<String>>()
+    var listArticleRandom = MutableLiveData<List<Article>>()
+    var listArticle = MutableLiveData<List<Article>>()
+    var listCategory = MutableLiveData<MutableList<String>>()
 
     fun getCategory() {
         val categories = mutableListOf<String>()
@@ -52,7 +50,7 @@ class ConsumableViewModel(
                 }
 
                 override fun onFailed(statusCode: Int, errorMessage: String) {
-                    eventFailed.postValue(errorMessage)
+                    _eventFailed.postValue(errorMessage)
                 }
 
                 override fun onFinish() {
@@ -60,15 +58,15 @@ class ConsumableViewModel(
                 }
 
                 override fun onEmptyData(check: Boolean) {
-                    eventEmpty.postValue(check)
+                    _eventEmptyState.postValue(check)
                 }
 
                 override fun onShowProgress() {
-                    eventShowProgress.postValue(true)
+                    _eventShowProgressState.postValue(true)
                 }
 
                 override fun onHideProgress() {
-                    eventShowProgress.postValue(false)
+                    _eventShowProgressState.postValue(false)
                 }
             }
         )
@@ -88,7 +86,7 @@ class ConsumableViewModel(
                 }
 
                 override fun onFailed(statusCode: Int, errorMessage: String) {
-                    eventFailed.postValue(errorMessage)
+                    _eventFailed.postValue(errorMessage)
                 }
 
                 override fun onFinish() {
@@ -96,15 +94,15 @@ class ConsumableViewModel(
                 }
 
                 override fun onEmptyData(check: Boolean) {
-                    eventEmpty.postValue(check)
+                    _eventEmptyState.postValue(check)
                 }
 
                 override fun onShowProgress() {
-                    eventShowProgress.postValue(true)
+                    _eventShowProgressState.postValue(true)
                 }
 
                 override fun onHideProgress() {
-                    eventShowProgress.postValue(false)
+                    _eventShowProgressState.postValue(false)
                 }
             }
         )

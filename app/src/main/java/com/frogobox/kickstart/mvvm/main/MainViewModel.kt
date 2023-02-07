@@ -1,18 +1,14 @@
 package com.frogobox.kickstart.mvvm.main
 
-import android.app.Application
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.MutableLiveData
 import com.frogobox.coreapi.news.NewsConstant
 import com.frogobox.coreapi.news.NewsUrl
 import com.frogobox.coreapi.news.response.ArticleResponse
 import com.frogobox.kickstart.core.BaseViewModel
 import com.frogobox.kickstart.source.ProjectDataRepository
-import com.frogobox.kickstart.source.ProjectDataSource
 import com.frogobox.kickstart.source.callback.ProjectDataCallback
-import com.frogobox.sdk.util.FrogoMutableLiveData
-import kotlinx.coroutines.launch
 
-/*
+/**
  * Created by Faisal Amir
  * =========================================
  * android-kick-start-project-template
@@ -28,12 +24,10 @@ import kotlinx.coroutines.launch
  * 
  */
 class MainViewModel(
-    private val context: Application,
     private val repository: ProjectDataRepository
-) :
-    BaseViewModel(context, repository) {
+) : BaseViewModel(repository) {
 
-    var topHeadlineLive = FrogoMutableLiveData<ArticleResponse>()
+    var topHeadlineLive = MutableLiveData<ArticleResponse>()
 
     fun getTopHeadline() {
         repository.getTopHeadline(
@@ -46,11 +40,11 @@ class MainViewModel(
             null,
             object : ProjectDataCallback<ArticleResponse> {
                 override fun onShowProgress() {
-                    eventShowProgress.postValue(true)
+                    _eventShowProgressState.postValue(true)
                 }
 
                 override fun onHideProgress() {
-                    eventShowProgress.postValue(false)
+                    _eventShowProgressState.postValue(false)
                 }
 
                 override fun onSuccess(data: ArticleResponse) {
@@ -58,7 +52,7 @@ class MainViewModel(
                 }
 
                 override fun onFailed(statusCode: Int, errorMessage: String) {
-                    eventFailed.postValue(errorMessage)
+                    _eventFailed.postValue(errorMessage)
                 }
 
                 override fun onFinish() {
@@ -66,7 +60,7 @@ class MainViewModel(
                 }
 
                 override fun onEmptyData() {
-                    eventEmpty.postValue(true)
+                    _eventEmptyState.postValue(true)
                 }
 
 

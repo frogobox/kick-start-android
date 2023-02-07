@@ -5,8 +5,7 @@ import com.frogobox.kickstart.core.BaseViewModel
 import com.frogobox.kickstart.source.ProjectDataRepository
 
 class FavoriteViewModel(
-    private val context: Application,
     private val repository: ProjectDataRepository
-) : BaseViewModel(context, repository) {
+) : BaseViewModel(repository) {
     // TODO: Implement the ViewModel
 }

@@ -14,6 +14,7 @@ import com.frogobox.kickstart.databinding.FragmentMainBinding
 import com.frogobox.kickstart.mvvm.detail.DetailActivity
 import com.frogobox.recycler.core.FrogoRecyclerNotifyListener
 import com.frogobox.recycler.core.IFrogoViewAdapter
+import com.frogobox.sdk.ext.startActivityExt
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : BaseFragment<FragmentMainBinding>() {
@@ -36,14 +37,16 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 it.articles?.let { it1 -> setupRvNews(it1) }
             }
 
-            eventShowProgress.observe(requireActivity()) {
+            eventShowProgressState.observe(requireActivity()) {
                 setupProgressView(binding.progressView, it)
             }
 
         }
     }
 
-    override fun setupOnViewCreated(view: View, savedInstanceState: Bundle?) {
+
+    override fun onViewCreatedExt(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreatedExt(view, savedInstanceState)
     }
 
     private fun setupRvNews(data: List<Article>) {
@@ -55,7 +58,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 position: Int,
                 notifyListener: FrogoRecyclerNotifyListener<Article>
             ) {
-                frogoStartActivity<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
+                requireContext().startActivityExt<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
             }
 
             override fun onItemLongClicked(

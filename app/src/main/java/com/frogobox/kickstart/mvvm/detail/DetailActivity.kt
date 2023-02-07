@@ -1,10 +1,10 @@
 package com.frogobox.kickstart.mvvm.detail
 
 import android.os.Bundle
-import com.bumptech.glide.Glide
 import com.frogobox.coreapi.news.model.Article
 import com.frogobox.kickstart.core.BaseActivity
 import com.frogobox.kickstart.databinding.ActivityDetailBinding
+import com.frogobox.sdk.ext.getExtraDataExt
 import com.frogobox.sdk.ext.glideLoad
 
 class DetailActivity : BaseActivity<ActivityDetailBinding>() {
@@ -25,7 +25,7 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>() {
     override fun onCreateExt(savedInstanceState: Bundle?) {
         super.onCreateExt(savedInstanceState)
         setupDetailActivity("Detail Berita")
-        val extraArticle = frogoGetExtraData<Article>(EXTRA_DATA)
+        val extraArticle = getExtraDataExt<Article>(EXTRA_DATA)
         binding.apply {
             tvTitle.text = extraArticle.title
             tvSource.text = extraArticle.source?.name ?: ""

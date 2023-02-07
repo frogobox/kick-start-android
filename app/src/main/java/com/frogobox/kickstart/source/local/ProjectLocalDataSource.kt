@@ -6,9 +6,9 @@ import com.frogobox.kickstart.source.ProjectDataSource
 import com.frogobox.kickstart.source.callback.ProjectDataCallback
 import com.frogobox.kickstart.source.callback.ProjectStateCallback
 import com.frogobox.kickstart.source.local.dao.FavoriteDao
+import com.frogobox.sdk.delegate.preference.PreferenceDelegatesImpl
 import com.frogobox.sdk.ext.executeRoomDB
 import com.frogobox.sdk.ext.fetchRoomDB
-import com.frogobox.sdk.preference.FrogoPreference
 import com.frogobox.sdk.source.FrogoLocalDataSource
 import com.frogobox.sdk.util.AppExecutors
 
@@ -31,7 +31,7 @@ import com.frogobox.sdk.util.AppExecutors
  */
 class ProjectLocalDataSource(
     private val appExecutors: AppExecutors,
-    private val frogoPreference: FrogoPreference,
+    private val frogoPreference: PreferenceDelegatesImpl,
     private val favoriteDao: FavoriteDao
 ) : FrogoLocalDataSource(appExecutors, frogoPreference), ProjectDataSource {
 

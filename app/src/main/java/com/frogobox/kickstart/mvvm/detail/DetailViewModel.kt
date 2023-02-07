@@ -1,12 +1,11 @@
 package com.frogobox.kickstart.mvvm.detail
 
-import android.app.Application
 import com.frogobox.kickstart.core.BaseViewModel
-import com.frogobox.kickstart.source.ProjectDataRepository
 import com.frogobox.kickstart.model.Favorite
+import com.frogobox.kickstart.source.ProjectDataRepository
 import com.frogobox.kickstart.source.callback.ProjectStateCallback
 
-/*
+/**
  * Created by faisalamir on 12/07/21
  * KickStartProject
  * -----------------------------------------
@@ -19,9 +18,8 @@ import com.frogobox.kickstart.source.callback.ProjectStateCallback
  *
  */
 class DetailViewModel(
-    private val context: Application,
     private val repository: ProjectDataRepository
-) : BaseViewModel(context, repository) {
+) : BaseViewModel(repository) {
 
     fun saveToRoom(data: Favorite) {
         repository.saveFavorite(data, object : ProjectStateCallback {
