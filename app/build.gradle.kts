@@ -96,13 +96,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     tasks.withType<KotlinCompile> {
         kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_11.toString()
+            jvmTarget = "17"
         }
     }
 
@@ -111,69 +111,18 @@ android {
 
 dependencies {
 
-    implementation(Androidx.appCompat)
-    implementation(Androidx.appCompatResources)
-    implementation(Androidx.activityKtx)
-    implementation(Androidx.fragmentKtx)
     implementation(Androidx.constraintLayout)
-    implementation(Androidx.collection)
-    implementation(Androidx.savedState)
-    implementation(Androidx.viewPager2)
-    implementation(Androidx.preferenceKtx)
-
-    implementation(Google.material)
-    implementation(Google.gson)
-    implementation(Google.admob)
-
-    implementation(Androidx.Lifecycle.viewmodelKtx)
-    implementation(Androidx.Lifecycle.livedataKtx)
-    implementation(Androidx.Lifecycle.runtimeKtx)
-
-    implementation(Androidx.Room.ktx)
-    implementation(Androidx.Room.runtime)
-    implementation(Androidx.Room.paging)
-    implementation(Androidx.Room.rxJava3)
-
-    implementation(Square.OkHttp.okhttp)
-    implementation(Square.OkHttp.loggingInterceptor)
-
-    implementation(Square.Retrofit2.retrofit)
-    implementation(Square.Retrofit2.converterGson)
-    implementation(Square.Retrofit2.adapterRxJava3)
-
-    // Latest Version
-    implementation(Reactivex.rxJava3)
-    implementation(Reactivex.rxAndroid3)
-    implementation(Reactivex.rxKotlin3)
-
-    implementation(Koin.core)
-    implementation(Koin.android)
-    implementation(Koin.androidCompat)
-    implementation(Koin.androidxWorkManager)
-    implementation(Koin.androidxCompose)
 
     implementation(Frogo.sdk)
     implementation(Frogo.ui)
-    implementation(Frogo.consumeApi)
-    implementation(Frogo.recyclerView)
     implementation(Frogo.admob)
+    implementation(Frogo.recyclerView)
+    implementation(Frogo.consumeApi)
 
     implementation(GitHub.glide)
-    implementation(GitHub.chucker)
-
-    api(JetBrains.coroutinesCore)
-    api(JetBrains.coroutinesAndroid)
 
     kapt(Androidx.Lifecycle.compiler)
     kapt(Androidx.Room.compiler)
     kapt(GitHub.glideCompiler)
-
-    testImplementation(Androidx.junit4)
-    testImplementation(Androidx.Room.roomTest)
-    testImplementation(Koin.test)
-
-    androidTestImplementation(Androidx.Lifecycle.coreTesting)
-    androidTestImplementation(Androidx.runner)
-    androidTestImplementation(Androidx.espressoCore)
 
 }

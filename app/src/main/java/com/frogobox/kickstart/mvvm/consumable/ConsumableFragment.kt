@@ -15,6 +15,8 @@ import com.frogobox.kickstart.databinding.FragmentConsumableBinding
 import com.frogobox.kickstart.mvvm.detail.DetailActivity
 import com.frogobox.recycler.core.FrogoRecyclerNotifyListener
 import com.frogobox.recycler.core.IFrogoBindingAdapter
+import com.frogobox.sdk.ext.progressViewHandle
+import com.frogobox.sdk.ext.showToast
 import com.frogobox.sdk.ext.startActivityExt
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -45,11 +47,11 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
             }
 
             eventFailed.observe(requireActivity()) {
-                showToast(it)
+                requireContext().showToast(it)
             }
 
             eventShowProgressState.observe(requireActivity()) {
-                setupProgressView(binding.progressView, it)
+                binding.progressView.progressViewHandle(it)
             }
 
         }
@@ -135,7 +137,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                     position: Int,
                     notifyListener: FrogoRecyclerNotifyListener<Article>
                 ) {
-                    data.description?.let { showToast(it) }
+                    data.description?.let { requireContext().showToast(it) }
                 }
 
                 override fun setViewBinding(parent: ViewGroup): ContentArticleHorizontalBinding {
@@ -191,7 +193,7 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                     position: Int,
                     notifyListener: FrogoRecyclerNotifyListener<Article>
                 ) {
-                    data.description?.let { showToast(it) }
+                    data.description?.let { requireContext().showToast(it) }
                 }
 
                 override fun setViewBinding(parent: ViewGroup): ContentArticleVerticalBinding {

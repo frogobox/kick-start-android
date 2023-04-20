@@ -8,12 +8,12 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.frogobox.coreapi.news.model.Article
 import com.frogobox.kickstart.R
-
 import com.frogobox.kickstart.core.BaseFragment
 import com.frogobox.kickstart.databinding.FragmentMainBinding
 import com.frogobox.kickstart.mvvm.detail.DetailActivity
 import com.frogobox.recycler.core.FrogoRecyclerNotifyListener
 import com.frogobox.recycler.core.IFrogoViewAdapter
+import com.frogobox.sdk.ext.progressViewHandle
 import com.frogobox.sdk.ext.startActivityExt
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -38,7 +38,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             }
 
             eventShowProgressState.observe(requireActivity()) {
-                setupProgressView(binding.progressView, it)
+                binding.progressView.progressViewHandle(it)
             }
 
         }

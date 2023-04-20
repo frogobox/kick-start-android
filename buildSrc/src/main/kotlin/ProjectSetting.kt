@@ -17,7 +17,7 @@ object ProjectSetting {
 
     const val APP_DOMAIN = "com"
     const val APP_PLAY_CONSOLE = "frogobox"
-    val APP_NAME = NAME_APP.toLowerCase().replace(" ", "").replace(" ", "-")
+    val APP_NAME = NAME_APP.lowercase().replace(" ", "").replace(" ", "-")
 
     // ---------------------------------------------------------------------------------------------
 
@@ -37,14 +37,13 @@ object ProjectSetting {
 
     val PROJECT_APP_ID = "$BASE_PACAKGE_NAME.$APP_NAME"
 
-    const val PROJECT_VERSION_CODE =
-        (VERSION_MAJOR * 100) + (VERSION_MINOR * 10) + (VERSION_PATCH * 1)
+    const val PROJECT_VERSION_CODE = (VERSION_MAJOR * 100) + (VERSION_MINOR * 10) + (VERSION_PATCH * 1)
     const val PROJECT_VERSION_NAME = "$VERSION_MAJOR.$VERSION_MINOR.$VERSION_PATCH"
 
     // ---------------------------------------------------------------------------------------------
 
-    val NAME_APK = NAME_APP.toLowerCase().replace(" ", "-")
-    val NAME_DB = NAME_APP.toLowerCase().replace(" ", "_")
+    val NAME_APK = NAME_APP.lowercase().replace(" ", "-")
+    val NAME_DB = NAME_APP.lowercase().replace(" ", "_")
     val DB = "\"$NAME_DB.db\""
     val PREF = "\"pref_$NAME_DB\""
 
