@@ -1,16 +1,16 @@
 package com.frogobox.kickstart.mvvm.consumable
 
 import androidx.lifecycle.MutableLiveData
-import com.frogobox.coreapi.news.NewsConstant.CATEGORY_BUSINESS
-import com.frogobox.coreapi.news.NewsConstant.CATEGORY_ENTERTAIMENT
-import com.frogobox.coreapi.news.NewsConstant.CATEGORY_GENERAL
-import com.frogobox.coreapi.news.NewsConstant.CATEGORY_HEALTH
-import com.frogobox.coreapi.news.NewsConstant.CATEGORY_SCIENCE
-import com.frogobox.coreapi.news.NewsConstant.CATEGORY_SPORTS
-import com.frogobox.coreapi.news.NewsConstant.CATEGORY_TECHNOLOGY
-import com.frogobox.coreapi.news.NewsConstant.COUNTRY_ID
-import com.frogobox.coreapi.news.model.Article
-import com.frogobox.coreapi.news.response.ArticleResponse
+import com.frogobox.coreutil.news.NewsConstant.CATEGORY_ENTERTAIMENT
+import com.frogobox.coreutil.news.NewsConstant.CATEGORY_GENERAL
+import com.frogobox.coreutil.news.NewsConstant.CATEGORY_HEALTH
+import com.frogobox.coreutil.news.NewsConstant.CATEGORY_SCIENCE
+import com.frogobox.coreutil.news.NewsConstant.CATEGORY_SPORTS
+import com.frogobox.coreutil.news.NewsConstant.CATEGORY_TECHNOLOGY
+import com.frogobox.coreutil.news.NewsConstant.COUNTRY_ID
+import com.frogobox.coreutil.news.response.ArticleResponse
+import com.frogobox.coreutil.news.NewsConstant.CATEGORY_BUSINESS
+import com.frogobox.coreutil.news.model.Article
 import com.frogobox.kickstart.core.BaseViewModel
 import com.frogobox.kickstart.source.ProjectDataRepository
 import com.frogobox.kickstart.source.callback.ProjectConsumeApiCallback

@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.frogobox.coreapi.news.NewsConstant
-import com.frogobox.coreapi.news.model.Article
+import com.frogobox.coreutil.news.NewsConstant
+import com.frogobox.coreutil.news.model.Article
+import com.frogobox.kickstart.R
 import com.frogobox.kickstart.core.BaseFragment
 import com.frogobox.kickstart.databinding.ContentArticleHorizontalBinding
 import com.frogobox.kickstart.databinding.ContentArticleVerticalBinding
@@ -127,7 +128,10 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                     position: Int,
                     notifyListener: FrogoRecyclerNotifyListener<Article>
                 ) {
-                    requireContext().startActivityExt<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
+                    requireContext().startActivityExt<DetailActivity, Article>(
+                        DetailActivity.EXTRA_DATA,
+                        data
+                    )
                     showInterstitial()
                 }
 
@@ -158,7 +162,10 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                         tvTitle.text = data.title
                         tvPublished.text = data.publishedAt
                         tvDescription.text = data.description
-                        Glide.with(requireContext()).load(data.urlToImage).into(ivUrl)
+                        Glide.with(requireContext())
+                            .load(data.urlToImage)
+                            .placeholder(R.drawable.ic_frogobox)
+                            .into(ivUrl)
                     }
                 }
             }
@@ -183,7 +190,10 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                     position: Int,
                     notifyListener: FrogoRecyclerNotifyListener<Article>
                 ) {
-                    requireContext().startActivityExt<DetailActivity, Article>(DetailActivity.EXTRA_DATA, data)
+                    requireContext().startActivityExt<DetailActivity, Article>(
+                        DetailActivity.EXTRA_DATA,
+                        data
+                    )
                     showInterstitial()
                 }
 
@@ -214,7 +224,10 @@ class ConsumableFragment : BaseFragment<FragmentConsumableBinding>() {
                         tvTitle.text = data.title
                         tvPublished.text = data.publishedAt
                         tvDescription.text = data.description
-                        Glide.with(requireContext()).load(data.urlToImage).into(ivUrl)
+                        Glide.with(requireContext())
+                            .load(data.urlToImage)
+                            .placeholder(R.drawable.ic_frogobox)
+                            .into(ivUrl)
                     }
                 }
             }

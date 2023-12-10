@@ -1,11 +1,13 @@
 package com.frogobox.kickstart.mvvm.main
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import com.frogobox.kickstart.R
 import com.frogobox.kickstart.core.BaseActivity
 import com.frogobox.kickstart.databinding.ActivityMainBinding
 import com.frogobox.kickstart.mvvm.consumable.ConsumableFragment
 import com.frogobox.kickstart.mvvm.favorite.FavoriteFragment
+import com.frogobox.sdk.ext.getColorExt
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -35,9 +37,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private fun setupBottomNav(frameLayout: Int) {
         binding.bottomNavMainMenu.apply {
             clearAnimation()
-            itemIconTintList = null
 
-            setOnNavigationItemSelectedListener {
+            val iconColorStates = ColorStateList(
+                arrayOf(
+                    intArrayOf(-android.R.attr.state_checked),
+                    intArrayOf(android.R.attr.state_checked)
+                ), intArrayOf(
+                    getColorExt(R.color.colorTextTitle),
+                    getColorExt(R.color.colorPrimary),
+                )
+            )
+
+            itemIconTintList = iconColorStates
+            itemTextColor = iconColorStates
+
+            setOnItemSelectedListener {
                 when (it.itemId) {
                     R.id.bottom_menu_consumable -> {
                         supportActionBar?.title = getString(R.string.title_consumable)
@@ -45,6 +59,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                             frameLayout,
                             ConsumableFragment()
                         )
+                        return@setOnItemSelectedListener true
                     }
 
                     R.id.bottom_menu_favorite -> {
@@ -53,6 +68,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                             frameLayout,
                             FavoriteFragment()
                         )
+                        return@setOnItemSelectedListener true
                     }
 
                     R.id.bottom_menu_main -> {
@@ -61,10 +77,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                             frameLayout,
                             MainFragment()
                         )
+                        return@setOnItemSelectedListener true
                     }
                 }
 
-                true
+                false
             }
         }
 

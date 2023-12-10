@@ -1,6 +1,6 @@
 package com.frogobox.kickstart.source
 
-import com.frogobox.coreapi.news.response.ArticleResponse
+import com.frogobox.coreutil.news.response.ArticleResponse
 import com.frogobox.coresdk.source.ICoreDataSource
 import com.frogobox.kickstart.model.Favorite
 import com.frogobox.kickstart.source.callback.ProjectDataCallback

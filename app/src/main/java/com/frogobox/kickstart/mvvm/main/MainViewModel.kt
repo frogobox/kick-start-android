@@ -1,9 +1,9 @@
 package com.frogobox.kickstart.mvvm.main
 
 import androidx.lifecycle.MutableLiveData
-import com.frogobox.coreapi.news.NewsConstant
-import com.frogobox.coreapi.news.NewsUrl
-import com.frogobox.coreapi.news.response.ArticleResponse
+import com.frogobox.coreutil.news.NewsConstant
+import com.frogobox.coreutil.news.NewsUrl
+import com.frogobox.coreutil.news.response.ArticleResponse
 import com.frogobox.kickstart.core.BaseViewModel
 import com.frogobox.kickstart.source.ProjectDataRepository
 import com.frogobox.kickstart.source.callback.ProjectDataCallback

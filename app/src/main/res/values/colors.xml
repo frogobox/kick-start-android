@@ -11,6 +11,9 @@
     <color name="colorSecondaryVariant">@color/teal_700</color>
     <color name="colorOnSecondary">@color/black</color>
 
+    <!-- Background color -->
+    <color name="colorBackgroundTheme">@color/colorBackgroundWhite</color>
+
     <!-- Text color -->
     <color name="colorTextTitle">@color/colorTextBlack</color>
     <color name="colorTextSubTitle">@color/colorTextGrey</color>

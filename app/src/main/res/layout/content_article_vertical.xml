@@ -52,7 +52,7 @@
         android:layout_marginBottom="@dimen/frogo_dimen_8dp"
         android:maxLines="1"
         android:text="@string/frogo_is_empty_data"
-        android:textColor="?attr/colorTextSubTitle" />
+        android:textColor="@color/colorTextSubTitle" />
 
     <TextView
         android:id="@+id/tv_description"
@@ -60,6 +60,6 @@
         android:layout_height="wrap_content"
         android:maxLines="3"
         android:text="@string/frogo_is_empty_data"
-        android:textColor="?attr/colorTextDescription" />
+        android:textColor="@color/colorTextSubTitle" />
 
 </LinearLayout>

@@ -23,7 +23,7 @@
     android:layout_marginTop="@dimen/frogo_dimen_16dp"
     android:layout_marginEnd="@dimen/frogo_dimen_16dp"
     android:layout_marginBottom="@dimen/frogo_dimen_8dp"
-    android:background="@drawable/frogo_bg_card_8dp"
+    android:background="@drawable/background_card"
     android:elevation="@dimen/frogo_dimen_2dp"
     android:orientation="vertical"
     android:padding="@dimen/frogo_dimen_16dp">
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:text="@string/frogo_is_empty_data"
-            android:textColor="@color/frogoColorBlack"
+            android:textColor="@color/colorTextTitle"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -57,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/frogo_dimen_8dp"
             android:maxLines="1"
+            android:textColor="@color/colorTextSubTitle"
             android:text="@string/frogo_is_empty_data" />
 
         <TextView
@@ -64,6 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="3"
+            android:textColor="@color/colorTextDescription"
             android:text="@string/frogo_is_empty_data" />
 
     </LinearLayout>

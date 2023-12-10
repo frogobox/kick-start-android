@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.frogobox.coreapi.news.model.Article
+import com.frogobox.coreutil.news.model.Article
 import com.frogobox.kickstart.R
 import com.frogobox.kickstart.core.BaseFragment
 import com.frogobox.kickstart.databinding.FragmentMainBinding
@@ -78,7 +78,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 view.findViewById<TextView>(R.id.tv_title).text = data.title
                 view.findViewById<TextView>(R.id.tv_description).text = data.publishedAt
                 view.findViewById<TextView>(R.id.tv_published).text = data.description
-                Glide.with(view.context).load(data.urlToImage).into(view.findViewById(R.id.iv_url))
+                Glide.with(view.context)
+                    .load(data.urlToImage)
+                    .placeholder(R.drawable.ic_frogobox)
+                    .into(view.findViewById(R.id.iv_url))
             }
         }
 

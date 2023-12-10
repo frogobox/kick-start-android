@@ -1,6 +1,6 @@
 package com.frogobox.kickstart.di
 
-import com.frogobox.coreapi.news.NewsUrl
+import com.frogobox.coreutil.news.NewsUrl
 import com.frogobox.coresdk.source.FrogoApiClient
 import com.frogobox.kickstart.source.ProjectDataRepository
 import com.frogobox.kickstart.source.local.ProjectAppDatabase

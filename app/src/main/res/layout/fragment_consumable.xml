@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/frogoColorWhite">
+    android:layout_height="match_parent">
 
     <View
         android:layout_width="match_parent"
@@ -16,6 +15,7 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:paddingLeft="@dimen/frogo_dimen_16dp"
+        tools:itemCount="1"
         tools:listitem="@layout/content_article_vertical" />
 
     <com.frogobox.recycler.widget.FrogoRecyclerView
@@ -25,7 +25,8 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:paddingLeft="@dimen/frogo_dimen_16dp"
-        tools:listitem="@layout/content_article_vertical" />
+        tools:itemCount="2"
+        tools:listitem="@layout/content_category" />
 
     <TextView
         android:id="@+id/tv_top_headline"

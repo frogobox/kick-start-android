@@ -57,7 +57,6 @@ abstract class ProjectAppDatabase : RoomDatabase() {
                     ProjectAppDatabase::class.java,
                     appDatabaseName
                 )
-                    .addMigrations(MIGRATION_2_3)
                     .fallbackToDestructiveMigration() // FOR DEVELOPMENT ONLY !!!!
                     .build()
             } else {
@@ -66,14 +65,7 @@ abstract class ProjectAppDatabase : RoomDatabase() {
                     ProjectAppDatabase::class.java,
                     appDatabaseName
                 )
-                    .addMigrations(MIGRATION_2_3)
                     .build()
-            }
-        }
-
-        private val MIGRATION_2_3: Migration = object : Migration(2, 3) {
-            override fun migrate(database: SupportSQLiteDatabase) {
-
             }
         }
     }

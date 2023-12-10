@@ -5,7 +5,7 @@ import com.frogobox.api.movie.ConsumeMovieApi
 import com.frogobox.api.news.ConsumeNewsApi
 import com.frogobox.api.pixabay.ConsumePixabayApi
 import com.frogobox.api.sport.ConsumeTheSportDbApi
-import com.frogobox.coreapi.news.response.ArticleResponse
+import com.frogobox.coreutil.news.response.ArticleResponse
 import com.frogobox.coresdk.response.FrogoDataResponse
 import com.frogobox.kickstart.model.Favorite
 import com.frogobox.kickstart.source.ProjectDataSource

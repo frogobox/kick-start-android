@@ -1,9 +1,10 @@
 package com.frogobox.kickstart.source.remote.network
 
-import com.frogobox.coreapi.news.NewsConstant
-import com.frogobox.coreapi.news.NewsUrl
-import com.frogobox.coreapi.news.response.ArticleResponse
-import com.frogobox.coreapi.news.response.SourceResponse
+
+import com.frogobox.coreutil.news.NewsConstant
+import com.frogobox.coreutil.news.NewsUrl
+import com.frogobox.coreutil.news.response.ArticleResponse
+import com.frogobox.coreutil.news.response.SourceResponse
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
