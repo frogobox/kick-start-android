@@ -1,9 +1,19 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
+}
+
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas") // If Using Ksp
+}
+
+base {
+    // Naming APK // AAB
+    archivesName = "${ProjectSetting.NAME_APK}-${android.defaultConfig.versionCode}"
 }
 
 android {
@@ -27,26 +37,17 @@ android {
         buildConfigField("String", "DATABASE_NAME", ProjectSetting.DB)
         buildConfigField("String", "PREF_NAME", ProjectSetting.PREF)
 
-        // Naming APK // AAB
-        setProperty("archivesBaseName", "${ProjectSetting.NAME_APK}(${versionName})")
-
-        // Declaration apps name debug mode
-        val debugAttribute = "Development"
-        val nameAppDebug = "${ProjectSetting.NAME_APP} $debugAttribute"
-        resourceConfigurations += setOf("en", "id")
-
         // Inject app name for debug
-        resValue("string", "app_name", nameAppDebug)
+        resValue("string", "app_name", ProjectSetting.NAME_APP_DEBUG)
 
         // Inject admob id for debug
-        resValue("string", "admob_app_id", AdmobValue.debugAdmobAppId)
-        resValue("string", "admob_banner", AdmobValue.debugAdmobBanner)
-        resValue("string", "admob_interstitial", AdmobValue.debugAdmobInterstitial)
-        resValue("string", "admob_interstitial_video", AdmobValue.debugAdmobInterstitialVideo)
-        resValue("string", "admob_rewarded", AdmobValue.debugAdmobRewarded)
-        resValue("string", "admob_rewarded_interstitial", AdmobValue.debugAdmobRewardedInterstitial)
-        resValue("string", "admob_native_advanced", AdmobValue.debugAdmobNativeAdvanced)
-        resValue("string", "admob_native_advanced_video", AdmobValue.debugAdmobNativeAdvancedVideo)
+        resValue("string", "admob_app_id", ProjectAds.Admob.Debug.APP_ID)
+
+        // Inject admob banner id for debug
+        resValue("string", "admob_banner", ProjectAds.Admob.Debug.BANNER_ID)
+
+        // Inject admob interstitial id for debug
+        resValue("string", "admob_interstitial_id", ProjectAds.Admob.Debug.INTERSTITIAL_ID)
 
     }
 
@@ -75,24 +76,24 @@ android {
             signingConfig = signingConfigs.getByName("release")
 
             // Inject app name for release
-            resValue("string", "app_name", ProjectSetting.APP_NAME)
-
+            resValue("string", "app_name", ProjectSetting.NAME_APP)
 
             // Inject admob id for release
-            resValue("string", "admob_app_id", AdmobValue.releaseAdmobAppId)
-            resValue("string", "admob_banner", AdmobValue.releaseAdmobBanner)
-            resValue("string", "admob_interstitial", AdmobValue.releaseAdmobInterstitial)
-            resValue("string", "admob_interstitial_video", AdmobValue.releaseAdmobInterstitialVideo)
-            resValue("string", "admob_rewarded", AdmobValue.releaseAdmobRewarded)
-            resValue("string", "admob_rewarded_interstitial", AdmobValue.releaseAdmobRewardedInterstitial)
-            resValue("string", "admob_native_advanced", AdmobValue.releaseAdmobNativeAdvanced)
-            resValue("string", "admob_native_advanced_video", AdmobValue.releaseAdmobNativeAdvancedVideo)
+            resValue("string", "admob_app_id", ProjectAds.Admob.APP_ID)
+
+            // Inject admob banner id for debug
+            resValue("string", "admob_banner", ProjectAds.Admob.BANNER_ID)
+
+            // Inject admob interstitial id for release
+            resValue("string", "admob_interstitial_id", ProjectAds.Admob.INTERSTITIAL_ID)
+
 
         }
     }
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
     compileOptions {
@@ -100,29 +101,37 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    tasks.withType<KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "17"
-        }
-    }
 
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
+        freeCompilerArgs.add("-opt-in=kotlin.RequiresOptIn")
+    }
+}
 
 dependencies {
 
-    implementation(Androidx.constraintLayout)
+    debugImplementation(libs.github.chucker)
+    releaseImplementation(libs.github.chucker.no.op)
 
-    implementation(Frogo.sdk)
-    implementation(Frogo.ui)
-    implementation(Frogo.admob)
-    implementation(Frogo.recyclerView)
-    implementation(Frogo.consumeApi)
+    implementation(libs.frogo.android) {
+        exclude(
+            group = "com.github.chuckerteam.chucker",
+            module = "library"
+        )
+        exclude(
+            group = "com.github.chuckerteam.chucker",
+            module = "library-no-op"
+        )
+    }
 
-    implementation(GitHub.glide)
+    implementation(libs.hilt)
 
-    kapt(Androidx.Lifecycle.compiler)
-    kapt(Androidx.Room.compiler)
-    kapt(GitHub.glideCompiler)
+    ksp(libs.hilt.compiler)
+    ksp(libs.androidx.lifecycle.compiler)
+    ksp(libs.androidx.room.compiler)
+    ksp(libs.github.glide.compiler)
 
 }

@@ -27,12 +27,6 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/bottom_menu_consumable"
-        android:icon="@drawable/ic_movie"
-        android:title="@string/title_consumable"
-        app:showAsAction="ifRoom"/>
-
-    <item
         android:id="@+id/bottom_menu_favorite"
         android:icon="@drawable/ic_favorite"
         android:title="@string/title_fav"

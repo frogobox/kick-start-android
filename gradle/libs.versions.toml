@@ -1,0 +1,67 @@
+[versions]
+agp = "8.13.0"
+kotlin = "2.2.10"
+ksp = "2.2.10-2.0.2"
+hilt = "2.57.1"
+googleServices = "4.4.3"
+crashlytics = "3.0.6"
+
+constraintlayout = "2.2.1"
+liveCycle = "2.9.3"
+roomKtx = "2.7.2"
+work = "2.10.3"
+swiperefreshlayout = "1.1.0"
+
+firebaseBom = "34.2.0"
+glide = "5.0.4"
+balloon = "1.6.13"
+chucker = "4.2.0"
+
+mixpanel = "8.2.2"
+
+frogoAndroid = "2.3.2"
+
+[libraries]
+# Android Kit
+androidx-work-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work" }
+
+androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
+
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-lifecycle-compiler = { group = "androidx.lifecycle", name = "lifecycle-compiler", version.ref = "liveCycle" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomKtx" }
+
+hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+
+github-chucker = { group = "com.github.chuckerteam.chucker", name = "library", version.ref = "chucker" }
+github-chucker-no-op = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
+
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
+
+# --------------------------------------------------------------------------------------------------
+# Test Library
+
+# --------------------------------------------------------------------------------------------------
+# Library
+
+mixpanel = { group = "com.mixpanel.android", name = "mixpanel-android", version.ref = "mixpanel" }
+
+github-glide-compiler = { group = "com.github.bumptech.glide", name = "ksp", version.ref = "glide" }
+github-balloon = { group = "com.github.skydoves", name = "balloon", version.ref = "balloon" }
+
+frogo-android = { group = "com.github.frogobox", name = "frogo-sdk", version.ref = "frogoAndroid" }
+
+# --------------------------------------------------------------------------------------------------
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics" }

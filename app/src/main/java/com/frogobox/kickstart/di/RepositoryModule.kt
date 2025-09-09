@@ -1,61 +1,27 @@
 package com.frogobox.kickstart.di
 
-import com.frogobox.coreutil.news.NewsUrl
-import com.frogobox.coresdk.source.FrogoApiClient
-import com.frogobox.kickstart.source.ProjectDataRepository
-import com.frogobox.kickstart.source.local.ProjectAppDatabase
-import com.frogobox.kickstart.source.local.ProjectLocalDataSource
-import com.frogobox.kickstart.source.remote.ProjectRemoteDataSource
-import com.frogobox.kickstart.source.remote.network.NewsApiService
-import com.frogobox.kickstart.util.appIsDebug
-import com.frogobox.kickstart.util.appPrefName
-import com.frogobox.sdk.delegate.preference.PreferenceDelegatesImpl
-import com.frogobox.sdk.ext.usingChuck
-import com.frogobox.sdk.util.AppExecutors
-import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.module
+import com.frogobox.kickstart.domain.source.meal.repository.MealRepository
+import com.frogobox.kickstart.domain.source.meal.repository.MealRepositoryImpl
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-/*
- * Created by Faisal Amir on 23/10/2020
- * KickStartProject Source Code
+/**
+ * Created by faisalamircs on 09/09/2025
  * -----------------------------------------
  * Name     : Muhammad Faisal Amir
  * E-mail   : faisalamircs@gmail.com
  * Github   : github.com/amirisback
  * -----------------------------------------
- * Copyright (C) 2020 FrogoBox Inc.      
- * All rights reserved
- *
  */
 
-val repositoryModule = module {
 
-    single {
-       PreferenceDelegatesImpl(androidContext(), appPrefName)
-    }
+@Module(includes = [NetworkModule::class, DatabaseModule::class])
+@InstallIn(SingletonComponent::class)
+abstract class RepositoryModule {
 
-    single {
-        FrogoApiClient.create<NewsApiService>(
-            NewsUrl.BASE_URL,
-            appIsDebug,
-            androidContext().usingChuck()
-        )
-    }
-
-    single {
-        ProjectAppDatabase.getInstance(androidContext()).favoriteScriptDao()
-    }
-
-    single {
-        ProjectLocalDataSource(AppExecutors(), get(), get())
-    }
-
-    single {
-        ProjectRemoteDataSource(get(), get(), get(), get(), get(), get())
-    }
-
-    single {
-        ProjectDataRepository(get(), get())
-    }
+    @Binds
+    abstract fun provideMealRepository(repository: MealRepositoryImpl): MealRepository
 
 }

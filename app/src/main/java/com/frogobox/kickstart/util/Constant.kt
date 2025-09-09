@@ -2,6 +2,7 @@ package com.frogobox.kickstart.util
 
 import android.Manifest
 import android.os.Environment
+import com.frogobox.kickstart.common.ext.appApplicationId
 
 /**
  * Created by Faisal Amir
@@ -22,56 +23,11 @@ import android.os.Environment
  */
 object Constant {
 
-    const val OPTION_GET = "OPTION_GET"
-    const val OPTION_DELETE = "OPTION_DELETE"
+    const val MENTION_REGEX = "@[a-z0-9._-]+"
+    const val CACHE_SIZE = 10 * 1024 * 1024
 
-    const val DEFAULT_NULL = "null"
-    const val DEFAULT_ERROR_MESSAGE = "Failed"
-    const val FRAGMENT_DIALOG = "dialog"
-
-    const val SPLASH_INTERVAL = 1000
-
-    object Arg {
-        private val BASE_ARGUMENTS = appApplicationId
-    }
-
-    object Extra {
-        private val BASE_EXTRA = appApplicationId
-    }
-
-    object RoomDatabase {
-        const val BASE_TABLE_NAME = "table"
-        const val TABLE_NAME_FAVORITE = "favorite"
-    }
-
-    object Code {
-        const val CODE_NAME = 1
-        const val CODE_REQUEST_VIDEO_PERMISSIONS = 1
-        val CODE_VIDEO_PERMISSIONS =
-            arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
-    }
-
-
-    object Pref {
-        const val PREF_NAME = "BaseMusicPlayer"
-    }
-
-    object Value {
-        const val VALUE_SENSOR_ORIENTATION_DEFAULT_DEGREES = 90
-        const val VALUE_SENSOR_ORIENTATION_INVERSE_DEGREES = 270
-    }
-
-    object Tag {
-        const val TAG_ACTIVITY_EDIT = 300
-        const val TAG_ACTIVITY_CREATE = 301
-        const val TAG_ACTIVITY_DETAIL = 302
-
-        const val TAG_FROM_ACTIVITY = 801
-        const val TAG_FROM_FRAGMENT = 800
-
-        const val TAG_CAMERA_VIDEO = "Camera2VideoFragment"
-
-    }
+    const val PER_PAGE_LOAD = 10
+    const val ALL_PAGE = 100
 
     object Ext {
         const val MP4 = ".mp4"
