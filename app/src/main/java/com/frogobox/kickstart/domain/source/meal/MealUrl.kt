@@ -8,7 +8,7 @@ package com.frogobox.kickstart.domain.source.meal
  * E-mail   : faisalamircs@gmail.com
  * Github   : github.com/amirisback
  * -----------------------------------------
- * Copyright (C) 2021 FrogoBox Inc.      
+ * Copyright (C) 2021 Frogobox Inc.      
  * All rights reserved
  *
  */

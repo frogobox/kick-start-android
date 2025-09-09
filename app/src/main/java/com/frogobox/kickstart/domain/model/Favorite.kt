@@ -7,8 +7,8 @@ import com.frogobox.kickstart.domain.db.DBConfig.TABLE_NAME_FAVORITE
 
 /**
  * Created by Faisal Amir
- * FrogoBox Inc License
- * =========================================
+ * Frogobox Inc License
+ * -----------------------------------------
  * BaseMusicPlayer
  * Copyright (C) 04/09/2019.
  * All rights reserved
@@ -18,7 +18,7 @@ import com.frogobox.kickstart.domain.db.DBConfig.TABLE_NAME_FAVORITE
  * Github   : github.com/amirisback
  * LinkedIn : linkedin.com/in/faisalamircs
  * -----------------------------------------
- * FrogoBox Software Industries
+ * Frogobox Software Industries
  * com.frogobox.basemusicplayer.model
  *
  */

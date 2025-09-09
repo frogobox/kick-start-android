@@ -1,14 +1,11 @@
 package com.frogobox.kickstart.util
 
-import android.Manifest
 import android.os.Environment
-import com.frogobox.kickstart.common.ext.appApplicationId
 
 /**
  * Created by Faisal Amir
- * FrogoBox Inc License
- * =========================================
- * PublicSpeakingBooster
+ * Frogobox Inc License
+ * -----------------------------------------
  * Copyright (C) 16/08/2019.
  * All rights reserved
  * -----------------------------------------
@@ -17,8 +14,7 @@ import com.frogobox.kickstart.common.ext.appApplicationId
  * Github   : github.com/amirisback
  * LinkedIn : linkedin.com/in/faisalamircs
  * -----------------------------------------
- * FrogoBox Software Industries
- * com.frogobox.publicspeakingbooster.helper
+ * Frogobox Software Industries
  *
  */
 object Constant {

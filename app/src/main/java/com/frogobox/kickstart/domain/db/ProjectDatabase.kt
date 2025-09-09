@@ -11,8 +11,8 @@ import com.frogobox.kickstart.domain.model.Favorite
 
 /**
  * Created by Faisal Amir
- * FrogoBox Inc License
- * =========================================
+ * Frogobox Inc License
+ * -----------------------------------------
  * Copyright (C) 26/08/2019.
  * All rights reserved
  * -----------------------------------------
@@ -21,7 +21,7 @@ import com.frogobox.kickstart.domain.model.Favorite
  * Github   : github.com/amirisback
  * LinkedIn : linkedin.com/in/faisalamircs
  * -----------------------------------------
- * FrogoBox Software Industries
+ * Frogobox Software Industries
  *
  *
  */

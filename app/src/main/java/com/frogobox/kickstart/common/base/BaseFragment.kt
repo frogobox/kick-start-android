@@ -5,8 +5,8 @@ import com.frogobox.sdk.view.FrogoBindFragment
 
 /**
  * Created by Faisal Amir
- * FrogoBox Inc License
- * =========================================
+ * Frogobox Inc License
+ * -----------------------------------------
  * ImplementationAdmob
  * Copyright (C) 25/11/2019.
  * All rights reserved
@@ -16,7 +16,7 @@ import com.frogobox.sdk.view.FrogoBindFragment
  * Github   : github.com/amirisback
  * LinkedIn : linkedin.com/in/faisalamircs
  * -----------------------------------------
- * FrogoBox Software Industries
+ * Frogobox Software Industries
  * com.frogobox.basemusicplayer.activity
  *
  */

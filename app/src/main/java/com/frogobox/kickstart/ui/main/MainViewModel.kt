@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 /**
  * Created by Faisal Amir
- * =========================================
+ * -----------------------------------------
  * Copyright (C) 28/04/2020.
  * All rights reserved
  * -----------------------------------------
@@ -23,7 +23,7 @@ import javax.inject.Inject
  * E-mail   : faisalamircs@gmail.com
  * Github   : github.com/amirisback
  * -----------------------------------------
- * FrogoBox Inc
+ * Frogobox Inc
  *
  */
 

@@ -10,8 +10,8 @@ import io.reactivex.rxjava3.core.Single
 
 /**
  * Created by Faisal Amir
- * FrogoBox Inc License
- * =========================================
+ * Frogobox Inc License
+ * -----------------------------------------
  * Copyright (C) 04/09/2019.
  * All rights reserved
  * -----------------------------------------
@@ -20,7 +20,7 @@ import io.reactivex.rxjava3.core.Single
  * Github   : github.com/amirisback
  * LinkedIn : linkedin.com/in/faisalamircs
  * -----------------------------------------
- * FrogoBox Software Industries
+ * Frogobox Software Industries
  *
  */
 

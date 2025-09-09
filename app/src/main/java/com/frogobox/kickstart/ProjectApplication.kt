@@ -13,7 +13,7 @@ import dagger.hilt.android.HiltAndroidApp
  * E-mail   : faisalamircs@gmail.com
  * Github   : github.com/amirisback
  * -----------------------------------------
- * Copyright (C) 2020 FrogoBox Inc.      
+ * Copyright (C) 2020 Frogobox Inc.      
  * All rights reserved
  *
  */

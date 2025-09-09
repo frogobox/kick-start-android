@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 /**
  * Created by Faisal Amir
- * FrogoBox Inc License
- * =========================================
+ * Frogobox Inc License
+ * -----------------------------------------
  * TheMealsAPI
  * Copyright (C) 15/03/2020.
  * All rights reserved
@@ -15,7 +15,7 @@ import com.google.gson.annotations.SerializedName
  * Github   : github.com/amirisback
  * LinkedIn : linkedin.com/in/faisalamircs
  * -----------------------------------------
- * FrogoBox Software Industries
+ * Frogobox Software Industries
  * com.frogobox.frogoconsumeapi.meal.data.model
  *
  */

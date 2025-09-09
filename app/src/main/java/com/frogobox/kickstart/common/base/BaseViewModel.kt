@@ -4,8 +4,8 @@ import com.frogobox.sdk.view.FrogoViewModel2
 
 /**
  * Created by Faisal Amir
- * FrogoBox Inc License
- * =========================================
+ * Frogobox Inc License
+ * -----------------------------------------
  * Kick-Start-Template
  * Copyright (C) 18/08/2019.
  * All rights reserved
@@ -15,7 +15,7 @@ import com.frogobox.sdk.view.FrogoViewModel2
  * Github   : github.com/amirisback
  * LinkedIn : linkedin.com/in/faisalamircs
  * -----------------------------------------
- * FrogoBox Software Industries
+ * Frogobox Software Industries
  * com.frogobox.basemusicplayer.base
  *
  */

@@ -5,8 +5,8 @@ import com.frogobox.ads.ui.FrogoAdBindActivity
 
 /**
  * Created by Faisal Amir
- * FrogoBox Inc License
- * =========================================
+ * Frogobox Inc License
+ * -----------------------------------------
  * Copyright (C) 27/11/2019.
  * All rights reserved
  * -----------------------------------------
@@ -15,7 +15,7 @@ import com.frogobox.ads.ui.FrogoAdBindActivity
  * Github   : github.com/amirisback
  * LinkedIn : linkedin.com/in/faisalamircs
  * -----------------------------------------
- * FrogoBox Software Industries
+ * Frogobox Software Industries
  *
  */
 

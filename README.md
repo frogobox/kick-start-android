@@ -5,7 +5,7 @@
 - Privacy Policy [Click Here](https://github.com/frogobox/frogo-kick-start-android/blob/master/PRIVACY-POLICY.md)
 - License [Click Here](https://github.com/frogobox/frogo-kick-start-android/blob/master/LICENSE)
 - Template Reuse Code For Monetizing Apps
-- Template Code Monetize FrogoBox For Android Kick Start Project
+- Template Code Monetize Frogobox For Android Kick Start Project
 
 ## Version Release
 This Is Latest Release (Still Being Developed)
@@ -35,7 +35,7 @@ Min API level is set to 21, so the presented approach is suitable for over 94% o
     -   [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)  - designed to store and manage UI-related data in a lifecycle conscious way. The ViewModel class allows data to survive configuration changes such as screen rotations.
 -   [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)  - managing background threads with simplified code and reducing needs for callbacks.
 -   [Coroutines Flow](https://kotlinlang.org/docs/reference/coroutines-overview.html)  - cold asynchronous data stream that sequentially emits values and completes normally or with an exception
--   [Dagger2](https://dagger.dev/)  - dependency injector for replacement all Factory classes.
+-   [Hilt](https://dagger.dev/)  - dependency injector for replacement all Factory classes.
 -   [Retrofit](https://square.github.io/retrofit/)  - type-safe HTTP client.
 -   [Glide](https://github.com/bumptech/glide)  - image loading and caching library
 
