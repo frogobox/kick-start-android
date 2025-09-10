@@ -1,8 +1,8 @@
 package com.frogobox.kickstart.di
 
 import android.content.Context
-import com.frogobox.kickstart.domain.db.dao.FavoriteDao
 import com.frogobox.kickstart.domain.db.ProjectDatabase
+import com.frogobox.kickstart.domain.db.dao.MealDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,6 +20,6 @@ class DatabaseModule {
         ProjectDatabase.getInstance(context)
 
     @Provides
-    fun provideGameDao(database: ProjectDatabase): FavoriteDao = database.favoriteDao()
+    fun provideMealDao(database: ProjectDatabase): MealDao = database.mealDao()
 
 }

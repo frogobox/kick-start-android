@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.frogobox.kickstart.domain.db.dao.FavoriteDao
 import com.frogobox.kickstart.common.ext.appDatabaseName
 import com.frogobox.kickstart.common.ext.appIsDebug
-import com.frogobox.kickstart.domain.model.Favorite
+import com.frogobox.kickstart.domain.db.dao.MealDao
+import com.frogobox.kickstart.domain.model.MealModel
 
 /**
  * Created by Faisal Amir
@@ -25,15 +25,17 @@ import com.frogobox.kickstart.domain.model.Favorite
  *
  *
  */
+
 @Database(
     entities = [
-        (Favorite::class)
-    ], version = 1
+        (MealModel::class)
+    ],
+    version = 1,
+    exportSchema = true,
 )
-
 abstract class ProjectDatabase : RoomDatabase() {
 
-    abstract fun favoriteDao(): FavoriteDao
+    abstract fun mealDao(): MealDao
 
     companion object {
 
@@ -54,7 +56,7 @@ abstract class ProjectDatabase : RoomDatabase() {
                     ProjectDatabase::class.java,
                     appDatabaseName
                 )
-                    .fallbackToDestructiveMigration() // FOR DEVELOPMENT ONLY !!!!
+                    .fallbackToDestructiveMigration(true) // FOR DEVELOPMENT ONLY !!!!
                     .build()
             } else {
                 Room.databaseBuilder(

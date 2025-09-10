@@ -6,7 +6,7 @@ import com.frogobox.kickstart.common.base.BaseAdapter
 import com.frogobox.kickstart.common.base.BaseViewHolder
 import com.frogobox.kickstart.common.callback.OnItemClickCallback
 import com.frogobox.kickstart.databinding.ContentArticleVerticalBinding
-import com.frogobox.kickstart.domain.model.Meal
+import com.frogobox.kickstart.domain.model.MealModel
 import com.frogobox.sdk.ext.setImageExt
 
 /**
@@ -19,7 +19,7 @@ import com.frogobox.sdk.ext.setImageExt
  */
 
 
-class MainAdapter : BaseAdapter<Meal, MainAdapter.MainHolder>() {
+class MainAdapter : BaseAdapter<MealModel, MainAdapter.MainHolder>() {
 
     override fun bindVH(
         holder: MainHolder,
@@ -29,15 +29,15 @@ class MainAdapter : BaseAdapter<Meal, MainAdapter.MainHolder>() {
     }
 
     override fun adapterAreItemsTheSame(
-        oldItem: Meal,
-        newItem: Meal,
+        oldItem: MealModel,
+        newItem: MealModel,
     ): Boolean {
         return oldItem.idMeal == newItem.idMeal
     }
 
     override fun adapterAreContentsTheSame(
-        oldItem: Meal,
-        newItem: Meal,
+        oldItem: MealModel,
+        newItem: MealModel,
     ): Boolean {
         return oldItem == newItem
     }
@@ -59,9 +59,9 @@ class MainAdapter : BaseAdapter<Meal, MainAdapter.MainHolder>() {
     inner class MainHolder(
         private val binding: ContentArticleVerticalBinding,
         private val onItemClickCallback: OnItemClickCallback? = null,
-    ) : BaseViewHolder<Meal>(binding.root) {
+    ) : BaseViewHolder<MealModel>(binding.root) {
 
-        override fun bindData(model: Meal, position: Int?) {
+        override fun bindData(model: MealModel, position: Int?) {
             binding.apply {
                 ivUrl.setImageExt(model.strMealThumb)
                 tvTitle.text = model.strMeal

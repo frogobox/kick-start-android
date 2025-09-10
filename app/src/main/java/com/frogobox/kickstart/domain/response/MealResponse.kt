@@ -1,4 +1,4 @@
-package com.frogobox.kickstart.domain.model
+package com.frogobox.kickstart.domain.response
 
 import com.google.gson.annotations.SerializedName
 
@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName
  * Created by Faisal Amir
  * Frogobox Inc License
  * -----------------------------------------
+ * TheMealsAPI
  * Copyright (C) 15/03/2020.
  * All rights reserved
  * -----------------------------------------
@@ -15,11 +16,12 @@ import com.google.gson.annotations.SerializedName
  * LinkedIn : linkedin.com/in/faisalamircs
  * -----------------------------------------
  * Frogobox Software Industries
+ * com.frogobox.frogoconsumeapi.meal.data.response
  *
  */
-data class Area(
+data class MealResponse<T>(
 
-    @SerializedName("strArea")
-    var strArea: String? = null
+    @SerializedName("meals")
+    var meals: List<T>? = null
 
 )

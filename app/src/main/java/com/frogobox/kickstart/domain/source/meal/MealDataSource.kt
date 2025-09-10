@@ -1,13 +1,14 @@
 package com.frogobox.kickstart.domain.source.meal
 
 import com.frogobox.kickstart.common.callback.Resource
-import com.frogobox.kickstart.domain.model.Area
-import com.frogobox.kickstart.domain.model.Category
-import com.frogobox.kickstart.domain.model.CategoryResponse
-import com.frogobox.kickstart.domain.model.Ingredient
-import com.frogobox.kickstart.domain.model.Meal
-import com.frogobox.kickstart.domain.model.MealFilter
-import com.frogobox.kickstart.domain.model.MealResponse
+import com.frogobox.kickstart.domain.db.dao.MealDao
+import com.frogobox.kickstart.domain.model.AreaModel
+import com.frogobox.kickstart.domain.model.CategoryModel
+import com.frogobox.kickstart.domain.response.CategoryResponse
+import com.frogobox.kickstart.domain.model.IngredientModel
+import com.frogobox.kickstart.domain.model.MealModel
+import com.frogobox.kickstart.domain.model.MealFilterModel
+import com.frogobox.kickstart.domain.response.MealResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -31,7 +32,7 @@ class MealDataSource @Inject constructor(
 ) {
 
     // Search meal by name
-    fun searchMeal(apiKey: String, nameMeal: String): Flow<Resource<MealResponse<Meal>?>> =
+    fun searchMeal(apiKey: String, nameMeal: String): Flow<Resource<MealResponse<MealModel>?>> =
         flow {
             try {
                 emit(Resource.Loading())
@@ -51,7 +52,7 @@ class MealDataSource @Inject constructor(
     fun listAllMeal(
         apiKey: String,
         firstLetter: String,
-    ): Flow<Resource<MealResponse<Meal>?>> = flow {
+    ): Flow<Resource<MealResponse<MealModel>?>> = flow {
         try {
             emit(Resource.Loading())
             val request = apiService.listAllMeal(apiKey, firstLetter)
@@ -70,7 +71,7 @@ class MealDataSource @Inject constructor(
     fun lookupFullMeal(
         apiKey: String,
         idMeal: String,
-    ): Flow<Resource<MealResponse<Meal>?>> = flow {
+    ): Flow<Resource<MealResponse<MealModel>?>> = flow {
         try {
             emit(Resource.Loading())
             val request = apiService.lookupFullMeal(apiKey, idMeal)
@@ -88,7 +89,7 @@ class MealDataSource @Inject constructor(
     // Lookup a single random meal
     fun lookupRandomMeal(
         apiKey: String,
-    ): Flow<Resource<MealResponse<Meal>?>> = flow {
+    ): Flow<Resource<MealResponse<MealModel>?>> = flow {
         try {
             emit(Resource.Loading())
             val request = apiService.lookupRandomMeal(apiKey)
@@ -125,7 +126,7 @@ class MealDataSource @Inject constructor(
     fun listAllCategories(
         apiKey: String,
         query: String,
-    ): Flow<Resource<MealResponse<Category>?>> = flow {
+    ): Flow<Resource<MealResponse<CategoryModel>?>> = flow {
         try {
             emit(Resource.Loading())
             val request = apiService.listAllCategories(apiKey, query)
@@ -144,7 +145,7 @@ class MealDataSource @Inject constructor(
     fun listAllArea(
         apiKey: String,
         query: String,
-    ): Flow<Resource<MealResponse<Area>?>> = flow {
+    ): Flow<Resource<MealResponse<AreaModel>?>> = flow {
         try {
             emit(Resource.Loading())
             val request = apiService.listAllArea(apiKey, query)
@@ -163,7 +164,7 @@ class MealDataSource @Inject constructor(
     fun listAllIngredients(
         apiKey: String,
         query: String,
-    ): Flow<Resource<MealResponse<Ingredient>?>> = flow {
+    ): Flow<Resource<MealResponse<IngredientModel>?>> = flow {
         try {
             emit(Resource.Loading())
             val request = apiService.listAllIngredients(apiKey, query)
@@ -182,7 +183,7 @@ class MealDataSource @Inject constructor(
     fun filterByIngredient(
         apiKey: String,
         ingredient: String,
-    ): Flow<Resource<MealResponse<MealFilter>?>> = flow {
+    ): Flow<Resource<MealResponse<MealFilterModel>?>> = flow {
         try {
             emit(Resource.Loading())
             val request = apiService.filterByIngredient(apiKey, ingredient)
@@ -201,7 +202,7 @@ class MealDataSource @Inject constructor(
     fun filterByCategory(
         apiKey: String,
         category: String,
-    ): Flow<Resource<MealResponse<MealFilter>?>> = flow {
+    ): Flow<Resource<MealResponse<MealFilterModel>?>> = flow {
         try {
             emit(Resource.Loading())
             val request = apiService.filterByCategory(apiKey, category)
@@ -220,7 +221,7 @@ class MealDataSource @Inject constructor(
     fun filterByArea(
         apiKey: String,
         area: String,
-    ): Flow<Resource<MealResponse<MealFilter>?>> = flow {
+    ): Flow<Resource<MealResponse<MealFilterModel>?>> = flow {
         try {
             emit(Resource.Loading())
             val request = apiService.filterByArea(apiKey, area)
@@ -234,6 +235,5 @@ class MealDataSource @Inject constructor(
             emit(Resource.Error(e.message.toString()))
         }
     }.flowOn(Dispatchers.IO)
-
 
 }

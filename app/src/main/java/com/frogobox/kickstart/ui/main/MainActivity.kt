@@ -2,18 +2,28 @@ package com.frogobox.kickstart.ui.main
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import androidx.activity.result.ActivityResult
+import androidx.activity.viewModels
 import com.frogobox.kickstart.R
 import com.frogobox.kickstart.common.base.BaseActivity
 import com.frogobox.kickstart.databinding.ActivityMainBinding
 import com.frogobox.kickstart.ui.favorite.FavoriteFragment
+import com.frogobox.kickstart.ui.favorite.FavoriteViewModel
 import com.frogobox.sdk.ext.getColorExt
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
+    private val favoriteViewModel : FavoriteViewModel by viewModels()
+
     override fun setupViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
+    }
+
+    override fun setupActivityResultExt(result: ActivityResult) {
+        super.setupActivityResultExt(result)
+        favoriteViewModel.getData()
     }
 
     override fun setupViewModel() {}

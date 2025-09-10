@@ -1,12 +1,12 @@
 package com.frogobox.kickstart.domain.source.meal
 
-import com.frogobox.kickstart.domain.model.Area
-import com.frogobox.kickstart.domain.model.Category
-import com.frogobox.kickstart.domain.model.CategoryResponse
-import com.frogobox.kickstart.domain.model.Ingredient
-import com.frogobox.kickstart.domain.model.Meal
-import com.frogobox.kickstart.domain.model.MealFilter
-import com.frogobox.kickstart.domain.model.MealResponse
+import com.frogobox.kickstart.domain.model.AreaModel
+import com.frogobox.kickstart.domain.model.CategoryModel
+import com.frogobox.kickstart.domain.response.CategoryResponse
+import com.frogobox.kickstart.domain.model.IngredientModel
+import com.frogobox.kickstart.domain.model.MealModel
+import com.frogobox.kickstart.domain.model.MealFilterModel
+import com.frogobox.kickstart.domain.response.MealResponse
 import com.frogobox.kickstart.domain.source.meal.MealConstant.PATH_API_KEY
 import com.frogobox.kickstart.domain.source.meal.MealConstant.QUERY_AREA
 import com.frogobox.kickstart.domain.source.meal.MealConstant.QUERY_CATEGORY
@@ -48,27 +48,27 @@ interface MealApiService {
     suspend fun searchMeal(
         @Path(PATH_API_KEY) apiKey: String,
         @Query(QUERY_NAME) nameMeal: String,
-    ): Response<MealResponse<Meal>>
+    ): Response<MealResponse<MealModel>>
 
     // List all meals by first letter
     @GET(URL_SEARCH_MEAL)
     suspend fun listAllMeal(
         @Path(PATH_API_KEY) apiKey: String,
         @Query(QUERY_FIRST_LETTER) firstLetter: String,
-    ): Response<MealResponse<Meal>>
+    ): Response<MealResponse<MealModel>>
 
     // Lookup full meal details by id
     @GET(URL_LOOKUP_MEAL)
     suspend fun lookupFullMeal(
         @Path(PATH_API_KEY) apiKey: String,
         @Query(QUERY_ID) idMeal: String,
-    ): Response<MealResponse<Meal>>
+    ): Response<MealResponse<MealModel>>
 
     // Lookup a single random meal
     @GET(URL_RANDOM_MEAL)
     suspend fun lookupRandomMeal(
         @Path(PATH_API_KEY) apiKey: String,
-    ): Response<MealResponse<Meal>>
+    ): Response<MealResponse<MealModel>>
 
     // List all meal categories
     @GET(URL_CATEGORIES)
@@ -81,39 +81,39 @@ interface MealApiService {
     suspend fun listAllCategories(
         @Path(PATH_API_KEY) apiKey: String,
         @Query(QUERY_CATEGORY) query: String,
-    ): Response<MealResponse<Category>>
+    ): Response<MealResponse<CategoryModel>>
 
     // List all Area
     @GET(URL_LIST)
     suspend fun listAllArea(
         @Path(PATH_API_KEY) apiKey: String,
         @Query(QUERY_AREA) query: String,
-    ): Response<MealResponse<Area>>
+    ): Response<MealResponse<AreaModel>>
 
     // List all Ingredients
     @GET(URL_LIST)
     suspend fun listAllIngredients(
         @Path(PATH_API_KEY) apiKey: String,
         @Query(QUERY_INGREDIENT) query: String,
-    ): Response<MealResponse<Ingredient>>
+    ): Response<MealResponse<IngredientModel>>
 
     // Filter by main ingredient
     @GET(URL_FILTER)
     suspend fun filterByIngredient(
         @Path(PATH_API_KEY) apiKey: String,
         @Query(QUERY_INGREDIENT) ingredient: String,
-    ): Response<MealResponse<MealFilter>>
+    ): Response<MealResponse<MealFilterModel>>
 
     // Filter by Category
     suspend fun filterByCategory(
         @Path(PATH_API_KEY) apiKey: String,
         @Query(QUERY_CATEGORY) category: String,
-    ): Response<MealResponse<MealFilter>>
+    ): Response<MealResponse<MealFilterModel>>
 
     // Filter by Area
     suspend fun filterByArea(
         @Path(PATH_API_KEY) apiKey: String,
         @Query(QUERY_AREA) area: String,
-    ): Response<MealResponse<MealFilter>>
+    ): Response<MealResponse<MealFilterModel>>
 
 }
