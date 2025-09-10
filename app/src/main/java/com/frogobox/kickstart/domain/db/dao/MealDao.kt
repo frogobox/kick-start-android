@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import com.frogobox.kickstart.domain.db.DBConfig.TABLE_MEALS
 import com.frogobox.kickstart.domain.model.MealModel
+import kotlin.collections.List
 
 /**
  * Created by faisalamircs on 10/09/2025
@@ -21,6 +22,9 @@ interface MealDao {
 
     @Query("SELECT * FROM $TABLE_MEALS")
     fun getAllData(): List<MealModel>
+
+    @Query("SELECT * FROM $TABLE_MEALS WHERE idMeal = :idMeal")
+    fun searchById(idMeal: String): List<MealModel>
 
     @Insert
     fun insertData(data: MealModel)

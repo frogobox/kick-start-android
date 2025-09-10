@@ -71,14 +71,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                     position: Int?,
                 ) {
                     (objects as MealModel).let {
-                        DetailActivity.launch(requireContext(), it)
+                        mActivity.startActivityResultExt(DetailActivity.createIntent(requireContext(), it))
                     }
                 }
             })
 
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

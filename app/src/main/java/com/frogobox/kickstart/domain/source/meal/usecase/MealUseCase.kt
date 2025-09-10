@@ -57,6 +57,8 @@ interface MealUseCase {
 
     fun getAllFavorite(): Flow<Resource<List<MealModel>>>
 
+    fun searchById(idMeal : String): Flow<Resource<List<MealModel>>>
+
     fun deleteFromTableId(tableId: Int): Flow<Resource<String>>
 
     fun deleteFromMealId(mealId: String): Flow<Resource<String>>

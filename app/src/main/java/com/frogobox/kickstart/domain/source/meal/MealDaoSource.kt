@@ -46,6 +46,16 @@ class MealDaoSource @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
+    fun searchById(idMeal : String): Flow<Resource<List<MealModel>>> = flow {
+        try {
+            emit(Resource.Loading())
+            val response = dao.searchById(idMeal)
+            emit(Resource.Success(response))
+        } catch (e: Exception) {
+            emit(Resource.Error(e.message.toString()))
+        }
+    }.flowOn(Dispatchers.IO)
+
     fun deleteFromTableId(tableId: Int): Flow<Resource<String>> = flow {
         try {
             emit(Resource.Loading())

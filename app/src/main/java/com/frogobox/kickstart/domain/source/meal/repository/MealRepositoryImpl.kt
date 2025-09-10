@@ -184,6 +184,16 @@ class MealRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun searchById(idMeal: String): Flow<Resource<List<MealModel>>> {
+        return daoSource.searchById(idMeal).map {
+            return@map when (it) {
+                is Resource.Success -> Resource.Success(it.data ?: listOf())
+                is Resource.Error -> Resource.Error(it.message.toString())
+                is Resource.Loading -> Resource.Loading()
+            }
+        }
+    }
+
     override fun deleteFromTableId(tableId: Int): Flow<Resource<String>> {
         return daoSource.deleteFromTableId(tableId).map {
             return@map when (it) {

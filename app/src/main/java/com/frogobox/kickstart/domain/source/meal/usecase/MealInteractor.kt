@@ -93,4 +93,8 @@ class MealInteractor @Inject constructor(
         return repository.nukeData()
     }
 
+    override fun searchById(idMeal: String): Flow<Resource<List<MealModel>>> {
+        return repository.searchById(idMeal)
+    }
+
 }

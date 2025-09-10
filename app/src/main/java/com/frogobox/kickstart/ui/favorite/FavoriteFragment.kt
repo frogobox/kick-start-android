@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.frogobox.kickstart.common.base.BaseFragment
@@ -22,12 +23,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
 
-    private val viewModel : FavoriteViewModel by viewModels()
+    private val viewModel : FavoriteViewModel by activityViewModels()
 
     private val mainAdapter: MainAdapter by lazy {
         MainAdapter()
     }
-
 
     override fun setupViewBinding(
         inflater: LayoutInflater,
@@ -79,7 +79,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
                     position: Int?,
                 ) {
                     (objects as MealModel).let {
-                        DetailActivity.launch(requireContext(), it)
+                        mActivity.startActivityResultExt(DetailActivity.createIntent(requireContext(), it))
                     }
                 }
             })
