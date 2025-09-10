@@ -13,6 +13,6 @@ package com.frogobox.kickstart.domain.db
 object DBConfig {
 
     const val BASE_TABLE_NAME = "table"
-    const val TABLE_NAME_FAVORITE = "favorite"
+    const val TABLE_MEALS = "meal"
 
 }

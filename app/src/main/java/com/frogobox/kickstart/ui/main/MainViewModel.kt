@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.frogobox.kickstart.common.base.BaseViewModel
 import com.frogobox.kickstart.common.callback.Resource
 import com.frogobox.kickstart.domain.source.meal.usecase.MealUseCase
-import com.frogobox.kickstart.domain.model.Meal
+import com.frogobox.kickstart.domain.model.MealModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -32,8 +32,8 @@ class MainViewModel @Inject constructor(
     private val useCase: MealUseCase,
 ) : BaseViewModel() {
 
-    private var _mealsState = MutableLiveData<Resource<List<Meal>>>()
-    var mealsState: LiveData<Resource<List<Meal>>> = _mealsState
+    private var _mealsState = MutableLiveData<Resource<List<MealModel>>>()
+    var mealsState: LiveData<Resource<List<MealModel>>> = _mealsState
 
     fun searchMeal(name: String = "") {
         viewModelScope.launch {
