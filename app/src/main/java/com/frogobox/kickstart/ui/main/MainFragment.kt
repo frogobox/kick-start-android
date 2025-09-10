@@ -10,7 +10,7 @@ import com.frogobox.kickstart.common.base.BaseFragment
 import com.frogobox.kickstart.common.callback.OnItemClickCallback
 import com.frogobox.kickstart.common.callback.Resource
 import com.frogobox.kickstart.databinding.FragmentMainBinding
-import com.frogobox.kickstart.domain.model.Meal
+import com.frogobox.kickstart.domain.model.MealModel
 import com.frogobox.kickstart.ui.detail.DetailActivity
 import com.frogobox.sdk.ext.gone
 import com.frogobox.sdk.ext.showToast
@@ -70,7 +70,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                     objects: Any,
                     position: Int?,
                 ) {
-                    (objects as Meal).let {
+                    (objects as MealModel).let {
                         DetailActivity.launch(requireContext(), it)
                     }
                 }

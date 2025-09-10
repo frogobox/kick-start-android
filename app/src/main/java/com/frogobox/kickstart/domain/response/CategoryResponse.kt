@@ -1,5 +1,6 @@
-package com.frogobox.kickstart.domain.model
+package com.frogobox.kickstart.domain.response
 
+import com.frogobox.kickstart.domain.model.CategoryModel
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -19,9 +20,10 @@ import com.google.gson.annotations.SerializedName
  * com.frogobox.frogoconsumeapi.meal.data.response
  *
  */
-data class MealResponse<T>(
 
-    @SerializedName("meals")
-    var meals: List<T>? = null
+data class CategoryResponse(
+
+    @SerializedName("categories")
+    var categories: List<CategoryModel>? = null
 
 )

@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName
  * Created by Faisal Amir
  * Frogobox Inc License
  * -----------------------------------------
- * TheMealsAPI
  * Copyright (C) 15/03/2020.
  * All rights reserved
  * -----------------------------------------
@@ -16,22 +15,11 @@ import com.google.gson.annotations.SerializedName
  * LinkedIn : linkedin.com/in/faisalamircs
  * -----------------------------------------
  * Frogobox Software Industries
- * com.frogobox.frogoconsumeapi.meal.data.model
  *
  */
+data class AreaModel(
 
-data class Category(
-
-    @SerializedName("idCategory")
-    var idCategory: String? = null,
-
-    @SerializedName("strCategory")
-    var strCategory: String? = null,
-
-    @SerializedName("strCategoryThumb")
-    var strCategoryThumb: String? = null,
-
-    @SerializedName("strCategoryDescription")
-    var strCategoryDescription: String? = null
+    @SerializedName("strArea")
+    var strArea: String? = null
 
 )

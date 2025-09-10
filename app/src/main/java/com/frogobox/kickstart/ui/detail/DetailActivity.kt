@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.frogobox.kickstart.common.base.BaseActivity
 import com.frogobox.kickstart.databinding.ActivityDetailBinding
-import com.frogobox.kickstart.domain.model.Meal
+import com.frogobox.kickstart.domain.model.MealModel
 import com.frogobox.sdk.ext.getExtraExt
 import com.frogobox.sdk.ext.setImageExt
 import com.frogobox.sdk.ext.toJson
@@ -19,13 +19,13 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>() {
         const val EXTRA_DATA = "EXTRA_DATA"
         const val EXTRA_DATA_FAV = "EXTRA_DATA_FAV"
 
-        fun createIntent(context: Context, data: Meal): Intent {
+        fun createIntent(context: Context, data: MealModel): Intent {
             return Intent(context, DetailActivity::class.java).apply {
                 putExtra(EXTRA_DATA, data.toJson())
             }
         }
 
-        fun launch(context: Context, data: Meal) {
+        fun launch(context: Context, data: MealModel) {
             context.startActivity(createIntent(context, data))
         }
 
@@ -45,7 +45,7 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>() {
         super.onCreateExt(savedInstanceState)
         setupDetailActivity("Detail Meals")
 
-        val extra = getExtraExt<Meal>(EXTRA_DATA)
+        val extra = getExtraExt<MealModel>(EXTRA_DATA)
 
         binding.apply {
             ivUrl.setImageExt(extra.strMealThumb)

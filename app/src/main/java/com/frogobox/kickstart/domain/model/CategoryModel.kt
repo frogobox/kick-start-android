@@ -19,15 +19,19 @@ import com.google.gson.annotations.SerializedName
  * com.frogobox.frogoconsumeapi.meal.data.model
  *
  */
-data class MealFilter(
 
-    @SerializedName("strMeal")
-    var strMeal: String? = null,
+data class CategoryModel(
 
-    @SerializedName("strMealThumb")
-    var strMealThumb: String? = null,
+    @SerializedName("idCategory")
+    var idCategory: String? = null,
 
-    @SerializedName("idMeal")
-    var idMeal: String? = null
+    @SerializedName("strCategory")
+    var strCategory: String? = null,
+
+    @SerializedName("strCategoryThumb")
+    var strCategoryThumb: String? = null,
+
+    @SerializedName("strCategoryDescription")
+    var strCategoryDescription: String? = null
 
 )
