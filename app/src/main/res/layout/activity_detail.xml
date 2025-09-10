@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/iv_url"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/frogo_dimen_130dp"
+            android:layout_height="350dp"
             android:layout_marginBottom="@dimen/frogo_dimen_8dp"
             android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/avatars" />
