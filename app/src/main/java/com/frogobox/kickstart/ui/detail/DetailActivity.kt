@@ -80,6 +80,7 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>() {
                     binding.progressView.gone()
                     binding.btnInsert.gone()
                     binding.btnDelete.visible()
+                    showToast("Berhasil Menambahkan Ke Favorite ${it.data?.strMeal}")
                 }
             }
         }
