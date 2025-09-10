@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
 
-    private val favoriteViewModel : FavoriteViewModel by viewModels()
+    private val viewModel : FavoriteViewModel by viewModels()
 
     override fun setupViewBinding(
         inflater: LayoutInflater,
@@ -22,9 +22,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     }
 
     override fun setupViewModel() {
-        favoriteViewModel.apply {
 
-        }
     }
 
     override fun onViewCreatedExt(view: View, savedInstanceState: Bundle?) {
