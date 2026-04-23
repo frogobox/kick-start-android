@@ -1,25 +1,25 @@
 [versions]
-agp = "8.13.0"
-kotlin = "2.2.10"
-ksp = "2.2.10-2.0.2"
-hilt = "2.57.1"
-googleServices = "4.4.3"
-crashlytics = "3.0.6"
+agp = "9.2.0"
+kotlin = "2.3.20"
+ksp = "2.3.6"
+hilt = "2.59.2"
+googleServices = "4.4.4"
+crashlytics = "3.0.7"
 
 constraintlayout = "2.2.1"
-liveCycle = "2.9.3"
-roomKtx = "2.7.2"
-work = "2.10.3"
-swiperefreshlayout = "1.1.0"
+liveCycle = "2.10.0"
+roomKtx = "2.8.4"
+work = "2.11.2"
+swiperefreshlayout = "1.2.0"
 
-firebaseBom = "34.2.0"
-glide = "5.0.4"
-balloon = "1.6.13"
-chucker = "4.2.0"
+firebaseBom = "34.12.0"
+glide = "5.0.7"
+balloon = "1.7.6"
+chucker = "4.3.1"
 
-mixpanel = "8.2.2"
+mixpanel = "8.5.2"
 
-frogoAndroid = "2.3.2"
+frogoAndroid = "2.3.7"
 
 [libraries]
 # Android Kit
@@ -60,7 +60,7 @@ frogo-android = { group = "com.github.frogobox", name = "frogo-sdk", version.ref
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "agp" }
-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinParcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }

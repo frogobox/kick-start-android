@@ -1,11 +1,12 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.text.SimpleDateFormat
+import java.util.Date
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
-    id("kotlin-parcelize")
+    alias(libs.plugins.kotlinParcelize)
 }
 
 ksp {
@@ -14,7 +15,8 @@ ksp {
 
 base {
     // Naming APK // AAB
-    archivesName = "${ProjectSetting.NAME_APK}-${android.defaultConfig.versionCode}"
+    val timestamp = SimpleDateFormat("dd-MM-yyyy_hh-mm").format(Date())
+    archivesName = "${ProjectSetting.NAME_APK}-${android.defaultConfig.versionCode}-$timestamp"
 }
 
 android {
@@ -95,6 +97,7 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        resValues = true
     }
 
     compileOptions {

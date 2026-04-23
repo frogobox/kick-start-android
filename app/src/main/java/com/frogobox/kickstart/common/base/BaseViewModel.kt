@@ -1,6 +1,6 @@
 package com.frogobox.kickstart.common.base
 
-import com.frogobox.sdk.view.FrogoViewModel2
+import com.frogobox.sdk.view.FrogoViewModel
 
 /**
  * Created by Faisal Amir
@@ -20,7 +20,7 @@ import com.frogobox.sdk.view.FrogoViewModel2
  *
  */
 
-open class BaseViewModel() : FrogoViewModel2() {
+open class BaseViewModel() : FrogoViewModel() {
 
     override fun onClearDisposable() {
         super.onClearDisposable()

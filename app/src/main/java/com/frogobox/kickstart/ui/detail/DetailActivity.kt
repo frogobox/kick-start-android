@@ -11,7 +11,6 @@ import com.frogobox.kickstart.domain.model.MealModel
 import com.frogobox.sdk.ext.getExtraExt
 import com.frogobox.sdk.ext.gone
 import com.frogobox.sdk.ext.setImageExt
-import com.frogobox.sdk.ext.showLogD
 import com.frogobox.sdk.ext.showToast
 import com.frogobox.sdk.ext.toJson
 import com.frogobox.sdk.ext.visible
@@ -112,18 +111,20 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>() {
         viewModel.mealModel = extra
         viewModel.getData()
 
-        binding.apply {
-            ivUrl.setImageExt(extra.strMealThumb)
-            tvSource.text = extra.strArea
-            tvTitle.text = extra.strMeal
-            tvContent.text = extra.strCategory
+        extra?.let {
+            binding.apply {
+                ivUrl.setImageExt(it.strMealThumb)
+                tvSource.text = it.strArea
+                tvTitle.text = it.strMeal
+                tvContent.text = it.strCategory
 
-            btnInsert.setOnClickListener {
-                viewModel.insertToDB()
-            }
+                btnInsert.setOnClickListener {
+                    viewModel.insertToDB()
+                }
 
-            btnDelete.setOnClickListener {
-                viewModel.removeFromDb()
+                btnDelete.setOnClickListener {
+                    viewModel.removeFromDb()
+                }
             }
         }
 
